@@ -42,6 +42,10 @@ const NAV_LINKS: ISubNav[] = [
       },
     ],
   },
+  {
+    label: 'NFT Marketplace',
+    href: '/marketplace',
+  }
 ];
 
 export default NAV_LINKS;
