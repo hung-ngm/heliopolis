@@ -3,7 +3,6 @@
 
 // };
 
-export interface IMarketplace {
+export interface ICollection {
     
 }
-

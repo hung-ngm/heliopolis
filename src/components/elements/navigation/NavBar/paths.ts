@@ -45,6 +45,20 @@ const NAV_LINKS: ISubNav[] = [
   {
     label: 'NFT Marketplace',
     href: '/marketplace',
+    children: [
+      {
+        label: 'Explore',
+        subLabel: 'Explore the NFT marketplace',
+        href: '/marketplace/explore',
+        logo: 'pack',
+      },
+      {
+        label: 'Your collection',
+        subLabel: 'Manage your NFT collection',
+        href: '/marketplace/collection',
+        logo: 'lazyNft',
+      }
+    ]
   }
 ];
 
