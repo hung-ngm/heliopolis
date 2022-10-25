@@ -4,6 +4,8 @@ import { extendTheme } from '@chakra-ui/react';
 import { publicProvider } from 'wagmi/providers/public';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
+import '../styles/globals.css'
+import dynamic from 'next/dynamic'
 
 const { provider, webSocketProvider } = configureChains(defaultChains, [publicProvider()]);
 
@@ -19,13 +21,18 @@ const config = {
 };
 
 const theme = extendTheme({ config });
+const AppWithoutSSR = dynamic(() => import('../chat_components/App'), {
+  ssr: false,
+})
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <WagmiConfig client={client}>
         <SessionProvider session={pageProps.session} refetchInterval={0}>
-          <Component {...pageProps} />
+          <AppWithoutSSR>
+            <Component {...pageProps} />
+          </AppWithoutSSR>
         </SessionProvider>
       </WagmiConfig>
     </ChakraProvider>

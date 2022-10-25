@@ -7,6 +7,10 @@ const NAV_LINKS: ISubNav[] = [
     href: '/transactions',
   },
   {
+    label:"Chat",
+    href:'/dm'
+  },
+  {
     label: 'Transfers',
     href: '/transfers',
     children: [
@@ -22,6 +26,7 @@ const NAV_LINKS: ISubNav[] = [
         href: '/transfers/nft',
         logo: 'lazyNft',
       },
+      
     ],
   },
   {
