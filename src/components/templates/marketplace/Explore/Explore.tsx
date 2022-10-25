@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { FC, useEffect } from 'react';
+import { IExplore } from './types';
 
-const Explore = () => {
-  return (
+const Explore: FC<IExplore> = ({ marketplace }) => {
+    useEffect(() => console.log('market', marketplace), [marketplace]);
+  
+    return (
     <>
         <h1>Hello Explore</h1>
     </>

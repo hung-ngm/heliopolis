@@ -93,6 +93,15 @@ const config: HardhatUserConfig = {
       url: process.env.GOERLI_URL || "",
       accounts:
         privateKey !== undefined ? [privateKey] : [],
+      gas: 2100000,
+      gasPrice: 8000000000
+    },
+    mumbai: {
+      url: process.env.MUMBAI_URL || "",
+      accounts:
+        privateKey !== undefined ? [privateKey] : [],
+      gas: 2100000,
+      gasPrice: 8000000000
     },
   },
 };

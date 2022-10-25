@@ -36,7 +36,8 @@
     "react-dom": "18.2.0",
     "solidity-coverage": "^0.8.2",
     "typechain": "^8.1.0",
-    "wagmi": "^0.6.4"
+    "wagmi": "^0.6.4",
+    "web3modal": "^1.9.9"
   },
   "devDependencies": {
     "@typechain/hardhat": "^3.0.0",

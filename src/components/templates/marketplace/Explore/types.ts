@@ -4,5 +4,6 @@
 // };
 
 export interface IExplore {
-    
+    marketplace?: any;
+    error?: string;
 }
