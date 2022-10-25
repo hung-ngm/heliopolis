@@ -3,9 +3,9 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Conversation } from '../../chat_components/Conversation'
-import { checkPath } from '../../helpers'
-import XmtpContext from '../../contexts/xmtp'
-import { WalletContext } from '../../contexts/wallet'
+import { checkPath } from '../../src/helpers'
+import XmtpContext from '../../src/contexts/xmtp'
+import { WalletContext } from '../../src/contexts/wallet'
 
 const ConversationPage: NextPage = () => {
   const router = useRouter()

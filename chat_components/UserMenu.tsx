@@ -1,12 +1,12 @@
 import { Menu, Transition } from '@headlessui/react'
 import { CogIcon } from '@heroicons/react/solid'
 import { Fragment, useContext } from 'react'
-import { classNames, tagStr } from '../helpers'
+import { classNames, tagStr } from '../src/helpers'
 import Blockies from 'react-blockies'
 import Address from './Address'
-import useEns from '../hooks/useEns'
+import useEns from '../src/hooks/useEns'
 import { Tooltip } from './Tooltip/Tooltip'
-import { WalletContext } from '../contexts/wallet'
+import { WalletContext } from '../src/contexts/wallet'
 import packageJson from '../package.json'
 
 type UserMenuProps = {

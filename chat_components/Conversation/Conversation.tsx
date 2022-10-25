@@ -7,8 +7,8 @@ import React, {
 } from 'react'
 import { MessagesList, MessageComposer } from './index'
 import Loader from '../Loader'
-import XmtpContext from '../../contexts/xmtp'
-import useConversation from '../../hooks/useConversation'
+import XmtpContext from '../../src/contexts/xmtp'
+import useConversation from '../../src/hooks/useConversation'
 
 type ConversationProps = {
   recipientWalletAddr: string

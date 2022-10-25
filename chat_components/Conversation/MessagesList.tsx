@@ -2,7 +2,7 @@ import { Message } from '@xmtp/xmtp-js'
 import React, { MutableRefObject } from 'react'
 import Emoji from 'react-emoji-render'
 import Avatar from '../Avatar'
-import { formatTime } from '../../helpers'
+import { formatTime } from '../../src/helpers'
 import AddressPill from '../AddressPill'
 
 export type MessageListProps = {

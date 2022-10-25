@@ -5,11 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e996211-c047-45eb-9742-d73ab3a8d484" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/elements/navigation/NavBar/paths.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/elements/navigation/NavBar/paths.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Address.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Address.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/AddressInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/AddressPill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/AddressPill.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/Conversation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Conversation/Conversation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/MessageComposer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Conversation/MessageComposer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/MessagesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Conversation/MessagesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/RecipientControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Conversation/RecipientControl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/ConversationsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/ConversationsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/NavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/NavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/UserMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/UserMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/WalletProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/WalletProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/XmtpInfoPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/XmtpInfoPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/XmtpProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/chat_components/XmtpProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/wallet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/wallet.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/xmtp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/xmtp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/classNames.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/classNames.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/env.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/string.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/string.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/useConversation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useConversation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/useEns.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useEns.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dm/[recipientWalletAddr].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dm/[recipientWalletAddr].tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +65,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -61,7 +81,7 @@
       <workItem from="1666607281695" duration="54000" />
       <workItem from="1666674439002" duration="1107000" />
       <workItem from="1666694103609" duration="1491000" />
-      <workItem from="1666695844755" duration="345000" />
+      <workItem from="1666695844755" duration="1461000" />
     </task>
     <servers />
   </component>

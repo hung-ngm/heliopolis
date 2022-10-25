@@ -11,10 +11,10 @@ import {
   formatDate,
   checkPath,
   checkIfPathIsEns,
-} from '../helpers'
+} from '../src/helpers'
 import Avatar from './Avatar'
-import XmtpContext from '../contexts/xmtp'
-import { WalletContext } from '../contexts/wallet'
+import XmtpContext from '../src/contexts/xmtp'
+import { WalletContext } from '../src/contexts/wallet'
 
 type ConversationTileProps = {
   conversation: Conversation

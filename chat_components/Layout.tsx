@@ -9,8 +9,8 @@ import XmtpInfoPanel from './XmtpInfoPanel'
 import UserMenu from './UserMenu'
 import BackArrow from './BackArrow'
 import { useCallback, useContext } from 'react'
-import { WalletContext } from '../contexts/wallet'
-import XmtpContext from '../contexts/xmtp'
+import { WalletContext } from '../src/contexts/wallet'
+import XmtpContext from '../src/contexts/xmtp'
 
 const NavigationColumnLayout: React.FC = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
