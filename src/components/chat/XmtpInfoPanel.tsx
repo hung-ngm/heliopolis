@@ -1,5 +1,5 @@
-import packageJson from '../package.json'
-import { classNames } from '../src/helpers'
+import packageJson from '../../../package.json'
+import { classNames } from '../helpers'
 import {
   LinkIcon,
   BookOpenIcon,
@@ -7,7 +7,7 @@ import {
   ChevronRightIcon,
   ArrowSmRightIcon,
 } from '@heroicons/react/solid'
-import { WalletContext } from '../src/contexts/wallet'
+import { WalletContext } from '../contexts/wallet'
 import { useContext } from 'react'
 
 type XmtpInfoRowProps = {

@@ -5,8 +5,8 @@ import React, {
   useContext,
   useCallback,
 } from 'react'
-import { WalletContext } from '../src/contexts/wallet'
-import { checkIfPathIsEns, classNames } from '../src/helpers'
+import { WalletContext } from '../contexts/wallet'
+import { checkIfPathIsEns, classNames } from '../helpers'
 
 type AddressInputProps = {
   recipientWalletAddress?: string

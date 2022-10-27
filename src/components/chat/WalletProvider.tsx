@@ -3,7 +3,7 @@ import { ethers, Signer } from 'ethers'
 import Web3Modal, { IProviderOptions, providers } from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import WalletLink from 'walletlink'
-import { WalletContext } from '../src/contexts/wallet'
+import { WalletContext } from '../contexts/wallet'
 import { useRouter } from 'next/router'
 
 // Ethereum mainnet

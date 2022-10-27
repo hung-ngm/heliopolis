@@ -1,9 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { Client, Conversation, Message } from '@xmtp/xmtp-js'
 import { Signer } from 'ethers'
-import { getEnv } from '../src/helpers'
-import { XmtpContext, XmtpContextType } from '../src/contexts/xmtp'
-import { WalletContext } from '../src/contexts/wallet'
+import { getEnv } from '../helpers'
+import { XmtpContext, XmtpContextType } from '../contexts/xmtp'
+import { WalletContext } from '../contexts/wallet'
 
 export const XmtpProvider: React.FC = ({ children }) => {
   const [client, setClient] = useState<Client | null>()

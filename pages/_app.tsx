@@ -21,7 +21,7 @@ const config = {
 };
 
 const theme = extendTheme({ config });
-const AppWithoutSSR = dynamic(() => import('../chat_components/App'), {
+const AppWithoutSSR = dynamic(() => import('../src/components/templates/dm/Chat'), {
   ssr: false,
 })
 
@@ -32,7 +32,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <SessionProvider session={pageProps.session} refetchInterval={0}>
           <AppWithoutSSR>
             <Component {...pageProps} />
-          </AppWithoutSSR>
+          </AppWithoutSSR>/
         </SessionProvider>
       </WagmiConfig>
     </ChakraProvider>

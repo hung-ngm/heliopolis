@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import AddressInput from '../AddressInput'
-import { WalletContext } from '../../src/contexts/wallet'
-import XmtpContext from '../../src/contexts/xmtp'
-import { checkIfPathIsEns } from '../../src/helpers'
+import { WalletContext } from '../../contexts/wallet'
+import XmtpContext from '../../contexts/xmtp'
+import { checkIfPathIsEns } from '../../helpers'
 
 type RecipientInputProps = {
   recipientWalletAddress: string | undefined

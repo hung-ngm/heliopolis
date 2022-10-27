@@ -1,8 +1,8 @@
 import { LinkIcon } from '@heroicons/react/outline'
 import { ArrowSmRightIcon } from '@heroicons/react/solid'
 import { useContext } from 'react'
-import { WalletContext } from '../src/contexts/wallet'
-import XmtpContext from '../src/contexts/xmtp'
+import { WalletContext } from '../contexts/wallet'
+import XmtpContext from '../contexts/xmtp'
 import ConversationsList from './ConversationsList'
 import Loader from './Loader'
 

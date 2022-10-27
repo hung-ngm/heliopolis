@@ -9,8 +9,8 @@ import XmtpInfoPanel from './XmtpInfoPanel'
 import UserMenu from './UserMenu'
 import BackArrow from './BackArrow'
 import { useCallback, useContext } from 'react'
-import { WalletContext } from '../src/contexts/wallet'
-import XmtpContext from '../src/contexts/xmtp'
+import { WalletContext } from '../contexts/wallet'
+import XmtpContext from '../contexts/xmtp'
 
 const NavigationColumnLayout: React.FC = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
@@ -23,7 +23,7 @@ const NavigationColumnLayout: React.FC = ({ children }) => (
 const NavigationHeaderLayout: React.FC = ({ children }) => (
   <div className="h-[10vh] max-h-20 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
     <Link href="/pages" passHref={true}>
-      <img className="h-8 w-auto" src="/xmtp-icon.png" alt="XMTP" />
+      <img className="h-8 w-auto" src="/favicon.ico" alt="XMTP" />
     </Link>
     {children}
   </div>
@@ -85,7 +85,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Head>
-        <title>Chat via XMTP</title>
+        <title>Chat</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"

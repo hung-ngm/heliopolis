@@ -1,5 +1,5 @@
-import { classNames, shortAddress } from '../src/helpers'
-import useEns from '../src/hooks/useEns'
+import { classNames, shortAddress } from '../helpers'
+import useEns from '../hooks/useEns'
 
 type AddressProps = {
   address: string

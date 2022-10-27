@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Conversation } from '../../chat_components/Conversation'
-import { checkPath } from '../../src/helpers'
-import XmtpContext from '../../src/contexts/xmtp'
-import { WalletContext } from '../../src/contexts/wallet'
+import { Conversation } from 'components/chat/Conversation'
+import { checkPath } from 'components/helpers'
+import XmtpContext from 'components/contexts/xmtp'
+import { WalletContext } from 'components/contexts/wallet'
 
 const ConversationPage: NextPage = () => {
   const router = useRouter()

@@ -4,7 +4,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
-    './chat_components/**/*.{js,ts,jsx,tsx}',
+    './src/components/chat/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {

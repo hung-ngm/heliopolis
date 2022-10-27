@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext, Fragment } from 'react'
-import { classNames } from '../../src/helpers'
-import messageComposerStyles from '../../styles/MessageComposer.module.css'
-import upArrowGreen from '../../public/up-arrow-green.svg'
-import upArrowGrey from '../../public/up-arrow-grey.svg'
+import { classNames } from 'components/helpers/'
+import messageComposerStyles from '@styles/MessageComposer.module.css'//'../../../styles/MessageComposer.module.css'
+import upArrowGreen from '@public/up-arrow-green.svg'
+import upArrowGrey from '@public/up-arrow-grey.svg'
 import { useRouter } from 'next/router'
 import { Dialog, Transition } from '@headlessui/react';
-import Loader from '../Loader';
-import { WalletContext } from '../../src/contexts/wallet';
+import Loader from 'components/chat/Loader';
+import { WalletContext } from 'components/contexts/wallet';
 import { ethers } from 'ethers';
 
 type MessageComposerProps = {
