@@ -15,13 +15,7 @@ export const loadNfts = async () => {
     const marketContract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, provider);
     const data = await marketContract.fetchMarketItems();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const items = await Promise.all(data.map(async (i: any) => {
-        
-        // eslint-disable-next-line etc/no-commented-out-code
-        // const tokenUri = await tokenContract.tokenURI(i.tokenId);
-        // const meta = await axios.get(tokenUri);
-        
         const tokenUriString = await tokenContract.tokenURI(i.tokenId);
         const tokenUri : TokenUri = getURI(tokenUriString);
 
@@ -31,12 +25,6 @@ export const loadNfts = async () => {
             tokenId: i.tokenId.toNumber(),
             seller: i.seller,
             owner: i.owner,
-            
-            // eslint-disable-next-line etc/no-commented-out-code
-            // image: meta.data.image,
-            // name: meta.data.name,
-            // description: meta.data.description,
-
             image: tokenUri.image,
             name: tokenUri.name,
             description: tokenUri.description,
