@@ -1,5 +1,5 @@
 import { Box, Grid, Heading } from '@chakra-ui/react';
-import { NFTCard } from 'components/modules';
+import { NFTBalanceCard } from 'components/modules';
 import { FC, useEffect } from 'react';
 import { INFTBalances } from './types';
 
@@ -14,7 +14,7 @@ const NFTBalances: FC<INFTBalances> = ({ balances }) => {
       {balances?.length ? (
         <Grid templateColumns="repeat(auto-fit, minmax(280px, 1fr))" gap={6}>
           {balances.map((balance, key) => (
-            <NFTCard {...balance} key={key} />
+            <NFTBalanceCard {...balance} key={key} />
           ))}
         </Grid>
       ) : (

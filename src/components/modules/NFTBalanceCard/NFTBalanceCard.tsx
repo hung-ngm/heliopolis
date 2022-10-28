@@ -4,10 +4,14 @@ import { FC } from 'react';
 import { resolveIPFS } from 'utils/resolveIPFS';
 import { INFTCard } from './types';
 
-const NFTCard: FC<INFTCard> = ({ amount, contractType, name, symbol, metadata }) => {
+const NFTBalanceCard: FC<INFTCard> = ({ amount, contractType, name, symbol, metadata }) => {
   const bgColor = useColorModeValue('none', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const descBgColor = useColorModeValue('gray.100', 'gray.600');
+
+  if (metadata) {
+    console.log('metadata', metadata);
+  }
 
   return (
     <Box maxWidth="315px" bgColor={bgColor} padding={3} borderRadius="xl" borderWidth="1px" borderColor={borderColor}>
@@ -53,4 +57,4 @@ const NFTCard: FC<INFTCard> = ({ amount, contractType, name, symbol, metadata })
   );
 };
 
-export default NFTCard;
+export default NFTBalanceCard;
