@@ -3,7 +3,7 @@ import Web3Modal from 'web3modal';
 
 import { nftMarketplaceAddress, nftAddress } from 'utils/contracts';
 
-import Market from '../../../artifacts/contracts/HeliopolisMarketplace.sol/HeliopolisMarketplace.json';
+import { nftMarketplaceAbi } from 'utils/nftMarketplaceAbi';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const buyNft = async (nft: any) => {
@@ -11,7 +11,7 @@ export const buyNft = async (nft: any) => {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(nftMarketplaceAddress, Market.abi, signer);
+    const contract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, signer);
 
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
     const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
