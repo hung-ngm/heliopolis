@@ -6,7 +6,7 @@ import { Conversation } from 'components/chat/Conversation'
 import { checkPath } from 'components/helpers'
 import XmtpContext from 'components/contexts/xmtp'
 import { WalletContext } from 'components/contexts/wallet'
-
+import {Chat} from 'components/templates/dm'
 const ConversationPage: NextPage = () => {
   const router = useRouter()
   const { client } = useContext(XmtpContext)
@@ -47,5 +47,7 @@ const ConversationPage: NextPage = () => {
     return <Conversation recipientWalletAddr={recipientWalletAddr} />
   }
 }
+
+ConversationPage.PageLayout = Chat
 
 export default React.memo(ConversationPage)

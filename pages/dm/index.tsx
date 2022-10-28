@@ -4,11 +4,9 @@ import {Chat} from 'components/templates/dm'
 const BlankConversation: NextPage = () => {
     
     return(
-        <Default pageName="ERC20 Transfers">
-            <Chat/>
-        </Default>
+        <div/>
     )
   
 }
-
+BlankConversation.PageLayout =  Chat
 export default BlankConversation

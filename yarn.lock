@@ -10618,7 +10618,7 @@
   dependencies:
     "escape-string-regexp" "^1.0.2"
 
-"tsconfig-paths@^3.14.1":
+"tsconfig-@^3.14.1":
   "integrity" "sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ=="
   "resolved" "https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz"
   "version" "3.14.1"
