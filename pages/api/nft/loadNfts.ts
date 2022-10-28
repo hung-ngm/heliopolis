@@ -3,7 +3,7 @@ import { getURI } from 'utils/getURI';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { nftaddress, nftmarketaddress } from '../../../cache/deploy';
+import { nftMarketplaceAddress, nftAddress } from 'utils/contracts';
 
 import NFT from '../../../artifacts/contracts/NFT.sol/NFT.json';
 import Market from '../../../artifacts/contracts/HeliopolisMarketplace.sol/HeliopolisMarketplace.json';
@@ -11,8 +11,8 @@ import { TokenUri } from 'components/templates/marketplace/Explore/types';
 
 export const loadNfts = async () => {
     const provider = new ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
-    const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider);
-    const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider);
+    const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider);
+    const marketContract = new ethers.Contract(nftMarketplaceAddress, Market.abi, provider);
     const data = await marketContract.fetchMarketItems();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
