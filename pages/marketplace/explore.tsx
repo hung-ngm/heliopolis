@@ -10,7 +10,7 @@ import { loadNfts } from '../api/nft/loadNfts';
 const ERC20: NextPage<IExplore> = (props) => {
     return (
         <Default pageName="ERC20 Balances">
-        <Explore {...props} />
+            <Explore {...props} />
         </Default>
     );
 };
@@ -45,9 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-        marketplace: {
-            items
-        }
+        nftsExplore: items
     },
   };
 };
