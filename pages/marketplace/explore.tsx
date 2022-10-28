@@ -26,28 +26,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const items = await loadNfts();
 
-// eslint-disable-next-line etc/no-commented-out-code
-//   const balances = await Moralis.EvmApi.account.getTokenBalances({
-//     address: session?.user.address,
-//     chain: process.env.APP_CHAIN_ID,
-//   });
-
-//   const tokensWithLogosAdded = balances.toJSON().map((balance) => ({
-//     ...balance,
-//     token: {
-//       ...balance.token,
-//       logo: getErc20LogoAddress({
-//         blockchain: 'ethereum',
-//         address: EvmAddress.create(balance.token?.contractAddress || '').checksum,
-//       }),
-//     },
-//   }));
-
-  return {
-    props: {
-        nftsExplore: items
-    },
-  };
+    return {
+        props: {
+            nftsExplore: items
+        },
+    };
 };
 
 export default ERC20;
