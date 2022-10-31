@@ -8,11 +8,11 @@ import NavigationPanel from './NavigationPanel'
 import XmtpInfoPanel from './XmtpInfoPanel'
 import UserMenu from './UserMenu'
 import BackArrow from './BackArrow'
-import { useCallback, useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { WalletContext } from '../contexts/wallet'
 import XmtpContext from '../contexts/xmtp'
 
-const NavigationColumnLayout: React.FC = ({ children }) => (
+const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
     <div className="flex flex-col flex-grow md:border-r md:border-gray-200 bg-white overflow-y-auto">
       {children}
@@ -20,7 +20,7 @@ const NavigationColumnLayout: React.FC = ({ children }) => (
   </aside>
 )
 
-const NavigationHeaderLayout: React.FC = ({ children }) => (
+const NavigationHeaderLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="h-[10vh] max-h-20 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
     <Link href="/pages" passHref={true}>
       <img className="h-8 w-auto" src="/favicon.ico" alt="XMTP" />
@@ -29,22 +29,22 @@ const NavigationHeaderLayout: React.FC = ({ children }) => (
   </div>
 )
 
-const TopBarLayout: React.FC = ({ children }) => (
+const TopBarLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="sticky top-0 z-10 flex-shrink-0 flex bg-zinc-50 border-b border-gray-200 md:bg-white md:border-0">
     {children}
   </div>
 )
 
-const ConversationLayout: React.FC = ({ children }) => {
+const ConversationLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter()
   const recipientWalletAddress = router.query.recipientWalletAddr as string
 
   const handleSubmit = async (address: string) => {
-    router.push(address ? `/dm/${address}` : '/dm/')
+    router.push(address ? `/chat/dm/${address}` : '/chat/dm/')
   }
 
   const handleBackArrowClick = useCallback(() => {
-    router.push('/')
+    router.push('/chat/')
   }, [router])
 
   return (
@@ -63,7 +63,7 @@ const ConversationLayout: React.FC = ({ children }) => {
   )
 }
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { client, initClient } = useContext(XmtpContext)
 
   const {

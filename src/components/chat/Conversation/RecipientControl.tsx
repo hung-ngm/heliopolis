@@ -94,8 +94,8 @@ const RecipientControl = ({
       const data = e.target as typeof e.target & {
         value: string
       }
-      if (router.pathname !== '/dm') {
-        router.push('/dm')
+      if (router.pathname !== '/chat/dm') {
+        router.push('/chat/dm') // search bar
       }
       if (
         data.value.endsWith('.eth') ||

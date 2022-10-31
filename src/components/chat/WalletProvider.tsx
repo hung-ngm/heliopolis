@@ -77,7 +77,7 @@ export const WalletProvider = ({
     })
     signer = undefined
     setAddress(undefined)
-    router.push('/')
+    router.push('/chat')
   }, [router, web3Modal])
 
   const handleAccountsChanged = useCallback(() => {

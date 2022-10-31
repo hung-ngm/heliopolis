@@ -8,7 +8,7 @@ type ConversationViewProps = {
 
 const ConversationView = ({ children }: ConversationViewProps): JSX.Element => {
   const router = useRouter()
-  const show = router.pathname !== '/'
+  const show = router.pathname !== '/chat'
 
   return (
     <>

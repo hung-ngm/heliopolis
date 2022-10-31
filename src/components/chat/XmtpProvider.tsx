@@ -5,7 +5,7 @@ import { getEnv } from '../helpers'
 import { XmtpContext, XmtpContextType } from '../contexts/xmtp'
 import { WalletContext } from '../contexts/wallet'
 
-export const XmtpProvider: React.FC = ({ children }) => {
+export const XmtpProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [client, setClient] = useState<Client | null>()
   const { signer, address: walletAddress } = useContext(WalletContext)
   const [convoMessages, setConvoMessages] = useState<Map<string, Message[]>>(

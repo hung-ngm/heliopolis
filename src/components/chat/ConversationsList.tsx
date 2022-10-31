@@ -39,7 +39,7 @@ const ConversationTile = ({
   const latestMessage = getLatestMessage(
     convoMessages.get(conversation.peerAddress) ?? []
   )
-  const path = `/dm/${conversation.peerAddress}`
+  const path = `/chat/dm/${conversation.peerAddress}`
 
   if (!latestMessage) {
     return null
@@ -122,7 +122,8 @@ const ConversationsList = (): JSX.Element => {
 
   const reloadIfQueryParamPresent = async () => {
     if (checkPath()) {
-      let queryAddress = window.location.pathname.replace('/dm/', '')
+      let queryAddress = window.location.pathname.replace('/chat/dm/', '')
+
       if (checkIfPathIsEns(queryAddress)) {
         queryAddress = (await resolveName(queryAddress)) ?? ''
       }
