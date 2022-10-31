@@ -8,7 +8,7 @@ const NAV_LINKS: ISubNav[] = [
   },
   {
     label:"Chat",
-    href:'/dm'
+    href:'/chat'
   },
   {
     label: 'Transfers',

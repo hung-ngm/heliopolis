@@ -18,21 +18,22 @@ const ConversationPage: NextPage = () => {
 
   const redirectToHome = async () => {
     if (checkPath()) {
-      let queryAddress = window.location.pathname.replace('/dm/', '')
+      console.log(window.location.pathname)
+      let queryAddress = window.location.pathname.replace('/chat/dm/', '')
       if (queryAddress.includes('.eth')) {
         queryAddress = (await resolveName(queryAddress)) ?? ''
       }
       if (!queryAddress) {
         setCanMessageAddr(false)
-        router.push('/')
+        router.push('/chat')
       } else {
         const canMessage = await client?.canMessage(queryAddress)
         if (!canMessage) {
           setCanMessageAddr(false)
-          router.push('/')
+          router.push('/chat')
         } else {
           setCanMessageAddr(true)
-          router.push(`/dm/${queryAddress}`)
+          router.push(`/chat/dm/${queryAddress}`)
         }
       }
     }
