@@ -1,14 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
-// type TMarketplace = {
-
-// };
-
-export interface IExplore {
-    marketplace?: any;
-    nfts?: any;
-    error?: string;
-}
-
 export type TNFTExplore = {
     description: string;
     image: string;
