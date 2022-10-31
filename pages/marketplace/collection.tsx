@@ -4,6 +4,7 @@ import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
 import { ICollection } from 'components/templates/marketplace/Collection/types';
 import { Collection } from 'components/templates/marketplace/Collection';
+import { loadMyNfts } from '../api/nft/loadMyNfts';
 
 const ERC20: NextPage<ICollection> = (props) => {
   return (
@@ -22,28 +23,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { props: { error: 'Connect your wallet first' } };
   }
 
-// eslint-disable-next-line etc/no-commented-out-code
-//   const balances = await Moralis.EvmApi.account.getTokenBalances({
-//     address: session?.user.address,
-//     chain: process.env.APP_CHAIN_ID,
-//   });
-
-//   const tokensWithLogosAdded = balances.toJSON().map((balance) => ({
-//     ...balance,
-//     token: {
-//       ...balance.token,
-//       logo: getErc20LogoAddress({
-//         blockchain: 'ethereum',
-//         address: EvmAddress.create(balance.token?.contractAddress || '').checksum,
-//       }),
-//     },
-//   }));
+  const items = await loadMyNfts();
 
   return {
     props: {
-        
-    // eslint-disable-next-line etc/no-commented-out-code
-    //   balances: JSON.parse(JSON.stringify(tokensWithLogosAdded)),
+      myNfts: items
     },
   };
 };
