@@ -13,6 +13,9 @@ export const buyNft = async (nft: any) => {
     const signer = provider.getSigner();
     const contract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, signer);
 
+    // Example nft:
+    // { tokenId: "", price: "" }
+
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
     const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
         value: price
