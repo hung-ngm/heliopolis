@@ -9,11 +9,11 @@ import { nftAbi } from 'utils/nftAbi';
 import { nftMarketplaceAbi } from 'utils/nftMarketplaceAbi';
 import { TokenUri } from 'components/templates/marketplace/Explore/types';
 
-export const loadMyNfts = async () => {
+export const loadMyNfts = async (address: string) => {
     const provider = new ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);
     const tokenContract = new ethers.Contract(nftAddress, nftAbi, provider);
     const marketContract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, provider);
-    const data = await marketContract.fetchMyNFTs();
+    const data = await marketContract.fetchNFTsbyAddress(address);
 
     const items = await Promise.all(data.map(async (i: any) => {
         const tokenUriString = await tokenContract.tokenURI(i.tokenId);
