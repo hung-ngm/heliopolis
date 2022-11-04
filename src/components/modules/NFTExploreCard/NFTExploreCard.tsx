@@ -64,7 +64,7 @@ const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, 
             Price
           </Box>
           <Box as="h4" noOfLines={1} fontSize="sm">
-            {price} ETH
+            {price} Wei
           </Box>
         </Box>
       </SimpleGrid>
