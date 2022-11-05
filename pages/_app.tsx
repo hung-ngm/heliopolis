@@ -26,17 +26,17 @@ const theme = extendTheme({ config });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <WagmiConfig client={client}>
-        <SessionProvider session={pageProps.session} refetchInterval={0}>
-          <WalletProvider>
-            <XmtpProvider>
+    <WalletProvider>
+      <XmtpProvider>
+        <ChakraProvider resetCSS theme={theme}>
+          <WagmiConfig client={client}>
+            <SessionProvider session={pageProps.session} refetchInterval={0}>
               <Component {...pageProps} />
-            </XmtpProvider>
-          </WalletProvider>
-        </SessionProvider>
-      </WagmiConfig>
-    </ChakraProvider>
+            </SessionProvider>
+          </WagmiConfig>
+        </ChakraProvider>
+      </XmtpProvider>
+    </WalletProvider>
   );
 };
 
