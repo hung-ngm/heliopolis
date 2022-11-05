@@ -1,11 +1,12 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Client, Conversation, Message } from '@xmtp/xmtp-js'
 import { Signer } from 'ethers'
 import { getEnv } from '../helpers'
 import { XmtpContext, XmtpContextType } from '../contexts/xmtp'
 import { WalletContext } from '../contexts/wallet'
 
-export const XmtpProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const XmtpProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const [client, setClient] = useState<Client | null>()
   const { signer, address: walletAddress } = useContext(WalletContext)
   const [convoMessages, setConvoMessages] = useState<Map<string, Message[]>>(

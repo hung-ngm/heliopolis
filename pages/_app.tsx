@@ -21,22 +21,21 @@ const config = {
   useSystemColorMode: false,
 };
 
-
 const theme = extendTheme({ config });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <WalletProvider>
-      <XmtpProvider>
-        <ChakraProvider resetCSS theme={theme}>
-          <WagmiConfig client={client}>
-            <SessionProvider session={pageProps.session} refetchInterval={0}>
+    <ChakraProvider resetCSS theme={theme}>
+      <WagmiConfig client={client}>
+        <SessionProvider session={pageProps.session} refetchInterval={0}>
+          <WalletProvider>
+            <XmtpProvider>
               <Component {...pageProps} />
-            </SessionProvider>
-          </WagmiConfig>
-        </ChakraProvider>
-      </XmtpProvider>
-    </WalletProvider>
+            </XmtpProvider>
+          </WalletProvider>
+        </SessionProvider>
+      </WagmiConfig>
+    </ChakraProvider>
   );
 };
 
