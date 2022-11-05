@@ -137,7 +137,6 @@ contract HeliopolisMarketplace is ReentrancyGuard {
         emit ProductUpdated(id, oldPrice, newPrice);
     }
 
-
     function createMarketSale(address nftContract, uint256 itemId) public payable nonReentrant {
         uint256 price = idToMarketItem[itemId].price;
         uint256 tokenId = idToMarketItem[itemId].tokenId;
@@ -169,7 +168,7 @@ contract HeliopolisMarketplace is ReentrancyGuard {
         require(msg.value == listingPrice, "Price must be equal to listing price");
 
         NFT tokenContract = NFT(nftContract);
-        tokenContract.transferFrom(msg.sender, address(this), tokenId);
+        tokenContract.transferToken(msg.sender, address(this), tokenId);
 
         address payable oldOwner = idToMarketItem[itemId].owner;
         idToMarketItem[itemId].owner = payable(address(0));
