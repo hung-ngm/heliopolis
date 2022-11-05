@@ -95,7 +95,7 @@ const RecipientControl = ({
         value: string
       }
       if (router.pathname !== '/chat/dm') {
-        router.push('/chat/dm') // search bar
+        router.push('/chat/dm')
       }
       if (
         data.value.endsWith('.eth') ||

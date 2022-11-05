@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { LinkIcon } from '@heroicons/react/outline'
 import { ArrowSmRightIcon } from '@heroicons/react/solid'
 import { useContext } from 'react'
@@ -31,7 +32,7 @@ const NavigationPanel = ({ onConnect }: NavigationPanelProps): JSX.Element => {
   )
 }
 
-const NoWalletConnectedMessage: React.FC = ({ children }) => {
+const NoWalletConnectedMessage = ({ children }: any) => {
   return (
     <div className="flex flex-col flex-grow justify-center">
       <div className="flex flex-col items-center px-4 text-center">

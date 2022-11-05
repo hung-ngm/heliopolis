@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ethers } from 'ethers';
 import { getURI } from 'utils/getURI';
 import * as dotenv from 'dotenv';
