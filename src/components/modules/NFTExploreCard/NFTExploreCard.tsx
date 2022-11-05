@@ -1,11 +1,27 @@
 import { Box, Image, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import { FC } from 'react';
 import { INFTExploreCard } from './types';
-
-const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price }) => {
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Center, Square, Circle } from '@chakra-ui/react'
+import {buyNft} from '@pages/api/nft/buyNft'
+const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, tokenId }) => {
   const bgColor = useColorModeValue('none', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const descBgColor = useColorModeValue('gray.100', 'gray.600');
+  
+  const handleBuy = async () => {
+    // Set the nft for the buyNft function
+    try{
+      const currentNft = {
+        price,
+        tokenId,
+      }
+      const res = await buyNft(currentNft);
+      console.log(res);
+    }catch (e: any){
+      alert(e.message)
+    }
+  }
 
   return (
     <Box maxWidth="315px" bgColor={bgColor} padding={3} borderRadius="xl" borderWidth="1px" borderColor={borderColor}>
@@ -19,9 +35,21 @@ const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price }
           objectFit="fill"
         />
       </Box>
-      <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
-        {name}
-      </Box>
+      <SimpleGrid columns={2} spacing={4}  padding={2.5} borderRadius="xl" marginTop={2}>
+
+          <Center>
+            <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
+              {name}
+            </Box>
+          </Center>
+          <Center>
+            <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
+              #{tokenId}
+            </Box>
+          </Center>
+          
+        
+      </SimpleGrid>
       <SimpleGrid columns={2} spacing={4} bgColor={descBgColor} padding={2.5} borderRadius="xl" marginTop={2}>
         <Box>
           <Box as="h4" noOfLines={1} fontWeight="medium" fontSize="sm">
@@ -40,6 +68,13 @@ const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price }
           </Box>
         </Box>
       </SimpleGrid>
+      <Center>
+        <Button marginTop={2} alignItems="center" onClick={async () => {
+          await handleBuy();
+        }}>
+          Buy
+        </Button>
+      </Center>
     </Box>
   );
 };
