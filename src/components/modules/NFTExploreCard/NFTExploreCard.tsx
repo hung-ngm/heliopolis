@@ -1,8 +1,8 @@
 import { Box, Image, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import { FC } from 'react';
 import { INFTExploreCard } from './types';
-import { Button, ButtonGroup } from '@chakra-ui/react'
-import { Center, Square, Circle } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
+import { Center} from '@chakra-ui/react'
 import {buyNft} from '@pages/api/nft/buyNft'
 const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, tokenId }) => {
   const bgColor = useColorModeValue('none', 'gray.700');
@@ -18,8 +18,9 @@ const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, 
       }
       const res = await buyNft(currentNft);
       console.log(res);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
-      alert(e.message)
+      console.log(e);
     }
   }
 
