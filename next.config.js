@@ -8,6 +8,7 @@ const nextConfig = optimizedImages({
   images: {
     domains: ['raw.githubusercontent.com'],
   },
+  experimental: { nftTracing: true },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Fixes npm packages that depend on `fs` module
