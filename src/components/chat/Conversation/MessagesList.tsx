@@ -42,10 +42,11 @@ const MessageTile = ({ message }: MessageTileProps): JSX.Element => (
   </div>
 )
 
-const DateDividerBorder: React.FC = ({ children }) => (
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const DateDividerBorder = ({ children }: any) => (
   <>
     <div className="grow h-0.5 bg-gray-300/25" />
-    {children}
+      {children}
     <div className="grow h-0.5 bg-gray-300/25" />
   </>
 )
@@ -88,7 +89,7 @@ const MessagesList = ({
               return (
                 <>
                   {dateHasChanged ? (
-                    <DateDivider key={msg.id + 'divider'} date={msg.sent} />
+                    <DateDivider key={`${msg.id  }divider`} date={msg.sent} />
                   ) : null}
                   <MessageTile message={msg} key={msg.id} />
                 </>

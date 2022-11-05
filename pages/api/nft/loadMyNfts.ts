@@ -15,6 +15,7 @@ export const loadMyNfts = async (address: string) => {
     const marketContract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, provider);
     const data = await marketContract.fetchNFTsbyAddress(address);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const items = await Promise.all(data.map(async (i: any) => {
         const tokenUriString = await tokenContract.tokenURI(i.tokenId);
         const tokenUri : TokenUri = getURI(tokenUriString);

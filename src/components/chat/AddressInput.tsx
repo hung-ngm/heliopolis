@@ -17,6 +17,7 @@ type AddressInputProps = {
   onInputChange?: (e: React.SyntheticEvent) => Promise<void>
 }
 
+// eslint-disable-next-line complexity
 const AddressInput = ({
   recipientWalletAddress,
   id,
@@ -45,9 +46,11 @@ const AddressInput = ({
     const setLookupValue = async () => {
       if (!lookupAddress) return
       if (recipientWalletAddress && !checkIfPathIsEns(recipientWalletAddress)) {
+        // eslint-disable-next-line @typescript-eslint/no-shadow
         const name = await lookupAddress(recipientWalletAddress)
         setValue(name || recipientWalletAddress)
       } else if (value.startsWith('0x') && value.length === 42) {
+        // eslint-disable-next-line @typescript-eslint/no-shadow
         const name = await lookupAddress(value)
         if (name) {
           setValue(name)
@@ -85,6 +88,7 @@ const AddressInput = ({
         value: string
       }
       setValue(data.value.trim())
+      // eslint-disable-next-line no-unused-expressions
       onInputChange && onInputChange(event)
     },
     [onInputChange]

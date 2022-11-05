@@ -1,3 +1,5 @@
+/* eslint-disable no-new */
+/* eslint-disable consistent-return */
 import { Conversation, Message, Stream } from '@xmtp/xmtp-js'
 import { useState, useEffect, useContext } from 'react'
 import { WalletContext } from '../contexts/wallet'
@@ -36,6 +38,7 @@ const useConversation = (
 
   useEffect(() => {
     if (!conversation) return
+    // eslint-disable-next-line complexity
     const streamMessages = async () => {
       stream = await conversation.streamMessages()
       for await (const msg of stream) {

@@ -4,8 +4,7 @@ const NewMessageButton = (): JSX.Element => {
   const router = useRouter()
 
   const onNewMessageButtonClick = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    router.push('/chat/dm/') // exit of the open conversation
+    router.push('/chat/dm/')
   }
 
   return (

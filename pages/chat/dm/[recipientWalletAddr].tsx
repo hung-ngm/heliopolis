@@ -7,8 +7,6 @@ import { checkPath } from 'components/helpers'
 import XmtpContext from 'components/contexts/xmtp'
 import { WalletContext } from 'components/contexts/wallet'
 import { Chat } from 'components/templates/chat'
-import { WalletProvider } from 'components/chat/WalletProvider';
-import XmtpProvider from 'components/chat/XmtpProvider';
 
 const ConversationPage: NextPage = () => {
   const router = useRouter()
@@ -21,7 +19,6 @@ const ConversationPage: NextPage = () => {
 
   const redirectToHome = async () => {
     if (checkPath()) {
-      // console.log(window.location.pathname)
       let queryAddress = window.location.pathname.replace('/chat/dm/', '')
       if (queryAddress.includes('.eth')) {
         queryAddress = (await resolveName(queryAddress)) ?? ''

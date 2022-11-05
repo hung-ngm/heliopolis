@@ -17,15 +17,18 @@ const useEns = (addressOrName: string | undefined) => {
 
   useEffect(() => {
     if (!resolveName || !lookupAddress || !getAvatarUrl) return
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const initAvatarUrl = async (name: string) => {
       setAvatarUrl((await getAvatarUrl(name)) as string)
     }
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const initName = async (probableAddress: string) => {
       setLoading(true)
       setName((await lookupAddress(probableAddress)) as string)
       if (name) await initAvatarUrl(name)
       setLoading(false)
     }
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const initAddress = async (probableName: string) => {
       setLoading(true)
       setAddress((await resolveName(probableName)) as string)

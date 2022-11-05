@@ -139,6 +139,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
     try {
       setLoading(true);
       const recipientWalletAddr = router.query.recipientWalletAddr as string
+      // eslint-disable-next-line etc/no-commented-out-code
       // const testnetProvider = ethers.getDefaultProvider(sourceChain);
 
       // Not good practice since we need to allow users to authorize the transfer
@@ -172,6 +173,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
       console.log(err);
       setLoading(false);
       closeModal();
+      // eslint-disable-next-line no-alert
       window.alert(err);
     }
   }

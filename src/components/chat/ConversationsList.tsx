@@ -25,6 +25,7 @@ type ConversationTileProps = {
 const getLatestMessage = (messages: Message[]): Message | null =>
   messages?.length ? messages[messages.length - 1] : null
 
+// eslint-disable-next-line complexity
 const ConversationTile = ({
   conversation,
   isSelected,
@@ -139,7 +140,7 @@ const ConversationsList = (): JSX.Element => {
     reloadIfQueryParamPresent()
   }, [window.location.pathname])
 
-  if (!conversations || conversations.size == 0) {
+  if (!conversations || conversations.size === 0) {
     return <NoConversationsMessage />
   }
 
@@ -151,7 +152,7 @@ const ConversationsList = (): JSX.Element => {
           .sort(orderByLatestMessage)
           .map((convo) => {
             const isSelected =
-              router.query.recipientWalletAddr == convo.peerAddress
+              router.query.recipientWalletAddr === convo.peerAddress
             return (
               <ConversationTile
                 key={convo.peerAddress}

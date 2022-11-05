@@ -44,6 +44,7 @@ export const WalletProvider = ({
     return address
   }, [])
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const lookupAddress = useCallback(async (address: string) => {
     if (cachedLookupAddress.has(address)) {
       return cachedLookupAddress.get(address)

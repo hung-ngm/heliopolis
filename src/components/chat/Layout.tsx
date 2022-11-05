@@ -79,6 +79,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const handleConnect = useCallback(async () => {
     await connectWallet()
+    // eslint-disable-next-line no-unused-expressions
     signer && (await initClient(signer))
   }, [connectWallet, initClient, signer])
 
