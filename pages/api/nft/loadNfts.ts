@@ -19,10 +19,10 @@ export const loadNfts = async () => {
     const items = await Promise.all(data.map(async (i: any) => {
         const tokenUriString = await tokenContract.tokenURI(i.tokenId);
         const tokenUri : TokenUri = getURI(tokenUriString);
-
-        const price = ethers.utils.formatUnits(i.price.toString(), 'ether');
+        
+        const wei = ethers.utils.formatUnits(i.price.toString(), 'wei');
         const item = {
-            price: (Number(price) * (10**18)).toString(),
+            price: (Number(wei)).toString(),
             tokenId: i.tokenId.toNumber(),
             seller: i.seller,
             owner: i.owner,

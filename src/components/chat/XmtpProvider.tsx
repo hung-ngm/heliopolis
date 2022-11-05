@@ -21,6 +21,7 @@ export const XmtpProvider: React.FC<{ children: React.ReactNode }> = ({ children
     async (wallet: Signer) => {
       if (wallet && !client) {
         try {
+          console.log(getEnv());
           setClient(await Client.create(wallet, { env: getEnv() }))
         } catch (e) {
           console.error(e)
