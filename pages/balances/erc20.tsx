@@ -7,6 +7,8 @@ import Moralis from 'moralis';
 import { ERC20Balances, IERC20Balances } from 'components/templates/balances/ERC20';
 
 const ERC20: NextPage<IERC20Balances> = (props) => {
+  console.log("props", props);
+
   return (
     <Default pageName="ERC20 Balances">
       <ERC20Balances {...props} />
