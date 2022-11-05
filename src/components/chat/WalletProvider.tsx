@@ -38,6 +38,7 @@ export const WalletProvider = ({
     if (chainId !== ETH_CHAIN_ID) {
       return undefined
     }
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const address = (await provider?.resolveName(name)) || undefined
     cachedResolveName.set(name, address)
     return address
@@ -102,6 +103,7 @@ export const WalletProvider = ({
       chainId = newChainId
       signer = newSigner
       setAddress(await signer.getAddress())
+      // eslint-disable-next-line consistent-return
       return signer
     } catch (e) {
       // TODO: better error handling/surfacing here.
@@ -111,6 +113,7 @@ export const WalletProvider = ({
     }
   }, [handleAccountsChanged, web3Modal])
 
+  // eslint-disable-next-line complexity
   useEffect(() => {
     const infuraId =
       process.env.NEXT_PUBLIC_INFURA_ID || 'b6058e03f2cd4108ac890d3876a56d0d'
@@ -122,34 +125,36 @@ export const WalletProvider = ({
         },
       },
     }
-    if (
-      !window.ethereum ||
-      (window.ethereum && !window.ethereum.isCoinbaseWallet)
-    ) {
-      providerOptions.walletlink = {
-        package: WalletLink,
-        options: {
-          appName: 'Chat via XMTP',
-          infuraId,
-          // darkMode: false,
-        },
+    if (window) {
+      if (
+        !window.ethereum ||
+        (window.ethereum && !window.ethereum.isCoinbaseWallet)
+      ) {
+        providerOptions.walletlink = {
+          package: WalletLink,
+          options: {
+            appName: 'Chat via XMTP',
+            infuraId,
+          },
+        }
       }
-    }
-    if (!window.ethereum || !window.ethereum.isMetaMask) {
-      providerOptions['custom-metamask'] = {
-        display: {
-          logo: providers.METAMASK.logo,
-          name: 'Install MetaMask',
-          description: 'Connect using browser wallet',
-        },
-        package: {},
-        connector: async () => {
-          window.open('https://metamask.io')
-          // throw new Error("MetaMask not installed");
-        },
+      if (!window.ethereum || !window.ethereum.isMetaMask) {
+        providerOptions['custom-metamask'] = {
+          display: {
+            logo: providers.METAMASK.logo,
+            name: 'Install MetaMask',
+            description: 'Connect using browser wallet',
+          },
+          package: {},
+          connector: async () => {
+            window.open('https://metamask.io')
+          },
+        }
       }
+      setWeb3Modal(new Web3Modal({ cacheProvider: true, providerOptions }))
     }
-    setWeb3Modal(new Web3Modal({ cacheProvider: true, providerOptions }))
+
+    
   }, [])
 
   useEffect(() => {

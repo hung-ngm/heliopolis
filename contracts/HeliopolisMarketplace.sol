@@ -137,7 +137,6 @@ contract HeliopolisMarketplace is ReentrancyGuard {
         emit ProductUpdated(id, oldPrice, newPrice);
     }
 
-
     function createMarketSale(address nftContract, uint256 itemId) public payable nonReentrant {
         uint256 price = idToMarketItem[itemId].price;
         uint256 tokenId = idToMarketItem[itemId].tokenId;

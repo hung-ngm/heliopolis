@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext, Fragment } from 'react'
 import { classNames } from 'components/helpers/'
-import messageComposerStyles from '@styles/MessageComposer.module.css'//'../../../styles/MessageComposer.module.css'
-import upArrowGreen from '@public/up-arrow-green.svg'
-import upArrowGrey from '@public/up-arrow-grey.svg'
+import messageComposerStyles from '@styles/MessageComposer.module.css'
+import upArrowGreen from '../../../../public/up-arrow-green.svg'
+import upArrowGrey from '../../../../public/up-arrow-grey.svg'
 import { useRouter } from 'next/router'
 import { Dialog, Transition } from '@headlessui/react';
 import Loader from 'components/chat/Loader';
@@ -237,6 +237,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
             'w-full',
             'text-md',
             'md:text-sm',
+            'text-black',
             messageComposerStyles.input
           )}
           name="message"

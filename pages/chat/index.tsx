@@ -1,7 +1,12 @@
 import type { NextPage } from 'next'
-import {Chat} from 'components/templates/dm'
+import { Chat } from 'components/templates/chat'
+
 const HomeChat: NextPage = () => {
-  return <div />
+  return (
+    <Chat>
+      <div />
+    </Chat>
+  )
 }
-HomeChat.PageLayout = Chat
+
 export default HomeChat

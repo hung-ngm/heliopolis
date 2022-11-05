@@ -6,7 +6,10 @@ import { Conversation } from 'components/chat/Conversation'
 import { checkPath } from 'components/helpers'
 import XmtpContext from 'components/contexts/xmtp'
 import { WalletContext } from 'components/contexts/wallet'
-import {Chat} from 'components/templates/dm'
+import { Chat } from 'components/templates/chat'
+import { WalletProvider } from 'components/chat/WalletProvider';
+import XmtpProvider from 'components/chat/XmtpProvider';
+
 const ConversationPage: NextPage = () => {
   const router = useRouter()
   const { client } = useContext(XmtpContext)
@@ -18,7 +21,7 @@ const ConversationPage: NextPage = () => {
 
   const redirectToHome = async () => {
     if (checkPath()) {
-      console.log(window.location.pathname)
+      // console.log(window.location.pathname)
       let queryAddress = window.location.pathname.replace('/chat/dm/', '')
       if (queryAddress.includes('.eth')) {
         queryAddress = (await resolveName(queryAddress)) ?? ''
@@ -43,12 +46,25 @@ const ConversationPage: NextPage = () => {
     redirectToHome()
   }, [window.location.pathname])
 
-  if (!canMessageAddr || !client) return <div />
-  else {
-    return <Conversation recipientWalletAddr={recipientWalletAddr} />
-  }
+  if (!canMessageAddr || !client) {
+    return (
+      <Chat>
+        <div />
+      </Chat>
+    )
+  } 
+
+  return (
+    <Chat>
+      <Conversation recipientWalletAddr={recipientWalletAddr} />
+    </Chat>
+  )
+  
+  
+  
+  
+  
 }
 
-ConversationPage.PageLayout = Chat
 
 export default React.memo(ConversationPage)
