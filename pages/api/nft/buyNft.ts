@@ -20,7 +20,7 @@ export const buyNft = async (nft: any) => {
         });
         await transaction.wait();
     }catch (e:any){
-        if(e.code == -32603){
+        if(e.code === -32603){
             throw new Error("Insufficient fund");
         }else{
             throw e;
