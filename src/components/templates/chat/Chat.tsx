@@ -1,18 +1,14 @@
-import dynamic from 'next/dynamic'
+import App from 'components/chat/App';
 
 type AppProps = {
   children?: React.ReactNode
 }
 
-const ChatAppWithoutSSR = dynamic(() => import('components/chat/App'), {
-  ssr: false,
-})
-
 function Chat({ children }: AppProps) {
   return (
-    <ChatAppWithoutSSR>
+    <App>
       {children}
-    </ChatAppWithoutSSR>
+    </App>
   )
 }
 
