@@ -27,4 +27,15 @@ export const buyNft = async (nft: any) => {
         }
     }
 
+<<<<<<< HEAD
+=======
+    // Example nft:
+    // { tokenId: "", price: "" }
+
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
+    const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
+        value: price
+    });
+    await transaction.wait();
+>>>>>>> 85bab3a43c7d9e171b12d354c7e8c5300297fdcf
 }
