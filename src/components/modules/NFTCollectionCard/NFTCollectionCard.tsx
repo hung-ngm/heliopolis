@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { INFTCollectionCard } from './types';
 import { Button } from '@chakra-ui/react'
 import { Center} from '@chakra-ui/react'
-// import {selfNft} from '@pages/api/nft/sellNft'
 const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image }) => {
   const bgColor = useColorModeValue('none', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
