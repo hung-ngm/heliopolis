@@ -1,3 +1,6 @@
+/* eslint-disable no-return-await */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-alert */
 import { Box, Image, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import { FC } from 'react';
 import { INFTCollectionCard } from './types';
@@ -21,36 +24,36 @@ import {
 } from '@chakra-ui/react';
 import {resellNft} from '@pages/api/nft/sellNft';
 
-// import {selfNft} from '@pages/api/nft/sellNft'
 const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, tokenId }) => {
   const bgColor = useColorModeValue('none', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const descBgColor = useColorModeValue('gray.100', 'gray.600');
   
   // Popup
-  const { isOpen, onOpen, onClose } = useDisclosure() // pop-up sale
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
-  const delay = (ms : any) => new Promise(res => setTimeout(res, ms));
+  // const delay = (ms : any) => new Promise(res => setTimeout(res, ms));
   // Form
-  const [input, setInput] = useState(''); // price input
-  const [isError, setIsError] = useState(true); // error price form
+  const [input, setInput] = useState('');
+  const [isError, setIsError] = useState(true);
   // Sell button 
-  const [isListing, setIsListing] = useState(false); // list price
-  const [isDisableSellButton, setIsDisableSellButton] = useState(false); // disable button
+  const [isListing, setIsListing] = useState(false); 
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
 
+    // eslint-disable-next-line no-unused-expressions
     (e.target.value.trim() === '' || 
     !Number.isInteger(Number(e.target.value)) || 
-    Number(e.target.value) < 0) ? setIsError(true) : setIsError(false); // input is not updated synchronously, so use e    
+    Number(e.target.value) < 0) ? setIsError(true) : setIsError(false); 
   }
 
   const handleSubmit = async () =>{
     setIsListing(true);
-    await handleResell(); // change to handleSell()
+    await handleResell();
 
+    // eslint-disable-next-line no-alert
     alert("hello")
     setIsListing(false);
   }
@@ -61,7 +64,7 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
     
     try{
       const price = input;
-      console.log("Selling token " + tokenId + " with price " + price + " wei" )
+      console.log(`Selling token ${  tokenId  } with price ${  price  } wei` )
       const currentNft = {
         "price" : Number(price), 
         "tokenId" : Number(tokenId)
@@ -70,7 +73,7 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
       console.log(res);
       alert("Sold");
       setIsListing(false);
-    }catch (e:any){
+    }catch (e: any){
       alert(e.message)
       console.log(e.message);
       setIsListing(false);

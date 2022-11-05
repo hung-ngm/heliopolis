@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 
@@ -24,8 +25,9 @@ export const resellNft = async (nft: any) => {
         );
         const response = await transaction.wait();
         console.log(response);
-    }catch (e:any){
-        throw e;
+        
+    } catch (e:any){
+        console.log(e);
     }
 
 }
