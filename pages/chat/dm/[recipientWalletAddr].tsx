@@ -41,7 +41,8 @@ const ConversationPage: NextPage = () => {
 
   useEffect(() => {
     redirectToHome()
-  }, [window.location.pathname])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!canMessageAddr || !client) {
     return (
@@ -56,11 +57,6 @@ const ConversationPage: NextPage = () => {
       <Conversation recipientWalletAddr={recipientWalletAddr} />
     </Chat>
   )
-  
-  
-  
-  
-  
 }
 
 
