@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4e996211-c047-45eb-9742-d73ab3a8d484" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Address.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Address.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Address.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Address.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/AddressInput.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/AddressInput.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/AddressInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/AddressInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/AddressPill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/AddressPill.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/BackArrow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/BackArrow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/Conversation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Conversation/Conversation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/MessageComposer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Conversation/MessageComposer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/MessagesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Conversation/MessagesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/RecipientControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Conversation/RecipientControl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Conversation/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Conversation/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/ConversationsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/ConversationsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Loader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/NavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/NavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/NewMessageButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/NewMessageButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Tooltip/Tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Tooltip/Tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/UserMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/UserMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Views/ConversationView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Views/ConversationView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Views/NavigationView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Views/NavigationView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/Views/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/Views/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/WalletProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/WalletProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/XmtpInfoPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/XmtpInfoPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_components/XmtpProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat_components/XmtpProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dm/[recipientWalletAddr].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dm/[recipientWalletAddr].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GX3oF5ArvOe1SaVXiDkisyTbtz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/phuongdoantuminh/Projects/heliopolis&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/phuongdoantuminh/Projects/heliopolis/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e996211-c047-45eb-9742-d73ab3a8d484" name="Changes" comment="" />
+      <created>1666521274378</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666521274378</updated>
+      <workItem from="1666521279723" duration="108000" />
+      <workItem from="1666607281695" duration="54000" />
+      <workItem from="1666674439002" duration="1107000" />
+      <workItem from="1666694103609" duration="1491000" />
+      <workItem from="1666695844755" duration="1461000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -18,6 +18,7 @@ const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, 
       }
       const res = await buyNft(currentNft);
       console.log(res);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
       console.log(e);
     }
