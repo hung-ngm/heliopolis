@@ -1,5 +1,5 @@
 import { Default } from 'components/layouts/Default';
-import { EvmAddress } from '@moralisweb3/evm-utils';
+import { EvmAddress, EvmChain } from '@moralisweb3/evm-utils';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import getErc20LogoAddress from 'utils/getErc20LogoAddress';
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const balances = await Moralis.EvmApi.account.getTokenBalances({
     address: session?.user.address,
-    chain: process.env.APP_CHAIN_ID,
+    chain: EvmChain.MUMBAI,
   });
 
   const tokensWithLogosAdded = balances.toJSON().map((balance) => ({
@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     token: {
       ...balance.token,
       logo: getErc20LogoAddress({
-        blockchain: 'ethereum',
+        blockchain: 'mumbai',
         address: EvmAddress.create(balance.token?.contractAddress || '').checksum,
       }),
     },
