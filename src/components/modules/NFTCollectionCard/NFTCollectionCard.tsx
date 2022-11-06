@@ -22,7 +22,7 @@ import {
   FormHelperText,
   Input,
 } from '@chakra-ui/react';
-import {resellNft} from '@pages/api/nft/sellNft';
+import { resellNft } from '@pages/api/nft/sellNft';
 
 const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, tokenId }) => {
   const bgColor = useColorModeValue('none', 'gray.700');
@@ -33,7 +33,7 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
-  // const delay = (ms : any) => new Promise(res => setTimeout(res, ms));
+  
   // Form
   const [input, setInput] = useState('');
   const [isError, setIsError] = useState(true);
@@ -59,7 +59,6 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
   }
   
   const handleResell = async () => {
-    
     setIsListing(true);
     
     try{
@@ -73,7 +72,7 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
       console.log(res);
       alert("Sold");
       setIsListing(false);
-    }catch (e: any){
+    } catch (e: any){
       alert(e.message)
       console.log(e.message);
       setIsListing(false);
@@ -106,7 +105,7 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
       </SimpleGrid>
       <Center>
         <Button marginTop={2} alignItems="center" onClick={onOpen} ref={finalRef}>
-            Sell
+          Sell
         </Button>
         <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />

@@ -11,3 +11,4 @@ export type TNFTCollection = {
 export interface ICollection {
     myNfts?: TNFTCollection[];
 }
+
