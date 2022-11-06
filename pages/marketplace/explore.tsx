@@ -31,6 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             nftsExplore: items
         },
     };
+    
 };
 
 export default ERC20;
