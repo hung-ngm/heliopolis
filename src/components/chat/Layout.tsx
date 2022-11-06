@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Link from 'next/link'
 import { NavigationView, ConversationView } from './Views'
 import { RecipientControl } from './Conversation'
 import NewMessageButton from './NewMessageButton'
@@ -11,7 +10,7 @@ import BackArrow from './BackArrow'
 import React, { useCallback, useContext } from 'react'
 import { WalletContext } from '../contexts/wallet'
 import XmtpContext from '../contexts/xmtp'
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { AiOutlineHome } from "react-icons/ai"
 const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
