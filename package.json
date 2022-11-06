@@ -43,6 +43,7 @@
     "react": "18.2.0",
     "react-blockies": "^1.4.1",
     "react-dom": "18.2.0",
+    "react-icons": "^4.6.0",
     "react-moralis": "^1.4.2",
     "solidity-coverage": "^0.8.2",
     "typechain": "^8.1.0",

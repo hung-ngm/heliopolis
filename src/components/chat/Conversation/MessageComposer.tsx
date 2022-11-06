@@ -293,41 +293,41 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-xl font-medium leading-6 text-gray-900"
+                    className="text-xl font-medium leading-6 text-black"
                   >
                     Cross chain transfer (Powered by Axelar)
                   </Dialog.Title>
                   <br/>
                   {!loading 
                     ? <div>
-                      <label htmlFor="from">Origin Chain</label>
+                      <label htmlFor="from" className='text-black'>Origin Chain</label>
                       <select 
                         name="from" 
                         id="from" 
-                        className='ml-20 px-3 py-1 pr-8 mb-2'
+                        className='ml-20 px-3 py-1 pr-8 mb-2 text-black'
                         onChange={handleSourceChainChanged}
                       >
                         <option value="goerli">Ethereum Goerli</option>
                         <option value="polygon">Polygon Mumbai</option>
                       </select>
                       <br/>
-                      <label htmlFor="to">Destination Chain</label>
+                      <label htmlFor="to" className='text-black'>Destination Chain</label>
                       <select 
                         name="to" 
                         id="to" 
-                        className='ml-10 px-5 py-1 pr-8 mt-2'
+                        className='ml-10 px-5 py-1 pr-8 mt-2 text-black'
                         onChange={handleDestChainChanged}
                       >
                         <option value="goerli">Ethereum Goerli</option>
                         <option value="polygon">Polygon Mumbai</option>
                       </select>
                       <br/>
-                      <br/>
-                      <label htmlFor="token">Token</label>
+                      
+                      <label htmlFor="token" className='text-black'>Token</label>
                       <select 
                         name="token" 
                         id="token" 
-                        className='ml-32 px-3 py-1 pr-8 mt-2'
+                        className='ml-32 px-3 py-1 pr-8 mt-2 text-black'
                         onChange={handleTokenChanged}
                       >
                         <option value="wAXL">wAXL</option>
@@ -341,7 +341,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
                       </select>
                       <br/>
                       <br/>
-                      <label htmlFor="amount">Amount</label>
+                      <label htmlFor="amount" className='text-black'>Amount</label>
                       <input
                         type="text"
                         id="amount"

@@ -11,7 +11,8 @@ import BackArrow from './BackArrow'
 import React, { useCallback, useContext } from 'react'
 import { WalletContext } from '../contexts/wallet'
 import XmtpContext from '../contexts/xmtp'
-
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { AiOutlineHome } from "react-icons/ai"
 const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
     <div className="flex flex-col flex-grow md:border-r md:border-gray-200 bg-white overflow-y-auto">
@@ -20,14 +21,21 @@ const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ child
   </aside>
 )
 
-const NavigationHeaderLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="h-[10vh] max-h-20 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
-    <Link href="/pages" passHref={true}>
-      <img className="h-8 w-auto" src="/favicon.ico" alt="XMTP" />
-    </Link>
-    {children}
-  </div>
-)
+
+const NavigationHeaderLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const router = useRouter();
+  const handleBackArrowClick = useCallback(() => {
+    router.push('/')
+  }, [router])
+  return(
+    <div className="h-[10vh] max-h-20 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
+      <Button leftIcon={<AiOutlineHome />} colorScheme='teal' variant='outline' onClick = {handleBackArrowClick}>
+        Back
+      </Button>
+      {children}
+    </div>
+  )
+}
 
 const TopBarLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="sticky top-0 z-10 flex-shrink-0 flex bg-zinc-50 border-b border-gray-200 md:bg-white md:border-0">
@@ -44,7 +52,7 @@ const ConversationLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   }
 
   const handleBackArrowClick = useCallback(() => {
-    router.push('/chat/')
+    router.push('/')
   }, [router])
 
   return (
