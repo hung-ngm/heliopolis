@@ -1,5 +1,6 @@
 import { Default } from 'components/layouts/Default';
 import { ERC20Transfers } from 'components/templates/transfers/ERC20';
+import { EvmChain } from '@moralisweb3/evm-utils';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { IERC20Transfers } from 'components/templates/transfers/ERC20/types';
@@ -24,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const transfers = await Moralis.EvmApi.account.getTokenTransfers({
     address: session?.user.address,
-    chain: process.env.APP_CHAIN_ID,
+    chain: EvmChain.MUMBAI,
   });
 
   return {

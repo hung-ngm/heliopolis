@@ -1,4 +1,5 @@
 import { Default } from 'components/layouts/Default';
+import { EvmChain } from '@moralisweb3/evm-utils';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { INFTBalances } from 'components/templates/balances/NFT/types';
@@ -24,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const balances = await Moralis.EvmApi.account.getNFTs({
     address: session?.user.address,
-    chain: process.env.APP_CHAIN_ID,
+    chain: EvmChain.MUMBAI,
   });
 
   // (balances.result).filter((balance)=> balance.result.)
