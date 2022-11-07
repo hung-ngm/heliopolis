@@ -6,7 +6,6 @@ import { ICollection } from 'components/templates/marketplace/Collection/types';
 import { Collection } from 'components/templates/marketplace/Collection';
 import { loadMyNfts } from '../api/nft/loadMyNfts';
 
-
 const ERC20: NextPage<ICollection> = (props) => {
   return (
     <Default pageName="ERC20 Balances">

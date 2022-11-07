@@ -20,6 +20,7 @@ const nextConfig = optimizedImages({
   },
   env: {
     MORALIS_API_KEY: process.env.MORALIS_API_KEY,
+    MUMBAI_URL: process.env.MUMBAI_URL,
   }
 });
 
