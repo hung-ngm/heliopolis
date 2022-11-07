@@ -35,6 +35,7 @@
     "hardhat-gas-reporter": "^1.0.9",
     "imagemin-svgo": "^9.0.0",
     "install": "^0.13.0",
+    "ipfs-http-client": "^59.0.0",
     "moralis": "^2.0.3",
     "moralis-v1": "^1.11.0",
     "next": "12.2.5",

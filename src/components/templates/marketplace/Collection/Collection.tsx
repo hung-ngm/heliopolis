@@ -26,32 +26,41 @@ import {
 import { generatePicture } from '@pages/api/ai/generatePicture';
 import { mintNft } from '@pages/api/nft/mintNft';
 import { TokenUri } from '../Explore/types';
+// import UploadFile from './Upload';
 
+import Upload from './Upload';
 
 const Collection: FC<ICollection> = ({ myNfts }) => {
-    useEffect(() => console.log('myNfts', myNfts), [myNfts]);
+    useEffect(() => {
+      // console.log('myNfts', myNfts), [myNfts]
+      console.log(image)
+    });
+    // First prompt
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
+    const initialRef = React.useRef(null);
+    const finalRef = React.useRef(null);
+
+    // State
+    const [isListing, setIsListing] = useState(false); 
+    const [isImageOn, setIsImageOn] = useState(false);
+    const [isCreating, setIsCreating] = useState(false); 
+    const [isMinting, setIsMinting] = useState(false);
     
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const initialRef = React.useRef(null)
-    const initialNameRef = React.useRef(null);
-    const initialDescriptionRef = React.useRef(null);
-    const initialPriceRef = React.useRef(null);
-    const finalRef = React.useRef(null)
+    // Fields in the form
+    const [image, setImage] = useState<string>('');
+    const [prompt, setPrompt] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
     const [price, setPrice] = useState('');
+
+    // Fields checkers
     const [isEmptyPrompt, setIsEmptyPrompt] = useState(true);
     const [isEmptyName, setIsEmptyName] = useState(true);
     const [isEmptyDescription, setIsEmptyDescription] = useState(true);
     const [isEmptyPrice, setIsEmptyPrice] = useState(true);
     const [isErrorPrice, setIsErrorPrice] = useState(true);
-    const [isListing, setIsListing] = useState(false); 
-    const [isImageOn, setIsImageOn] = useState(false);
-    const [isCreating, setIsCreating] = useState(false); 
-    const [isMinting, setIsMinting] = useState(false);
-    const [image, setImage] = useState<string>('');
-    const [prompt, setPrompt] = useState<string>('');
-    const [name, setName] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-
+    
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setPrompt(e.target.value);
@@ -116,6 +125,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
     }
 
     const handleCancel = () => {
+      onCloseManual();
       onClose();
       reset();
     }
@@ -136,23 +146,95 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
       setIsEmptyPrice(true);
       setIsMinting(false);
     }
-
+    
     return (
     <>
       <Heading size="lg" marginBottom={6}>
         This is your NFT collection
-        <Button marginLeft = {3} alignItems="center" >
+        <Button marginLeft = {3} alignItems="center" onClick={onOpenManual} ref={finalRef}>
           Mint
         </Button>
+        <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpenManual} onClose={handleCancel}>
+          <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Create NFT</ModalHeader>
+              <ModalCloseButton/>
+              <ModalBody pb={3}>
+              <Center>
+                <Upload parent_image={image} parent_setImage={setImage}/>
+                
+              </Center>
+                
+              </ModalBody>
+                  <ModalBody pb={3}>
+                    <FormControl isInvalid={isEmptyName}>
+                      <FormLabel>Name</FormLabel>
+                      <Input 
+                        value = {name} 
+                        onChange={handleNameChange} 
+                        placeholder='Enter name here' 
+                      />
+                      <FormHelperText>Enter the name for the NFT</FormHelperText>
+                    </FormControl>
+                  </ModalBody>
+
+
+                  <ModalBody pb={3}>
+                    <FormControl isInvalid={isEmptyDescription}>
+                      <FormLabel>Description</FormLabel>
+                      <Input 
+                        value = {description} 
+                        onChange={handleDescriptionChange} 
+                        placeholder='Enter the description here' 
+                      />
+                      <FormHelperText>Enter the description for the NFT</FormHelperText>
+                    </FormControl>
+                  </ModalBody>
+                
+                  <ModalBody pb={3}>
+                    <FormControl isInvalid={isEmptyPrice}>
+                      <FormLabel>Price</FormLabel>
+                      <Input 
+                        value = {price} 
+                        onChange={handlePriceChange} 
+                        placeholder='Enter the price here' 
+                      />
+                      <FormHelperText>Enter the Price (MATIC) for the NFT</FormHelperText>
+                    </FormControl>
+                  </ModalBody>
+
+
+                <ModalFooter>
+                  {(!isMinting) ? (
+                    (isEmptyName || isEmptyDescription || isEmptyPrice || isErrorPrice) ? (
+                      <Button isDisabled colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                        Mint
+                      </Button>
+                    ) : (
+                      <Button colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                        Mint
+                      </Button>
+                    )
+                  ) : (
+                    <Button isLoading colorScheme='blue' mr={3}>
+                      Mint
+                    </Button>
+                  )}
+                  <Button onClick={handleCancel}>Cancel</Button>
+                </ModalFooter>
+
+              
+            </ModalContent>
+        </Modal>
         <Button marginLeft = {3}alignItems="center" onClick={onOpen} ref={finalRef}>
             Mint with DALL-E
         </Button>
-        <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={handleCancel}>
           <ModalOverlay />
             <ModalContent>
               <ModalHeader>Create NFT with DALL-E</ModalHeader>
               <ModalCloseButton />
-              <ModalBody pb={6}>
+              <ModalBody pb={3}>
                 {!image ? (
                   <FormControl isInvalid={isEmptyPrompt}>
                     <FormLabel>Prompt</FormLabel>
@@ -199,11 +281,10 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
               </ModalFooter>
                 
                 {image ? (
-                  <ModalBody pb={6}>
+                  <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyName}>
                       <FormLabel>Name</FormLabel>
                       <Input 
-                        ref={initialNameRef} 
                         value = {name} 
                         onChange={handleNameChange} 
                         placeholder='Enter name here' 
@@ -214,11 +295,10 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                 ) : null}
 
                 {image ? (
-                  <ModalBody pb={6}>
+                  <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyDescription}>
                       <FormLabel>Description</FormLabel>
                       <Input 
-                        ref={initialDescriptionRef} 
                         value = {description} 
                         onChange={handleDescriptionChange} 
                         placeholder='Enter the description here' 
@@ -229,11 +309,10 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                 ) : null}
 
                 {image ? (
-                  <ModalBody pb={6}>
+                  <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyPrice}>
                       <FormLabel>Price</FormLabel>
                       <Input 
-                        ref={initialPriceRef} 
                         value = {price} 
                         onChange={handlePriceChange} 
                         placeholder='Enter the price here' 
