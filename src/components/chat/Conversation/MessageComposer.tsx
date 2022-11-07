@@ -81,7 +81,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
     if (tokenId && walletAddress) {
       setNftLoading(true);
       const recipientWalletAddr = router.query.recipientWalletAddr as string
-      const canTransferNft = await transferNft(walletAddress,recipientWalletAddr, Number(tokenId))
+      const canTransferNft = await transferNft(walletAddress, recipientWalletAddr, Number(tokenId))
       console.log('can transfer nft?', canTransferNft);
       if (canTransferNft) {
         const transferMessage = `Send NFT ${tokenId} successfully!`;
