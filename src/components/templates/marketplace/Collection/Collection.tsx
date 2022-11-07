@@ -42,7 +42,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
     const [isEmptyName, setIsEmptyName] = useState(true);
     const [isEmptyDescription, setIsEmptyDescription] = useState(true);
     const [isEmptyPrice, setIsEmptyPrice] = useState(true);
-    const [isError, setIsError] = useState(true);
+    const [isErrorPrice, setIsErrorPrice] = useState(true);
     const [isListing, setIsListing] = useState(false); 
     const [isImageOn, setIsImageOn] = useState(false);
     const [isCreating, setIsCreating] = useState(false); 
@@ -74,7 +74,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
       
       (e.target.value.trim() === '' || 
       !Number.isInteger(Number(e.target.value)) || 
-      Number(e.target.value) < 0) ? setIsError(true) : setIsError(false); 
+      Number(e.target.value) < 0) ? setIsErrorPrice(true) : setIsErrorPrice(false); 
     }
     
     const handleCreatePicture = async (p: string) => {
@@ -124,7 +124,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
       setPrompt('');
       setPrice('');
       setIsEmptyPrompt(true);
-      setIsError(true);
+      setIsErrorPrice(true);
       setIsListing(false);
       setIsImageOn(false);
       setIsCreating(false);
@@ -173,7 +173,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                       boxSize='256px'
                       objectFit='cover'
                       src={image}
-                      alt='Dan Abramov'
+                      alt='An image'
                     />
                   </Center>
                 ) : null }
@@ -246,9 +246,15 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                 <ModalFooter>
                   {image ? (
                       (!isMinting) ? (
-                        <Button colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
-                          Mint
-                        </Button>
+                        (isEmptyName || isEmptyDescription || isEmptyPrice || isErrorPrice) ? (
+                          <Button isDisabled colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                            Mint
+                          </Button>
+                        ) : (
+                          <Button colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                            Mint
+                          </Button>
+                        )
                       ) : (
                         <Button isLoading colorScheme='blue' mr={3}>
                           Mint
