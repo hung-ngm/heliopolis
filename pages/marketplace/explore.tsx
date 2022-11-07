@@ -1,16 +1,26 @@
 import { Default } from 'components/layouts/Default';
 import { GetServerSideProps, NextPage } from 'next';
+import React, { useState, useEffect } from 'react';
 import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
 import { IExplore } from 'components/templates/marketplace/Explore/types';
 import { Explore } from 'components/templates/marketplace/Explore';
 import { loadNfts } from '../api/nft/loadNfts';
-
+import { TNFTExplore } from 'components/templates/marketplace/Explore/types';
 
 const ERC20: NextPage<IExplore> = (props) => {
+    const [nftsExplore, setNftsExplore] = useState<TNFTExplore[]>([]);
+    useEffect(() => {
+        const fetchNftsExplore = async () => {
+            const items = await loadNfts();
+            setNftsExplore(items);
+        }
+        fetchNftsExplore();
+    }, [nftsExplore])
+    
     return (
         <Default pageName="ERC20 Balances">
-            <Explore {...props} />
+            <Explore {...props} nftsExplore={nftsExplore} />
         </Default>
     );
 };
@@ -24,14 +34,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return { props: { error: 'Connect your wallet first' } };
     }
 
-    const items = await loadNfts();
-
     return {
-        props: {
-            nftsExplore: items
-        },
+        props: {}
     };
-    
 };
 
 export default ERC20;
