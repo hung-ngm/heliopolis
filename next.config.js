@@ -18,6 +18,9 @@ const nextConfig = optimizedImages({
     config.resolve.mainFields = ['browser', 'main', 'module']
     return config
   },
+  env: {
+    MORALIS_API_KEY: process.env.MORALIS_API_KEY,
+  }
 });
 
 module.exports = nextConfig;

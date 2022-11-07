@@ -1,4 +1,4 @@
-import { EvmNftContractType } from '@moralisweb3/evm-utils';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MoralisDataObjectValue } from '@moralisweb3/core';
 
 export type TNFTBalance = {
@@ -8,7 +8,7 @@ export type TNFTBalance = {
   blockNumberMinted: string | undefined;
   blockNumber: string | undefined;
   tokenId: string | number;
-  contractType: EvmNftContractType;
+  contractType: any;
   tokenUri?: string | undefined;
   tokenHash?: string | undefined;
   metadata: MoralisDataObjectValue;
