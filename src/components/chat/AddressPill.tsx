@@ -10,7 +10,6 @@ type addressPillProps = {
 const AddressPill = ({ address }: addressPillProps): JSX.Element => {
   const { address: walletAddress } = useContext(WalletContext)
   const userIsSender = address === walletAddress
-  console.log(`user address is ${address} and userIsSender is ${userIsSender}`);
   return (
     <Address
       className={classNames(
