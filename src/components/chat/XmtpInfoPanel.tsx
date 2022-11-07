@@ -2,13 +2,13 @@ import packageJson from '../../../package.json'
 import { classNames } from '../helpers'
 import {
   LinkIcon,
-  BookOpenIcon,
   UserGroupIcon,
   ChevronRightIcon,
   ArrowSmRightIcon,
 } from '@heroicons/react/solid'
 import { WalletContext } from '../contexts/wallet'
 import { useContext } from 'react'
+import { useRouter } from 'next/router';
 
 type XmtpInfoRowProps = {
   icon: JSX.Element
@@ -53,27 +53,28 @@ const InfoRow = ({
 
 const XmtpInfoPanel = ({ onConnect }: XmtpInfoPanelProps): JSX.Element => {
   const { address: walletAddress } = useContext(WalletContext)
+  const router = useRouter();
+
   const InfoRows = [
     {
       icon: <LinkIcon />,
       headingText: 'Connect your wallet',
-      subHeadingText: 'Verify your wallet to start using the XMTP protocol',
+      subHeadingText: 'Verify your wallet to start using Chat in Heliopolis with XMTP Protocol',
       onClick: onConnect,
       disabled: !!walletAddress,
     },
     {
-      icon: <BookOpenIcon />,
-      headingText: 'Read the docs',
-      subHeadingText:
-        'Check out the documentation for our protocol and find out how to get up and running quickly',
-      onClick: () => window.open('https://docs.xmtp.org', '_blank'),
-    },
-    {
       icon: <UserGroupIcon />,
-      headingText: 'Join our community',
+      headingText: 'NFT-gated chat',
       subHeadingText:
-        'Talk about what you’re building or find out other projects that are building upon XMTP',
-      onClick: () => window.open('https://community.xmtp.org', '_blank'),
+        'Exclusive group chat for NFT owners',
+      // Onclick set onConnect then push to /chat/group
+      onClick: async () => {
+        if (onConnect) {
+          await onConnect()
+        }
+        router.push('/chat/group');
+      }
     },
   ]
 
