@@ -90,9 +90,18 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
           objectFit="fill"
         />
       </Box>
-      <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
-        {name}
-      </Box>
+      <SimpleGrid columns={2} spacing={4}  padding={2.5} borderRadius="xl" marginTop={2}>
+        <Center>
+          <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
+            {name}
+          </Box>
+        </Center>
+        <Center>
+          <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
+            #{tokenId}
+          </Box>
+        </Center>
+      </SimpleGrid>
       <SimpleGrid columns={2} spacing={4} bgColor={descBgColor} padding={2.5} borderRadius="xl" marginTop={2}>
         <Box>
           <Box as="h4" noOfLines={1} fontWeight="medium" fontSize="sm">
