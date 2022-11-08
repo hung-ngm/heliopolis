@@ -1,3 +1,9 @@
+/* eslint-disable consistent-return */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable no-alert */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prefer-template */
 import React from "react";
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
 import {Button,Center,Image} from '@chakra-ui/react';
@@ -60,8 +66,6 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
                 ].find((image) => image.path === path);
             });
 
-            // @ts-ignore
-            // setImages(uniqueImages);
             parent_setImage("https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path)
             setUploaded(true);
             form.reset();
@@ -90,7 +94,7 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
                     
                     <Center>
                         {(parent_image !== '') ?
-                            (parent_image != 'loading...') ?
+                            (parent_image !== 'loading...') ?
                                 (<Image alt={"Upload image"} src={parent_image} boxSize='256px' objectFit='contain'/>) :
                                 (<Image alt={"Upload image"} src={'/loading.svg'} boxSize='256px' objectFit='contain'/>)
                                 : 

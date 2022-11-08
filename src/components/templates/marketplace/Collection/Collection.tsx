@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Grid, Heading } from '@chakra-ui/react';
 import { NFTCollectionCard } from 'components/modules';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { ICollection } from './types';
 import { useDisclosure } from '@chakra-ui/react';
 import {
@@ -26,7 +26,6 @@ import {
 import { generatePicture } from '@pages/api/ai/generatePicture';
 import { mintNft } from '@pages/api/nft/mintNft';
 import { TokenUri } from '../Explore/types';
-// import UploadFile from './Upload';
 
 import Upload from './Upload';
 
