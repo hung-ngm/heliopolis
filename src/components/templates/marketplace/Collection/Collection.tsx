@@ -29,7 +29,7 @@ import { mintNft } from '@pages/api/nft/mintNft';
 import { TokenUri } from '../Explore/types';
 import { TNFTCollection } from './types';
 import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
-
+import UploadAI from './UploadAI';
 import Upload from './Upload';
 
 const Collection: FC<ICollection> = ({ userAddress }) => {
@@ -48,6 +48,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
     
     // Fields in the form
     const [image, setImage] = useState<string>('');
+    const [urlDalle, setUrlDalle] = useState<string>('');
     const [prompt, setPrompt] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
@@ -105,9 +106,11 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
         console.log(p);
         const picture = await generatePicture(p);
         if (picture) {
-          setImage(picture);
+          // setImage(picture);
+          setUrlDalle(picture);
+          console.log("URLDALLE", urlDalle);
         }
-        console.log(image);
+        console.log(picture);
         setIsCreating(false);
         
       } catch (error) {
@@ -274,14 +277,16 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                 <br/>
                 {image ? (
                   <Center>
-                    <Image
+                    {/* <Image
                       boxSize='256px'
                       objectFit='cover'
                       src={image}
                       alt='An image'
-                    />
+                    /> */}
+                    
                   </Center>
                 ) : null }
+                <UploadAI parent_image = {image} parent_setImage={setImage} url = {urlDalle}/>
               </ModalBody>
 
               <ModalFooter>
