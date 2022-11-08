@@ -21,7 +21,8 @@ import {
   FormErrorMessage,
   FormHelperText,
   Input,
-  Image
+  Image,
+  Spinner
 } from '@chakra-ui/react';
 import { generatePicture } from '@pages/api/ai/generatePicture';
 import { mintNft } from '@pages/api/nft/mintNft';
@@ -32,6 +33,7 @@ import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 import Upload from './Upload';
 
 const Collection: FC<ICollection> = ({ userAddress }) => {
+    const [isInitialLoading, setIsInitialLoading] = useState<Boolean>(true);
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
@@ -64,10 +66,12 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
       const fetchMyNfts = async () => {
         if (userAddress) {
           const items = await loadMyNfts(userAddress);
+          setIsInitialLoading(false);
           setMyNfts(items);
         }
       }
       fetchMyNfts();
+      
     }, [myNfts, userAddress]) 
 
 
@@ -377,7 +381,28 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
           ))}
         </Grid>
       ) : (
-        <Box>Looks Like there you have no NFTs right now</Box>
+        isInitialLoading ? (
+          <Center>
+            <Spinner
+              thickness='4px'
+              speed='0.65s'
+              emptyColor='gray.200'
+              color='blue.500'
+              size='xl'
+            />  
+          </Center>
+          
+        ) : (
+          <>
+            <Box>Look like you aren't owning any NFT.</Box>
+
+            <br/>
+            <Center>
+              <Image src={'/empty_market.webp'} />
+            </Center>
+          </>
+          
+        )
       )}
     </>
   );
