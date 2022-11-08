@@ -31,10 +31,6 @@ import { TokenUri } from '../Explore/types';
 import Upload from './Upload';
 
 const Collection: FC<ICollection> = ({ myNfts }) => {
-    useEffect(() => {
-      // console.log('myNfts', myNfts), [myNfts]
-      console.log(image)
-    });
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
@@ -96,6 +92,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
         }
         console.log(image);
         setIsCreating(false);
+        
       } catch (error) {
         console.log(error);
       }
@@ -119,6 +116,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
           setIsMinting(false);
           onClose();
         }
+        handleCancel();
       } catch (error) {
         console.log(error);
       }
@@ -151,6 +149,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
     <>
       <Heading size="lg" marginBottom={6}>
         This is your NFT collection
+        {/* Mint manually */}
         <Button marginLeft = {3} alignItems="center" onClick={onOpenManual} ref={finalRef}>
           Mint
         </Button>
@@ -159,13 +158,13 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
             <ModalContent>
               <ModalHeader>Create NFT</ModalHeader>
               <ModalCloseButton/>
+              
               <ModalBody pb={3}>
-              <Center>
-                <Upload parent_image={image} parent_setImage={setImage}/>
-                
-              </Center>
-                
+                <Center>
+                  <Upload parent_image={image} parent_setImage={setImage}/>
+                </Center>
               </ModalBody>
+
                   <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyName}>
                       <FormLabel>Name</FormLabel>
@@ -206,8 +205,13 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
 
                 <ModalFooter>
                   {(!isMinting) ? (
-                    (isEmptyName || isEmptyDescription || isEmptyPrice || isErrorPrice) ? (
-                      <Button isDisabled colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                    ( image === 'loading...' || 
+                      image === '' || 
+                      isEmptyName || 
+                      isEmptyDescription || 
+                      isEmptyPrice || 
+                      isErrorPrice) ? (
+                      <Button isDisabled colorScheme='blue' mr={3}>
                         Mint
                       </Button>
                     ) : (
@@ -216,7 +220,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                       </Button>
                     )
                   ) : (
-                    <Button isLoading colorScheme='blue' mr={3}>
+                    <Button isLoading loadingText='Prepare to sign twice' colorScheme='blue' mr={3}>
                       Mint
                     </Button>
                   )}
@@ -226,6 +230,8 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
               
             </ModalContent>
         </Modal>
+
+        {/* Mint with Dall-E */}
         <Button marginLeft = {3}alignItems="center" onClick={onOpen} ref={finalRef}>
             Mint with DALL-E
         </Button>

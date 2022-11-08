@@ -18,6 +18,13 @@ const nextConfig = optimizedImages({
     config.resolve.mainFields = ['browser', 'main', 'module']
     return config
   },
+  env:{
+    MORALIS_API_KEY: process.env.MORALIS_API_KEY,
+    MUMBAI_URL: process.env.MUMBAI_URL,
+    IPFS_ID: process.env.IPFS_ID,
+    IPFS_SECRET: process.env.IPFS_SECRET
+
+  }
 });
 
 module.exports = nextConfig;
