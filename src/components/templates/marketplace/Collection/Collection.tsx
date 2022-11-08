@@ -286,7 +286,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                     
                   </Center>
                 ) : null }
-                <UploadAI parent_image = {image} parent_setImage={setImage} url = {urlDalle}/>
+                <UploadAI parent_image = {image} parent_setImage={setImage} dalleUrl = {urlDalle}/>
               </ModalBody>
 
               <ModalFooter>

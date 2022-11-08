@@ -8,6 +8,7 @@ import React from "react";
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
 import {Button,Center,Image} from '@chakra-ui/react';
 import empty_image from '@public/empty_image.png';
+import axios, {AxiosRequestConfig} from 'axios';
 
 const projectId = process.env.IPFS_ID;
 const projectSecret = process.env.IPFS_SECRET;
@@ -16,10 +17,10 @@ const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 type Props = {
     parent_image: string;
     parent_setImage: (val: string) => void;
-    url: string;
+    dalleUrl: string;
 };
 
-const UploadAI: React.FC<Props> = ({parent_image, parent_setImage, url}) => {
+const UploadAI: React.FC<Props> = ({parent_image, parent_setImage, dalleUrl}) => {
     const[images, setImages] = React.useState<{cid: CID; path: string}[]> ([]);
     const[uploaded, setUploaded] = React.useState(false);
     // IPFS client 
@@ -38,64 +39,36 @@ const UploadAI: React.FC<Props> = ({parent_image, parent_setImage, url}) => {
     }
     
     // Handler
-    const onSubmitHandler = async (event: any) => {
-        event.preventDefault();
-        console.log(ipfs)
-        // const form = event.target as HTMLFormElement;
-        // const files = (form[0] as HTMLInputElement).files;
-        // if (!files || files.length === 0) {
-        //     return alert("No files selected");
-        // }
-        const response_image = await fetch(url,{
-                method: 'GET',
-                mode: 'no-cors',
-                headers: {
-                    'Access-Control-Allow-Origin':'*',
-                    'Content-Type':'application/json'
-        });
-        console.log(response_image)
-        const blob_image = await response_image.blob();
-        
-        let file = new File([blob_image], "DallE");
-        console.log(file)
-        parent_setImage('loading...');
-        // const file = files[0];
-        try{
-            // upload files
-            
-            const result = await (ipfs as IPFSHTTPClient).add(file);
-            console.log(result)
-            const uniquePaths = new Set([
-                ...images.map((image) => image.path),
-                result.path,
-            ]);
-            console.log("RESULT", result);
-            console.log("UP", uniquePaths);
-            const uniqueImages = [...uniquePaths.values()]
-            .map((path) => {
-                return [
-                    ...images,
-                    {
-                        cid: result.cid,
-                        path: result.path,
-                    },
-                ].find((image) => image.path === path);
-            });
-            console.log("UI", uniqueImages);
-            console.log(uniqueImages[uniqueImages.length - 1]!.path)
-            parent_setImage("https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path)
-            console.log("https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path)
-            setUploaded(true);
-            // form.reset();
+    
 
-        }catch(error){
-            parent_setImage("");
-            console.log("SOME ERROR", error);
-            // form.reset();
+    // New handler
+    const uploadImageToIPFS = async () => {
+        console.log(dalleUrl);
+        var config : AxiosRequestConfig = {
+            
+            headers: {
+                        'Access-Control-Allow-Origin': '*', 
+                        'mode': 'no-cors'
+                        
+                    },
+            responseType: 'blob'
+            
+        };
+        const file = await axios.get(dalleUrl, config).then(response => {return response.data;});
+        console.log(file)
+        try {
+        const added = await ipfs?.add(
+            file,
+            {
+            progress: (prog) => console.log(`received: ${prog}`)
+            }
+        )
+        const url = `https://ipfs.infura.io/ipfs/${added?.path}`;
+        console.log(url);
+        } catch (error) {
+            console.log('Error uploading file: ', error);
         }
-        
-    };
-    console.log(ipfs)
+    }
     return (
         <div>
             {ipfs && (
@@ -111,7 +84,7 @@ const UploadAI: React.FC<Props> = ({parent_image, parent_setImage, url}) => {
                         </form>
                     </Center> */}
 
-                    <Button onClick= {onSubmitHandler}>
+                    <Button onClick= {async() => {await uploadImageToIPFS()}}>
                         Show Image
                     </Button>
                     <Center>
