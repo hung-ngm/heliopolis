@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Grid, Heading } from '@chakra-ui/react';
 import { NFTCollectionCard } from 'components/modules';
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { ICollection } from './types';
 import { useDisclosure } from '@chakra-ui/react';
 import {
@@ -26,10 +26,12 @@ import {
 import { generatePicture } from '@pages/api/ai/generatePicture';
 import { mintNft } from '@pages/api/nft/mintNft';
 import { TokenUri } from '../Explore/types';
+import { TNFTCollection } from './types';
+import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 
 import Upload from './Upload';
 
-const Collection: FC<ICollection> = ({ myNfts }) => {
+const Collection: FC<ICollection> = ({ userAddress }) => {
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
@@ -55,7 +57,19 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
     const [isEmptyDescription, setIsEmptyDescription] = useState(true);
     const [isEmptyPrice, setIsEmptyPrice] = useState(true);
     const [isErrorPrice, setIsErrorPrice] = useState(true);
+
+    const [myNfts, setMyNfts] = useState<TNFTCollection[]>([]);
     
+    useEffect(() => {
+      const fetchMyNfts = async () => {
+        if (userAddress) {
+          const items = await loadMyNfts(userAddress);
+          setMyNfts(items);
+        }
+      }
+      fetchMyNfts();
+    }, [myNfts, userAddress]) 
+
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setPrompt(e.target.value);
