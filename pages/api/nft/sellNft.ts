@@ -20,7 +20,6 @@ export const resellNft = async (nft: any) => {
                 gasLimit: 1000000,
                 gasPrice: ethers.utils.parseUnits("10", "gwei"),
                 value: ethers.utils.parseUnits("0.001", "ether"),
-
             }
         );
         const response = await transaction.wait();
