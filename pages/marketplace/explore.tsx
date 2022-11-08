@@ -10,7 +10,7 @@ import { TNFTExplore } from 'components/templates/marketplace/Explore/types';
 
 const ERC20: NextPage<IExplore> = (props) => {
     const [nftsExplore, setNftsExplore] = useState<TNFTExplore[]>([]);
-    const [isInitialLoading, setIsInitialLoading] = useState<Boolean>(true);
+    const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
     useEffect(() => {
         const fetchNftsExplore = async () => {
             const items = await loadNfts();

@@ -1,12 +1,8 @@
 import { Box, Grid, Heading, Image, Spinner, Center } from '@chakra-ui/react';
 import { NFTExploreCard } from 'components/modules';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { IExplore } from './types';
-import loading from '@public/loading.svg'
-const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {
-    useEffect(() => {
-    }, [nftsExplore]);
-    
+const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {    
     return (
     <>
       <Heading size="lg" marginBottom={6}>
@@ -36,7 +32,7 @@ const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {
 
             <br/>
             <Center>
-              <Image src={'/empty_market.webp'} />
+              <Image src='/empty_market.webp' alt="empty" />
             </Center>
           </>
           

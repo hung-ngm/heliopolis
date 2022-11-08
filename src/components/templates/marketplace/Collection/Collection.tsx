@@ -33,7 +33,7 @@ import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 import Upload from './Upload';
 
 const Collection: FC<ICollection> = ({ userAddress }) => {
-    const [isInitialLoading, setIsInitialLoading] = useState<Boolean>(true);
+    const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
@@ -394,11 +394,11 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
           
         ) : (
           <>
-            <Box>Look like you aren't owning any NFT.</Box>
+            <Box>Look like you are not owning any NFT.</Box>
 
             <br/>
             <Center>
-              <Image src={'/empty_market.webp'} />
+              <Image src='/empty_market.webp' alt="empty" />
             </Center>
           </>
           
