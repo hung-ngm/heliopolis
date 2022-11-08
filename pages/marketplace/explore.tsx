@@ -10,9 +10,11 @@ import { TNFTExplore } from 'components/templates/marketplace/Explore/types';
 
 const ERC20: NextPage<IExplore> = (props) => {
     const [nftsExplore, setNftsExplore] = useState<TNFTExplore[]>([]);
+    const [isInitialLoading, setIsInitialLoading] = useState<Boolean>(true);
     useEffect(() => {
         const fetchNftsExplore = async () => {
             const items = await loadNfts();
+            setIsInitialLoading(false);
             setNftsExplore(items);
         }
         fetchNftsExplore();
@@ -20,7 +22,7 @@ const ERC20: NextPage<IExplore> = (props) => {
     
     return (
         <Default pageName="ERC20 Balances">
-            <Explore {...props} nftsExplore={nftsExplore} />
+            <Explore {...props} nftsExplore={nftsExplore} isInitialLoading={isInitialLoading} />
         </Default>
     );
 };
