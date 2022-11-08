@@ -10,14 +10,17 @@ const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, 
   const descBgColor = useColorModeValue('gray.100', 'gray.600');
   
   const handleBuy = async () => {
+    console.log('price', price);
     // Set the nft for the buyNft function
     try{
-      const currentNft = {
-        price,
-        tokenId,
+      if (price) {
+        const currentNft = {
+          price,
+          tokenId,
+        }
+        const res = await buyNft(currentNft);
+        console.log(res);
       }
-      const res = await buyNft(currentNft);
-      console.log(res);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
       console.log(e);

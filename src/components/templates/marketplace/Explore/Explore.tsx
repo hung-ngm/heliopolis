@@ -2,6 +2,7 @@ import { Box, Grid, Heading, Image, Spinner, Center } from '@chakra-ui/react';
 import { NFTExploreCard } from 'components/modules';
 import React, { FC } from 'react';
 import { IExplore } from './types';
+
 const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {    
     return (
     <>

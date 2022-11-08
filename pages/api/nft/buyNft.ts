@@ -16,7 +16,9 @@ export const buyNft = async (nft: any) => {
 
         const price = ethers.utils.parseUnits(nft.price.toString(), 'wei');
         const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
-            value: price 
+            value: price,
+            gasLimit: 10000000,
+            gasPrice: ethers.utils.parseUnits("10", "gwei"), 
         });
         await transaction.wait();
         
