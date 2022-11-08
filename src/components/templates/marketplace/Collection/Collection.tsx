@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable prefer-template */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable complexity */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -25,15 +27,25 @@ import {
   Spinner
 } from '@chakra-ui/react';
 import { generatePicture } from '@pages/api/ai/generatePicture';
+import { generatePictureBase64 } from '@pages/api/ai/generatePictureBase64';
 import { mintNft } from '@pages/api/nft/mintNft';
+import { mintAINft } from '@pages/api/nft/mintAINft';
 import { TokenUri } from '../Explore/types';
 import { TNFTCollection } from './types';
 import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
+import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
+import { saveAs } from 'file-saver';
 
 import Upload from './Upload';
 
+const projectId = process.env.IPFS_ID;
+const projectSecret = process.env.IPFS_SECRET;
+const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
+
 const Collection: FC<ICollection> = ({ userAddress }) => {
     const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
+    const[images, setImages] = React.useState<{cid: CID; path: string}[]> ([]);
+
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
@@ -61,6 +73,18 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
     const [isErrorPrice, setIsErrorPrice] = useState(true);
 
     const [myNfts, setMyNfts] = useState<TNFTCollection[]>([]);
+
+    let ipfs: IPFSHTTPClient;
+    try {
+        ipfs = create({
+            url: "https://ipfs.infura.io:5001/api/v0",
+            headers: {
+                authorization,
+            },
+        });
+    } catch (error) {
+        console.error("IPFS error ", error);
+    }
     
     useEffect(() => {
       const fetchMyNfts = async () => {
@@ -103,9 +127,9 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
       try {
         setIsCreating(true);
         console.log(p);
-        const picture = await generatePicture(p);
-        if (picture) {
-          setImage(picture);
+        const b64 = await generatePictureBase64(p);
+        if (b64) {
+          setImage(`data:image/png;base64,${b64}`);
         }
         console.log(image);
         setIsCreating(false);
@@ -113,7 +137,40 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
       } catch (error) {
         console.log(error);
       }
-      
+    }
+
+    // // Upload image file created by base64 to IPFS
+    const uploadToIpfs = async () => {
+      if (image) {
+        const response = await fetch(image);
+        const blob = await response.blob();
+        const file = new File([blob], "file.png", { type: "image/png" });
+
+        console.log('file is', file);
+
+        // Download file
+        saveAs(file, "file.png");
+
+        const result = await (ipfs as IPFSHTTPClient).add(file);
+
+        const uniquePaths = new Set([
+          ...images.map((img) => img.path),
+          result.path,
+        ]);
+
+        const uniqueImages = [...uniquePaths.values()]
+        .map((path) => {
+            return [
+                ...images,
+                {
+                    cid: result.cid,
+                    path: result.path,
+                },
+            ].find((img) => img.path === path);
+        });
+
+        return "https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path;
+      }
     }
 
     const handleMint = async () => {
@@ -128,6 +185,31 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
           image
         }
         const canMint = await mintNft(tokenUri, price);
+        // If canMint, change the user to the explore page
+        if (canMint) {
+          setIsMinting(false);
+          onClose();
+        }
+        handleCancel();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const handleAIMint = async () => {
+      if (!name || !description || !price) {
+        return;
+      }
+      try {
+        setIsMinting(true);
+        const tokenUri: TokenUri = {
+          name,
+          description,
+          image
+        }
+        const canMint = await mintAINft(tokenUri, price);
+        const uploaded = await uploadToIpfs();
+        console.log('uploaded', uploaded);
         // If canMint, change the user to the explore page
         if (canMint) {
           setIsMinting(false);
@@ -349,11 +431,11 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                   {image ? (
                       (!isMinting) ? (
                         (isEmptyName || isEmptyDescription || isEmptyPrice || isErrorPrice) ? (
-                          <Button isDisabled colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                          <Button isDisabled colorScheme='blue' mr={3} onClick={async () => { await handleAIMint() }}>
                             Mint
                           </Button>
                         ) : (
-                          <Button colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                          <Button colorScheme='blue' mr={3} onClick={async () => { await handleAIMint() }}>
                             Mint
                           </Button>
                         )

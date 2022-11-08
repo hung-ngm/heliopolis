@@ -7,7 +7,7 @@ import { nftMarketplaceAddress, nftAddress } from 'utils/contracts';
 import { nftMarketplaceAbi } from 'utils/nftMarketplaceAbi';
 import { nftAbi } from 'utils/nftAbi';
 
-export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boolean> => {
+export const mintAINft = async (nftUri: TokenUri, nftPrice: string): Promise<boolean> => {
     try{
         const web3Modal = new Web3Modal();
         const connection = await web3Modal.connect();
@@ -26,7 +26,7 @@ export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boole
 
         const price = ethers.utils.parseUnits(nftPrice, 'wei');
         const listMarketTx = await marketplaceContract.createMarketItem(nftAddress, Number(tokenId), price, {
-            gasLimit: 10000000,
+            gasLimit: 1000000000,
             gasPrice: ethers.utils.parseUnits("10", "gwei"),
             value: ethers.utils.parseEther("0.001"),
         });
