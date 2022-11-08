@@ -23,7 +23,6 @@ const nextConfig = optimizedImages({
     MUMBAI_URL: process.env.MUMBAI_URL,
     IPFS_ID: process.env.IPFS_ID,
     IPFS_SECRET: process.env.IPFS_SECRET
-
   }
 });
 

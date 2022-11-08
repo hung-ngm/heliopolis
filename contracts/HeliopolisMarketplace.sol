@@ -19,6 +19,9 @@ contract HeliopolisMarketplace is ReentrancyGuard {
     // Price to list the item into the marketplace
     uint256 listingPrice = 0.001 ether;
 
+    // Price charged to transfer token to friends
+    uint256 transferPrice = 0.001 ether;
+
     constructor() {
         // Owner of the contract to the one who deployed
         owner = payable(msg.sender);
@@ -69,6 +72,10 @@ contract HeliopolisMarketplace is ReentrancyGuard {
     
 
     event ProductListed(
+        uint256 indexed itemId
+    );
+
+    event ProductTransferred(
         uint256 indexed itemId
     );
 
@@ -162,6 +169,15 @@ contract HeliopolisMarketplace is ReentrancyGuard {
         );
     }
 
+    function transferNft(address nftContract, uint256 itemId, address oldAddress, address newAddress) public payable onlyItemOwner(itemId) {
+        uint256 tokenId = idToMarketItem[itemId].tokenId;
+        require(msg.value == transferPrice, "Please submit the transfer price in order to complete the transfer");
+        IERC721(nftContract).transferFrom(oldAddress, newAddress, tokenId);
+        idToMarketItem[itemId].owner = payable(newAddress);
+
+        emit ProductTransferred(itemId);
+    }
+    
     function putItemToResell(address nftContract, uint256 itemId, uint256 newPrice) public payable onlyItemOwner(itemId) {
         uint256 tokenId = idToMarketItem[itemId].tokenId;
         require(newPrice > 0, "Price must be at least 1 wei");
@@ -230,7 +246,7 @@ contract HeliopolisMarketplace is ReentrancyGuard {
     }
 
     // Fetch all the NFTs owned by the address
-    function fetchNFTsbyAddress(address addr) public view returns (MarketItem[] memory) {
+    function fetchNFTsByAddress(address addr) public view returns (MarketItem[] memory) {
         uint256 totalItemCount = _itemsIds.current();
         uint256 itemCount = 0;
         uint256 currentIndex = 0;
@@ -273,9 +289,7 @@ contract HeliopolisMarketplace is ReentrancyGuard {
                 currentIndex += 1;
             }
         }
-
         return items;
-
     }
 
 }

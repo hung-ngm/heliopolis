@@ -136,6 +136,19 @@ export const nftMarketplaceAbi = [
         "internalType": "uint256",
         "name": "itemId",
         "type": "uint256"
+      }
+    ],
+    "name": "ProductTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "itemId",
+        "type": "uint256"
       },
       {
         "indexed": true,
@@ -373,7 +386,7 @@ export const nftMarketplaceAbi = [
         "type": "address"
       }
     ],
-    "name": "fetchNFTsbyAddress",
+    "name": "fetchNFTsByAddress",
     "outputs": [
       {
         "components": [
@@ -519,6 +532,34 @@ export const nftMarketplaceAbi = [
       }
     ],
     "name": "putItemToResell",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "nftContract",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "itemId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "oldAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "newAddress",
+        "type": "address"
+      }
+    ],
+    "name": "transferNft",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
