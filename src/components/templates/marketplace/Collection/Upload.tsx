@@ -6,7 +6,8 @@
 /* eslint-disable prefer-template */
 import React from "react";
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
-import {Button,Center,Image} from '@chakra-ui/react';
+import {Button,Center,Image, Spinner, Icon, Box} from '@chakra-ui/react';
+import { MdReceipt } from 'react-icons/md'
 import empty_image from '@public/empty_image.png';
 
 const projectId = process.env.IPFS_ID;
@@ -16,11 +17,15 @@ const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 type Props = {
     parent_image: string;
     parent_setImage: (val: string) => void;
+    parent_closeModal: () => void;
+    setIsImageOn:  React.Dispatch<React.SetStateAction<boolean>>;
+    isImageOn: boolean;
 };
 
-const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
+const Upload: React.FC<Props> = ({parent_image, parent_setImage, parent_closeModal, setIsImageOn, isImageOn}) => {
     const[images, setImages] = React.useState<{cid: CID; path: string}[]> ([]);
     const[uploaded, setUploaded] = React.useState(false);
+
     // IPFS client 
     let ipfs: IPFSHTTPClient | undefined;
     try {
@@ -36,6 +41,15 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
     }
     
     // Handler
+    const handleErrorImage = async (event: any) => {
+        parent_setImage("");
+        alert("The upload image service is congested. Please try again later...")
+        parent_closeModal()
+        console.log(event)
+    }
+    const handleFinishLoad = async (event: any) => {
+        setIsImageOn(true);
+    }
     const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
@@ -65,7 +79,7 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
                     },
                 ].find((image) => image.path === path);
             });
-
+            console.log("https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path)
             parent_setImage("https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path)
             setUploaded(true);
             form.reset();
@@ -75,6 +89,7 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
         }
         
     };
+    
 
     return (
         <div>
@@ -82,23 +97,35 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage}) => {
                 <>  
 
                     <Center>
-                        <form onSubmit={onSubmitHandler}>
-                            <input name="file" type="file" />
-                            {(!uploaded) ?
-                                <Button type="submit">Upload File</Button>:
-                                <Button disabled type="submit">Upload File</Button>
-                            }
-                        </form>
+                        {(!uploaded) ?
+                            (
+                                <form onSubmit={onSubmitHandler}>
+                                    <input name="file" type="file" />
+                                        <Button type="submit">Upload File</Button>
+                                </form>
+                            ):(
+                                (isImageOn) ? (
+                                    <Box>Image is ready!</Box>
+                                ) : (
+                                    <Center>
+                                        <Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl'/>
+                                    </Center>   
+                                )   
+                            )
+                        }
                     </Center>
                     <br/>
                     
                     <Center>
                         {(parent_image !== '') ?
                             (parent_image !== 'loading...') ?
-                                (<Image alt={"Upload image"} src={parent_image} boxSize='256px' objectFit='contain'/>) :
-                                (<Image alt={"Upload image"} src={'/loading.svg'} boxSize='256px' objectFit='contain'/>)
+                                (<Image alt={"Upload image"} src={parent_image} boxSize='256px' 
+                                    onError = {handleErrorImage as React.ReactEventHandler<HTMLImageElement>} 
+                                    onLoad = {handleFinishLoad as React.ReactEventHandler<HTMLImageElement>}
+                                    objectFit='contain'/>) :
+                                (<Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl'/> )
                                 : 
-                            (<Image alt={""} src={empty_image.src} boxSize='256px' objectFit='contain'/>)
+                            (<Icon as={MdReceipt} w={6} h={6} />)
                         }
                     </Center>
                 </>

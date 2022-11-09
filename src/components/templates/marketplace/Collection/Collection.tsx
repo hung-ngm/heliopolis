@@ -245,11 +245,13 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
               
               <ModalBody pb={3}>
                 <Center>
-                  <Upload parent_image={image} parent_setImage={setImage}/>
+                  <Upload parent_image={image} parent_setImage={setImage} parent_closeModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
                 </Center>
               </ModalBody>
-
-                  <ModalBody pb={3}>
+              {isImageOn ? 
+                  (
+                    <>
+                    <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyName}>
                       <FormLabel>Name</FormLabel>
                       <Input 
@@ -285,6 +287,11 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                       <FormHelperText>Enter the Price (MATIC) for the NFT</FormHelperText>
                     </FormControl>
                   </ModalBody>
+                  </>
+                  ): 
+                  (null)
+              }
+                  
 
                 <ModalFooter>
                   {(!isMinting) ? (
