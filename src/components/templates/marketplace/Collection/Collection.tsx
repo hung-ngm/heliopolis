@@ -29,12 +29,10 @@ import {
 import { generatePicture } from '@pages/api/ai/generatePicture';
 import { generatePictureBase64 } from '@pages/api/ai/generatePictureBase64';
 import { mintNft } from '@pages/api/nft/mintNft';
-import { mintAINft } from '@pages/api/nft/mintAINft';
 import { TokenUri } from '../Explore/types';
 import { TNFTCollection } from './types';
 import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
-import { saveAs } from 'file-saver';
 
 import Upload from './Upload';
 
@@ -44,7 +42,6 @@ const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
 const Collection: FC<ICollection> = ({ userAddress }) => {
     const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
-    const[images, setImages] = React.useState<{cid: CID; path: string}[]> ([]);
 
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -129,7 +126,13 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
         console.log(p);
         const b64 = await generatePictureBase64(p);
         if (b64) {
-          setImage(`data:image/png;base64,${b64}`);
+          const b64Url = `data:image/png;base64,${b64}`;
+          const uploadedUrl = await uploadToIpfs(b64Url);
+          if (uploadedUrl) {
+            console.log('uploadedUrl', uploadedUrl);
+            setImage(uploadedUrl);
+          }
+          
         }
         console.log(image);
         setIsCreating(false);
@@ -140,36 +143,20 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
     }
 
     // // Upload image file created by base64 to IPFS
-    const uploadToIpfs = async () => {
-      if (image) {
-        const response = await fetch(image);
+    const uploadToIpfs = async (url: string) => {
+      if (url) {
+        const response = await fetch(url);
         const blob = await response.blob();
         const file = new File([blob], "file.png", { type: "image/png" });
 
         console.log('file is', file);
 
-        // Download file
-        saveAs(file, "file.png");
+        const imghash = await ipfs.add(file);
+        console.log(imghash);
 
-        const result = await (ipfs as IPFSHTTPClient).add(file);
+        const newUrl = `https://infura-ipfs.io/ipfs/${imghash.path}`;
 
-        const uniquePaths = new Set([
-          ...images.map((img) => img.path),
-          result.path,
-        ]);
-
-        const uniqueImages = [...uniquePaths.values()]
-        .map((path) => {
-            return [
-                ...images,
-                {
-                    cid: result.cid,
-                    path: result.path,
-                },
-            ].find((img) => img.path === path);
-        });
-
-        return "https://infura-ipfs.io/ipfs/" + uniqueImages[uniqueImages.length - 1]!.path;
+        return newUrl;
       }
     }
 
@@ -207,9 +194,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
           description,
           image
         }
-        const canMint = await mintAINft(tokenUri, price);
-        const uploaded = await uploadToIpfs();
-        console.log('uploaded', uploaded);
+        const canMint = await mintNft(tokenUri, price);
         // If canMint, change the user to the explore page
         if (canMint) {
           setIsMinting(false);
@@ -301,7 +286,6 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                     </FormControl>
                   </ModalBody>
 
-
                 <ModalFooter>
                   {(!isMinting) ? (
                     ( image === 'loading...' || 
@@ -326,7 +310,6 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                   <Button onClick={handleCancel}>Cancel</Button>
                 </ModalFooter>
 
-              
             </ModalContent>
         </Modal>
 
@@ -422,7 +405,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                         onChange={handlePriceChange} 
                         placeholder='Enter the price here' 
                       />
-                      <FormHelperText>Enter the Price (MATIC) for the NFT</FormHelperText>
+                      <FormHelperText>Enter the Price (MATIC) (Wei) for the NFT</FormHelperText>
                     </FormControl>
                   </ModalBody>
                 ) : null}
