@@ -40,8 +40,7 @@ const projectId = process.env.IPFS_ID;
 const projectSecret = process.env.IPFS_SECRET;
 const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
-const Collection: FC<ICollection> = ({ userAddress }) => {
-    const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
+const Collection: FC<ICollection> = ({ myNfts }) => {
 
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -69,8 +68,6 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
     const [isEmptyPrice, setIsEmptyPrice] = useState(true);
     const [isErrorPrice, setIsErrorPrice] = useState(true);
 
-    const [myNfts, setMyNfts] = useState<TNFTCollection[]>([]);
-
     let ipfs: IPFSHTTPClient;
     try {
         ipfs = create({
@@ -83,18 +80,6 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
         console.error("IPFS error ", error);
     }
     
-    useEffect(() => {
-      const fetchMyNfts = async () => {
-        if (userAddress) {
-          const items = await loadMyNfts(userAddress);
-          setIsInitialLoading(false);
-          setMyNfts(items);
-        }
-      }
-      fetchMyNfts();
-      
-    }, [myNfts, userAddress]) 
-
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setPrompt(e.target.value);
@@ -445,29 +430,15 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
             <NFTCollectionCard {...nft} key={key} />
           ))}
         </Grid>
-      ) : (
-        isInitialLoading ? (
-          <Center>
-            <Spinner
-              thickness='4px'
-              speed='0.65s'
-              emptyColor='gray.200'
-              color='blue.500'
-              size='xl'
-            />  
-          </Center>
-          
-        ) : (
-          <>
-            <Box>Look like you are not owning any NFT.</Box>
+      ) :  (
+        <>
+          <Box>Look like you are not owning any NFT.</Box>
 
-            <br/>
-            <Center>
-              <Image src='/empty_market.webp' alt="empty" />
-            </Center>
-          </>
-          
-        )
+          <br/>
+          <Center>
+            <Image src='/empty_market.webp' alt="empty" />
+          </Center>
+        </> 
       )}
     </>
   );

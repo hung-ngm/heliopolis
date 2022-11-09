@@ -4,6 +4,7 @@ import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
 import { ICollection } from 'components/templates/marketplace/Collection/types';
 import { Collection } from 'components/templates/marketplace/Collection';
+import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 
 const ERC20: NextPage<ICollection> = (props) => {
   return (
@@ -22,9 +23,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { props: { error: 'Connect your wallet first' } };
   }
 
+  const items = await loadMyNfts(session.user.address);
+
   return {
     props: {
-      userAddress: session.user.address
+      myNfts: items
     },
   };
 };
