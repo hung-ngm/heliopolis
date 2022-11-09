@@ -35,7 +35,7 @@ import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
 
 import Upload from './Upload';
-
+import DalleImage from './UploadDalle';
 const projectId = process.env.IPFS_ID;
 const projectSecret = process.env.IPFS_SECRET;
 const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
@@ -123,6 +123,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
     const handleCreatePicture = async (p: string) => {
       try {
         setIsCreating(true);
+        setImage('loading...');
         console.log(p);
         const b64 = await generatePictureBase64(p);
         if (b64) {
@@ -139,6 +140,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
         
       } catch (error) {
         console.log(error);
+        setImage('');
       }
     }
 
@@ -321,7 +323,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
         </Modal>
 
         {/* Mint with Dall-E */}
-        <Button marginLeft = {3}alignItems="center" onClick={onOpen} ref={finalRef}>
+        <Button marginLeft={3} alignItems="center" onClick={onOpen} ref={finalRef}>
             Mint with DALL-E
         </Button>
         <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={handleCancel}>
@@ -329,8 +331,8 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
             <ModalContent>
               <ModalHeader>Create NFT with DALL-E</ModalHeader>
               <ModalCloseButton />
-              <ModalBody pb={3}>
-                {!image ? (
+              {!image ? (
+                <ModalBody>
                   <FormControl isInvalid={isEmptyPrompt}>
                     <FormLabel>Prompt</FormLabel>
                     <Input 
@@ -341,41 +343,39 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                     />
                     <FormHelperText>Describe your image</FormHelperText>
                   </FormControl>
-                ) : null}
-                
-                <br/>
-                {image ? (
-                  <Center>
-                    <Image
-                      boxSize='256px'
-                      objectFit='cover'
-                      src={image}
-                      alt='An image'
-                    />
-                  </Center>
-                ) : null }
-              </ModalBody>
+                </ModalBody>
+              ) : null}
 
-              <ModalFooter>
-                {!image ? (
-                  (isEmptyPrompt) ? (
-                    <Button disabled colorScheme='blue' mr={3}>
-                      Create
-                    </Button>) : (
-                      (!isCreating) ? (
-                        <Button colorScheme='blue' mr={3} onClick={async () => { await handleCreatePicture(prompt)}}>
-                          Create
-                        </Button>
-                      ): (
-                        <Button isLoading colorScheme='blue' mr={3}>
-                          Mint
-                        </Button>
-                      ))
-                ) : null}
-                
-              </ModalFooter>
-                
-                {image ? (
+              {!image ? (
+                <ModalFooter>
+                {(isEmptyPrompt) ? (
+                  <Button disabled colorScheme='blue' mr={3}>
+                    Create
+                  </Button>) : (
+                    (!isCreating) ? (
+                      <Button colorScheme='blue' mr={3} onClick={async () => { await handleCreatePicture(prompt)}}>
+                        Create
+                      </Button>
+                    ): (
+                      <Button isLoading colorScheme='blue' mr={3}>
+                        Mint
+                      </Button>
+                    ))}
+                </ModalFooter>
+              ) : null}
+              
+              {
+                (image) ? (
+                  <ModalBody pb={3}>
+                    <Center>
+                      <DalleImage parent_image={image} parent_setImage={setImage} parent_closeModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
+                    </Center>
+                  </ModalBody>
+                ) : (null)
+              }
+              
+                {isImageOn ? (
+                  <>
                   <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyName}>
                       <FormLabel>Name</FormLabel>
@@ -387,9 +387,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                       <FormHelperText>Enter the name for the NFT</FormHelperText>
                     </FormControl>
                   </ModalBody>
-                ) : null}
 
-                {image ? (
                   <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyDescription}>
                       <FormLabel>Description</FormLabel>
@@ -401,9 +399,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                       <FormHelperText>Enter the description for the NFT</FormHelperText>
                     </FormControl>
                   </ModalBody>
-                ) : null}
-
-                {image ? (
+                  
                   <ModalBody pb={3}>
                     <FormControl isInvalid={isEmptyPrice}>
                       <FormLabel>Price</FormLabel>
@@ -415,7 +411,9 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
                       <FormHelperText>Enter the Price (MATIC) (Wei) for the NFT</FormHelperText>
                     </FormControl>
                   </ModalBody>
-                ) : null}
+                  </>
+                  ): (null)
+                }
 
                 <ModalFooter>
                   {image ? (
@@ -446,6 +444,7 @@ const Collection: FC<ICollection> = ({ userAddress }) => {
             </ModalContent>
         </Modal>
       </Heading>
+      
       {myNfts?.length? (
         <Grid templateColumns="repeat(auto-fit, minmax(280px, 1fr))" gap={6}>
           {myNfts.map((nft, key) => (
