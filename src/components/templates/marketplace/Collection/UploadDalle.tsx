@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-alert */

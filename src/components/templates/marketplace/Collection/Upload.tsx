@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-alert */
@@ -8,7 +9,6 @@ import React from "react";
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
 import {Button,Center,Image, Spinner, Icon, Box} from '@chakra-ui/react';
 import { MdReceipt } from 'react-icons/md'
-import empty_image from '@public/empty_image.png';
 
 const projectId = process.env.IPFS_ID;
 const projectSecret = process.env.IPFS_SECRET;
@@ -64,7 +64,7 @@ const Upload: React.FC<Props> = ({parent_image, parent_setImage, parent_closeMod
             // upload files
             const result = await (ipfs as IPFSHTTPClient).add(file);
 
-            const uniquePaths = new Set([
+            const uniquePaths: any = new Set([
                 ...images.map((image) => image.path),
                 result.path,
             ]);
