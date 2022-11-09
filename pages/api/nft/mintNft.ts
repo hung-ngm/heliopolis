@@ -26,7 +26,7 @@ export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boole
 
         const price = ethers.utils.parseUnits(nftPrice, 'wei');
         const listMarketTx = await marketplaceContract.createMarketItem(nftAddress, Number(tokenId), price, {
-            gasLimit: 1000000,
+            gasLimit: 10000000,
             gasPrice: ethers.utils.parseUnits("10", "gwei"),
             value: ethers.utils.parseEther("0.001"),
         });
@@ -38,6 +38,7 @@ export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boole
         
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
+        console.log('error', e);
         return false;
     }
 }
