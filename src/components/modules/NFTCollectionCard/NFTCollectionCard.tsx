@@ -54,7 +54,6 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
     await handleResell();
 
     // eslint-disable-next-line no-alert
-    alert("hello")
     setIsListing(false);
   }
   
@@ -70,7 +69,6 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
       };
       const res = await resellNft(currentNft);
       console.log(res);
-      alert("Sold");
       setIsListing(false);
     } catch (e: any){
       alert(e.message)
