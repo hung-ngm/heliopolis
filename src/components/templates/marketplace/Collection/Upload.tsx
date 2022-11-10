@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-alert */
@@ -63,7 +64,7 @@ const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeMo
       // upload files
       const result = await (ipfs as IPFSHTTPClient).add(file);
 
-      const uniquePaths = new Set([...images.map((image) => image.path), result.path]);
+      const uniquePaths : any = new Set([...images.map((image) => image.path), result.path]);
 
       const uniqueImages = [...uniquePaths.values()].map((path) => {
         return [

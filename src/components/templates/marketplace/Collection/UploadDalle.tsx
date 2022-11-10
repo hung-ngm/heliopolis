@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-alert */
@@ -20,9 +21,9 @@ const DalleImage: React.FC<Props> = ({ parent_image, parent_setImage, parent_clo
   // Handler
   const handleErrorImage = async (event: any) => {
     /* Handler when the image cannot be loaded */
-    parent_setImage(''); // set image path to empty
+    parent_setImage(''); 
     alert('The upload image service is congested. Please try again later...');
-    parent_closeModal(); // close the overlay modal
+    parent_closeModal();
   };
 
   const handleFinishLoad = async (event: any) => {
