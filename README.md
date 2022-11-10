@@ -10,7 +10,7 @@ There are various problems with current large NFT Marketplace like OpenSea and R
 
 + **Complexity**: Require a lot of steps to create, sell and trade NFTs.
 + **Limitation in creativity**: The opportunities for creators to generate impressive NFTs for users are limitied since they need to have artistic and drawing skills, instead of focusing on their ideas and using state of the art AI models such as Stable Diffusion or DALL-E.
-+ **Platform separtion**: Holders have difficulty engaging in the community of their chosen NFT projects since they must use external platforms of communication such as Telegram, Twitter or Discord chat to interact with each other about the NFT projects. These platforms are all separated and isolated, so the users will find it overwhelming to continously switch between differnt platforms. 
++ **Platform separtion**: Holders have difficulty engaging in the community of their chosen NFT projects since they must use external platforms of communication such as Telegram, Twitter or Discord chat to interact with each other about the NFT projects. These platforms are all separated and isolated, so the users will find it overwhelming to continously switch between different platforms. 
 
 
 ## Solution

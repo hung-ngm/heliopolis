@@ -65,7 +65,7 @@ const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeMo
       const result = await (ipfs as IPFSHTTPClient).add(file);
 
       const uniquePaths : any = new Set([...images.map((image) => image.path), result.path]);
-
+      
       const uniqueImages = [...uniquePaths.values()].map((path) => {
         return [
           ...images,

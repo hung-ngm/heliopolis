@@ -30,9 +30,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
   const router = useRouter();
 
   const { address: walletAddress } = useContext(WalletContext);
-  
-
-    
+      
   useEffect(() => setMessage(''), [router.query.recipientWalletAddr])
 
   const closeModal = () => {

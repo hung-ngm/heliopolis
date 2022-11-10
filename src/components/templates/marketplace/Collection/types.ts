@@ -9,5 +9,5 @@ export type TNFTCollection = {
 };
 
 export interface ICollection {
-  userAddress?: string;
+    myNfts?: TNFTCollection[];
 }
