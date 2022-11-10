@@ -7,7 +7,7 @@ import { INFTCollectionCard } from './types';
 import { Button } from '@chakra-ui/react';
 import { Center} from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, Tooltip } from '@chakra-ui/react';
 import {
   Modal,
   ModalOverlay,
@@ -92,9 +92,11 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
       </Box>
       <SimpleGrid columns={2} spacing={4}  padding={2.5} borderRadius="xl" marginTop={2}>
         <Center>
-          <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
-            {name}
-          </Box>
+          <Tooltip label = {name}>
+            <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
+              {name}
+            </Box>
+          </Tooltip>
         </Center>
         <Center>
           <Box mt="1" fontWeight="semibold" as="h4" noOfLines={1} marginTop={2}>
@@ -107,9 +109,11 @@ const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, t
           <Box as="h4" noOfLines={1} fontWeight="medium" fontSize="sm">
             Description
           </Box>
-          <Box as="h4" noOfLines={1} fontSize="sm">
-            {description}
-          </Box>
+          <Tooltip label={description}>
+            <Box as="h4" noOfLines={1} fontSize="sm">
+              {description}
+            </Box>
+          </Tooltip>
         </Box>
       </SimpleGrid>
       <Center>
