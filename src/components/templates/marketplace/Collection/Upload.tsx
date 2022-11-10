@@ -15,14 +15,14 @@ const projectSecret = process.env.IPFS_SECRET;
 const authorization = 'Basic ' + btoa(projectId + ':' + projectSecret);
 
 type Props = {
-  parent_image: string;
-  parent_setImage: (val: string) => void;
-  parent_closeModal: () => void;
+  parentImage: string;
+  parentSetImage: (val: string) => void;
+  parentCloseModal: () => void;
   setIsImageOn: React.Dispatch<React.SetStateAction<boolean>>;
   isImageOn: boolean;
 };
 
-const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeModal, setIsImageOn, isImageOn }) => {
+const Upload: React.FC<Props> = ({ parentImage, parentSetImage, parentCloseModal, setIsImageOn, isImageOn }) => {
   const [images, setImages] = React.useState<{ cid: CID; path: string }[]>([]);
   const [uploaded, setUploaded] = React.useState(false);
 
@@ -42,9 +42,9 @@ const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeMo
 
   // Handler
   const handleErrorImage = async (event: any) => {
-    parent_setImage('');
+    parentSetImage('');
     alert('The upload image service is congested. Please try again later...');
-    parent_closeModal();
+    parentCloseModal();
     console.log(event);
   };
   const handleFinishLoad = async (event: any) => {
@@ -58,7 +58,7 @@ const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeMo
     if (!files || files.length === 0) {
       return alert('No files selected');
     }
-    parent_setImage('loading...');
+    parentSetImage('loading...');
     const file = files[0];
     try {
       // upload files
@@ -76,11 +76,11 @@ const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeMo
         ].find((image) => image.path === path);
       });
       console.log('https://infura-ipfs.io/ipfs/' + uniqueImages[uniqueImages.length - 1]!.path);
-      parent_setImage('https://infura-ipfs.io/ipfs/' + uniqueImages[uniqueImages.length - 1]!.path);
+      parentSetImage('https://infura-ipfs.io/ipfs/' + uniqueImages[uniqueImages.length - 1]!.path);
       setUploaded(true);
       form.reset();
     } catch (error) {
-      parent_setImage('');
+      parentSetImage('');
       form.reset();
     }
   };
@@ -106,11 +106,11 @@ const Upload: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeMo
           <br />
 
           <Center>
-            {parent_image !== '' ? (
-              parent_image !== 'loading...' ? (
+            {parentImage !== '' ? (
+              parentImage !== 'loading...' ? (
                 <Image
                   alt={'Upload image'}
-                  src={parent_image}
+                  src={parentImage}
                   boxSize="256px"
                   onError={handleErrorImage as React.ReactEventHandler<HTMLImageElement>}
                   onLoad={handleFinishLoad as React.ReactEventHandler<HTMLImageElement>}

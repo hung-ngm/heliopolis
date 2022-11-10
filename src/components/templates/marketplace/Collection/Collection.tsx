@@ -232,7 +232,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
               
               <ModalBody pb={3}>
                 <Center>
-                  <Upload parent_image={image} parent_setImage={setImage} parent_closeModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
+                  <Upload parentImage={image} parentSetImage={setImage} parentCloseModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
                 </Center>
               </ModalBody>
               {isImageOn ? 
@@ -353,7 +353,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                 (image) ? (
                   <ModalBody pb={3}>
                     <Center>
-                      <DalleImage parent_image={image} parent_setImage={setImage} parent_closeModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
+                      <DalleImage parentImage={image} parentSetImage={setImage} parentCloseModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
                     </Center>
                   </ModalBody>
                 ) : (null)

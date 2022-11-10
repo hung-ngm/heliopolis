@@ -10,33 +10,27 @@ import { Center, Image, Spinner, Icon, Box } from '@chakra-ui/react';
 import { MdReceipt } from 'react-icons/md';
 
 type Props = {
-  parent_image: string;
-  parent_setImage: (val: string) => void;
-  parent_closeModal: () => void;
+  parentImage: string;
+  parentSetImage: (val: string) => void;
+  parentCloseModal: () => void;
   setIsImageOn: React.Dispatch<React.SetStateAction<boolean>>;
   isImageOn: boolean;
 };
 
-const DalleImage: React.FC<Props> = ({ parent_image, parent_setImage, parent_closeModal, setIsImageOn, isImageOn }) => {
+const DalleImage: React.FC<Props> = ({ parentImage, parentSetImage, parentCloseModal, setIsImageOn, isImageOn }) => {
   // Handler
   const handleErrorImage = async (event: any) => {
-    /* Handler when the image cannot be loaded */
-    parent_setImage(''); 
+    parentSetImage(''); 
     alert('The upload image service is congested. Please try again later...');
-    parent_closeModal();
+    parentCloseModal();
   };
 
   const handleFinishLoad = async (event: any) => {
-    /* Hanlder when the image is finished loading */
 		setIsImageOn(true);
   };
 
   return (
     <div>
-      {/* Image uploading status
-       *	If image is not yet loaded, spinner
-       *	Else prompt
-       */}
       <Center>
         {isImageOn ? (
           <Box>Image is ready!</Box>
@@ -47,19 +41,12 @@ const DalleImage: React.FC<Props> = ({ parent_image, parent_setImage, parent_clo
         )}
       </Center>
 
-      {/* upload image space
-        *	If there is image path
-        *	*	If the image is being created by dalle: null (spinner is shown by above code)
-        *	*	Else null
-        *	Else
-        * *	Show placeholder icon
-        */}
       <Center>
-        {parent_image !== '' ? (
-          parent_image !== 'loading...' ? (
+        {parentImage !== '' ? (
+          parentImage !== 'loading...' ? (
             <Image
               alt={'Upload image'}
-              src={parent_image}
+              src={parentImage}
               boxSize="256px"
               onError={handleErrorImage as React.ReactEventHandler<HTMLImageElement>}
               onLoad={handleFinishLoad as React.ReactEventHandler<HTMLImageElement>}
