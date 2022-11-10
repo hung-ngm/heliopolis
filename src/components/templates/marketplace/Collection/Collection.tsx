@@ -26,13 +26,10 @@ import {
   Image,
   Spinner
 } from '@chakra-ui/react';
-import { generatePicture } from '@pages/api/ai/generatePicture';
 import { generatePictureBase64 } from '@pages/api/ai/generatePictureBase64';
 import { mintNft } from '@pages/api/nft/mintNft';
 import { TokenUri } from '../Explore/types';
-import { TNFTCollection } from './types';
-import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
-import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
+import { create, IPFSHTTPClient } from "ipfs-http-client";
 
 import Upload from './Upload';
 import DalleImage from './UploadDalle';
@@ -136,8 +133,6 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
         const blob = await response.blob();
         const file = new File([blob], "file.png", { type: "image/png" });
 
-        console.log('file is', file);
-
         const imghash = await ipfs.add(file);
         console.log(imghash);
 
@@ -232,7 +227,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
               
               <ModalBody pb={3}>
                 <Center>
-                  <Upload parent_image={image} parent_setImage={setImage} parent_closeModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
+                  <Upload parentImage={image} parentSetImage={setImage} parentCloseModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
                 </Center>
               </ModalBody>
               {isImageOn ? 
@@ -353,7 +348,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
                 (image) ? (
                   <ModalBody pb={3}>
                     <Center>
-                      <DalleImage parent_image={image} parent_setImage={setImage} parent_closeModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
+                      <DalleImage parentImage={image} parentSetImage={setImage} parentCloseModal={handleCancel} isImageOn={isImageOn} setIsImageOn={setIsImageOn}/>
                     </Center>
                   </ModalBody>
                 ) : (null)
