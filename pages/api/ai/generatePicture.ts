@@ -15,7 +15,6 @@ export const generatePicture = async (prompt: string) => {
       }),
     });
     const prediction = await response.json();
-    console.log(prediction);
     const picture = prediction.data[0].url;
     return picture;
 }

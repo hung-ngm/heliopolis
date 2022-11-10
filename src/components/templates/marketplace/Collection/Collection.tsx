@@ -26,13 +26,10 @@ import {
   Image,
   Spinner
 } from '@chakra-ui/react';
-import { generatePicture } from '@pages/api/ai/generatePicture';
 import { generatePictureBase64 } from '@pages/api/ai/generatePictureBase64';
 import { mintNft } from '@pages/api/nft/mintNft';
 import { TokenUri } from '../Explore/types';
-import { TNFTCollection } from './types';
-import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
-import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
+import { create, IPFSHTTPClient } from "ipfs-http-client";
 
 import Upload from './Upload';
 import DalleImage from './UploadDalle';
@@ -135,8 +132,6 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
         const response = await fetch(url);
         const blob = await response.blob();
         const file = new File([blob], "file.png", { type: "image/png" });
-
-        console.log('file is', file);
 
         const imghash = await ipfs.add(file);
         console.log(imghash);
