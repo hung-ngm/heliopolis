@@ -24,9 +24,9 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
   const [nftLoading, setNftLoading] = useState(false);
   const [amount, setAmount] = useState('');
   const [tokenId, setTokenId] = useState('');
-  const [token, setToken] = useState<SupportedToken>();
-  const [sourceChain, setSourceChain] = useState<SupportedChain>();
-  const [destChain, setDestChain] = useState<SupportedChain>();
+  const [token, setToken] = useState<SupportedToken>('aUSDC');
+  const [sourceChain, setSourceChain] = useState<SupportedChain>('Polygon');
+  const [destChain, setDestChain] = useState<SupportedChain>('goerli');
   const router = useRouter();
 
   const { address: walletAddress } = useContext(WalletContext);
@@ -229,7 +229,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
                         onChange={handleSourceChainChanged}
                       >
                         <option value="goerli">Ethereum Goerli</option>
-                        <option value="Polygon">Polygon Mumbai</option>
+                        <option value="Polygon" selected>Polygon Mumbai</option>
                       </select>
                       <br/>
                       <label htmlFor="to" className='text-black'>Destination Chain</label>
@@ -239,7 +239,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
                         className='ml-10 px-5 py-1 pr-8 mt-2 text-black'
                         onChange={handleDestChainChanged}
                       >
-                        <option value="goerli">Ethereum Goerli</option>
+                        <option value="goerli" selected>Ethereum Goerli</option>
                         <option value="Polygon">Polygon Mumbai</option>
                       </select>
                       <br/>
@@ -257,7 +257,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
                         <option value="axlWETH">axlWETH</option>
                         <option value="WAVAX">WAVAX</option>
                         <option value="WDEV">WDEV</option>
-                        <option value="aUSDC">aUSDC</option>
+                        <option value="aUSDC" selected>aUSDC</option>
                         <option value="WBNB">WBNB</option>
                       </select>
                       <br/>
