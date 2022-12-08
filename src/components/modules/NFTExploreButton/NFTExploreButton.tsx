@@ -1,4 +1,4 @@
-import { Box, useColorModeValue, Center, Button } from '@chakra-ui/react';
+import { Center, Button } from '@chakra-ui/react';
 import { FC } from 'react';
 import { INFTExploreButton } from './types';
 
