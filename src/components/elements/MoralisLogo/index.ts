@@ -1,1 +1,1 @@
-export { default as MoralisLogo } from './MoralisLogo';
+export { default as Logo } from './MoralisLogo';
