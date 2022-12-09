@@ -28,7 +28,7 @@ const styles = {
     body: {
       fontFamily: 'body',
       color: mode('gray.800', 'whiteAlpha.900')(props),
-      backgroundImage: mode('/beach.jpg', '/cosmos.jpeg')(props),
+      backgroundImage: mode('/beach.webp', '/cosmos.jpeg')(props),
       backgroundRepeat: "no-repeat",
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
