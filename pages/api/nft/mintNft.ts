@@ -27,7 +27,7 @@ export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boole
         const price = ethers.utils.parseUnits(nftPrice, 'wei');
         const listMarketTx = await marketplaceContract.createMarketItem(nftAddress, Number(tokenId), price, {
             gasLimit: 10000000,
-            gasPrice: ethers.utils.parseUnits("10", "gwei"),
+            gasPrice: ethers.utils.parseUnits("30", "gwei"),
             value: ethers.utils.parseEther("0.001"),
         });
     
