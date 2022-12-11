@@ -1,7 +1,8 @@
-import Image from 'next/image';
+import { Text, useColorModeValue} from '@chakra-ui/react';
 
 const Logo = () => {
-  return <Image src={'/empty_image.png'} height={45} width={150} alt="EmptyImage" />;
+  const logoColor = useColorModeValue('black', 'white');
+  return <Text as='b' fontSize={'xl'} color={logoColor}> HELIOPOLIS</Text>;
 };
 
 export default Logo;
