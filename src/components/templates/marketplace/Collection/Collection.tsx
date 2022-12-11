@@ -38,7 +38,6 @@ const projectSecret = process.env.IPFS_SECRET;
 const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
 const Collection: FC<ICollection> = ({ myNfts }) => {
-
     // First prompt
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isOpenManual, onOpen: onOpenManual, onClose: onCloseManual} = useDisclosure();
@@ -147,6 +146,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
         return;
       }
       try {
+        console.log('imageUrl', image);
         setIsMinting(true);
         const tokenUri: TokenUri = {
           name,

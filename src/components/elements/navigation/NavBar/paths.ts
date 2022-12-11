@@ -23,6 +23,24 @@ const NAV_LINKS: ISubNav[] = [
         logo: 'lazyNft',
       }
     ]
+  },
+  {
+    label: 'Create',
+    href: '/create',
+    children: [
+      {
+        label: 'Manual Mint',
+        subLabel: 'Create your own NFT',
+        href: '/create/manual',
+        logo: 'lazyNft',
+      },
+      {
+        label: 'Dall-E Mint',
+        subLabel: 'Use Dall-E to create your own NFT',
+        href: '/create/dalle',
+        logo: 'lazyNft',
+      }
+    ]
   }
 ];
 

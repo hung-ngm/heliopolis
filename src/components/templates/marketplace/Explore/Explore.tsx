@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 import { IExplore } from './types';
 
 const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {    
+    console.log(nftsExplore);
     return (
     <>
       <Heading size="lg" marginBottom={6}>
