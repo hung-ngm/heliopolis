@@ -121,9 +121,29 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
     }
   };
 
-  const handleMint = async () => {
-    if (!name || !description || !price) {
-      return;
+
+    const handleMint = async () => {
+      if (!name || !description || !price) {
+        return;
+      }
+      try {
+        console.log('imageUrl', image);
+        setIsMinting(true);
+        const tokenUri: TokenUri = {
+          name,
+          description,
+          image
+        }
+        const canMint = await mintNft(tokenUri, price);
+        // If canMint, change the user to the explore page
+        if (canMint) {
+          setIsMinting(false);
+          onClose();
+        }
+        handleCancel();
+      } catch (error) {
+        console.log(error);
+      }
     }
     try {
       setIsMinting(true);
