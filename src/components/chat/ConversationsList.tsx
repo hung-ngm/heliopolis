@@ -56,7 +56,7 @@ const ConversationTile = ({
             'px-4',
             'md:max-w-sm',
             'mx-auto',
-            'bg-white',
+            'bg-black',
             'space-y-2',
             'py-2',
             'flex',
@@ -64,10 +64,10 @@ const ConversationTile = ({
             'space-y-0',
             'space-x-4',
             'border-b-2',
-            'border-gray-100',
-            'hover:bg-bt-100',
+            'border-n-500',
+            'hover:bg-n-500',
             loadingConversations ? 'opacity-80' : 'opacity-100',
-            isSelected ? 'bg-bt-200' : null
+            isSelected ? 'bg-gray-600' : null
           )}
         >
           <Avatar peerAddress={conversation.peerAddress} />
@@ -75,7 +75,9 @@ const ConversationTile = ({
             <div className="grid-cols-2 grid">
               <Address
                 address={conversation.peerAddress}
-                className="text-black text-lg md:text-md font-bold place-self-start"
+                className={classNames(
+                  "text-lg md:text-md font-bold place-self-start text-white"
+                )}
               />
               <span
                 className={classNames(
@@ -90,7 +92,7 @@ const ConversationTile = ({
             <p
               className={classNames(
                 'text-[13px] md:text-sm font-normal text-ellipsis mt-0',
-                isSelected ? 'text-n-500' : 'text-n-300',
+                isSelected ? 'text-white' : 'text-n-300',
                 loadingConversations ? 'animate-pulse' : ''
               )}
             >

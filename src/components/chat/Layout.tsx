@@ -14,7 +14,7 @@ import { Button } from '@chakra-ui/react'
 import { AiOutlineHome } from "react-icons/ai"
 const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
-    <div className="flex flex-col flex-grow md:border-r md:border-gray-200 bg-white overflow-y-auto">
+    <div className="flex flex-col flex-grow md:border-r md:border-n-500 bg-black overflow-y-auto">
       {children}
     </div>
   </aside>
@@ -27,7 +27,7 @@ const NavigationHeaderLayout: React.FC<{ children: React.ReactNode }> = ({ child
     router.push('/')
   }, [router])
   return(
-    <div className="h-[10vh] max-h-20 bg-p-600 flex items-center justify-between flex-shrink-0 px-4">
+    <div className="h-[10vh] max-h-20 bg-b-600 flex items-center justify-between flex-shrink-0 px-4">
       <Button leftIcon={<AiOutlineHome />} colorScheme='teal' variant='outline' onClick = {handleBackArrowClick}>
         Back
       </Button>
@@ -37,7 +37,7 @@ const NavigationHeaderLayout: React.FC<{ children: React.ReactNode }> = ({ child
 }
 
 const TopBarLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="sticky top-0 z-10 flex-shrink-0 flex bg-zinc-50 border-b border-gray-200 md:bg-white md:border-0">
+  <div className="sticky top-0 z-10 flex-shrink-0 flex bg-zinc-50 border-b border-n-500 md:bg-black md:border-0">
     {children}
   </div>
 )
