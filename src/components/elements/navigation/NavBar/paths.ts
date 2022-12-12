@@ -4,7 +4,7 @@ const NAV_LINKS: ISubNav[] = [
   { label: 'Home', href: '/' },
   { label: 'Chat', href: '/chat' },
   { label: 'Marketplace', href: '/marketplace/explore' },
-  { label: 'Your collection', href: '/marketplace/collection' }
+  { label: 'Your collection', href: '/marketplace/collection' },
   {
     label: 'Create',
     href: '/create',
@@ -19,7 +19,7 @@ const NAV_LINKS: ISubNav[] = [
         label: 'Dall-E Mint',
         subLabel: 'Use Dall-E to create your own NFT',
         href: '/create/dalle',
-        logo: 'lazyNft',
+        logo: 'wizard',
       }
     ]
   }
