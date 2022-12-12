@@ -4,12 +4,13 @@ import React from 'react';
 import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
 import { IExplore } from 'components/templates/marketplace/Explore/types';
+import { DallE } from 'components/templates/create/dalle';
 
 
 const ERC20: NextPage<IExplore> = () => {
     return (
         <Default pageName="ERC20 Balances">
-            <div>Dall-E</div>
+            <DallE />
         </Default>
     );
 };
