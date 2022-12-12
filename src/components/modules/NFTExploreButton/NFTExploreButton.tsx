@@ -64,7 +64,7 @@ const NFTExploreButton: FC<INFTExploreButton> = ({ name, description, image, pri
               <VStack align={'left'}>
                 <Text fontWeight={'bold'}>Description: </Text>
 
-                <Text fontWeight={'normal'}> &quot;{`${description}`}&quot; </Text>
+                <Text fontWeight={'normal'} fontSize={'20px'}> &quot;{`${description}`}&quot; </Text>
               </VStack>
 
               <Box maxWidth="500px" maxHeight="500px" overflow={'hidden'}>
@@ -74,9 +74,9 @@ const NFTExploreButton: FC<INFTExploreButton> = ({ name, description, image, pri
           </ModalBody>
 
           <ModalFooter gap={'5px'}>
-            <HStack>
+            <HStack gap={"1px"}>
               <Image src={`/weiLogo.png`} alt={'wei'} boxSize="10%" objectFit="contain" />
-              <Text as="span" fontWeight={'bold'}>
+              <Text as="span" fontWeight={'bold'} fontSize={"30px"}>
                 {' '}
                 {price}
               </Text>
