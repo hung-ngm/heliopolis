@@ -6,9 +6,16 @@ import { SubNav } from '../SubNav';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
+// eslint-disable-next-line complexity
 const NavItem: FC<ISubNav> = ({ label, children, href }) => {
-  const linkColor = useColorModeValue('gray.600', 'gray.400');
-  const linkActiveColor = useColorModeValue('gray.800', 'white');
+  const linkColor = useColorModeValue('gray.900', 'gray.100');
+  const linkActiveColor = useColorModeValue('white', 'white');
+
+  const boxActiveColor = useColorModeValue('blue.400', 'blue');
+
+  const boxHoverColor = useColorModeValue('blue.300', 'blue.300');
+  const linkHoverColor = useColorModeValue('white', 'white');
+
   const router = useRouter();
   const isCurrentPath = router.asPath === href || (href !== '/' && router.pathname.startsWith(href || ''));
 
@@ -17,12 +24,17 @@ const NavItem: FC<ISubNav> = ({ label, children, href }) => {
       <PopoverTrigger>
         <Box>
           <Box
-            fontSize={15}
+            borderRadius={20}
+            borderWidth={isCurrentPath ? '1px' : 0}
+            padding={'10px'}
+            fontSize={20}
             fontWeight={500}
+            backgroundColor={isCurrentPath ? boxActiveColor : ''}
             color={isCurrentPath ? linkActiveColor : linkColor}
             _hover={{
               textDecoration: 'none',
-              color: linkActiveColor,
+              color: linkHoverColor,
+              bgColor: boxHoverColor,
             }}
             cursor="pointer"
           >
