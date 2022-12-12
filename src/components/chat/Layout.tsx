@@ -1,17 +1,19 @@
-import { useRouter } from 'next/router'
-import Head from 'next/head'
-import { NavigationView, ConversationView } from './Views'
-import { RecipientControl } from './Conversation'
-import NewMessageButton from './NewMessageButton'
-import NavigationPanel from './NavigationPanel'
-import XmtpInfoPanel from './XmtpInfoPanel'
-import UserMenu from './UserMenu'
-import BackArrow from './BackArrow'
-import React, { useCallback, useContext } from 'react'
-import { WalletContext } from '../contexts/wallet'
-import XmtpContext from '../contexts/xmtp'
-import { Button } from '@chakra-ui/react'
-import { AiOutlineHome } from "react-icons/ai"
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+import { NavigationView, ConversationView } from './Views';
+import { RecipientControl } from './Conversation';
+import NewMessageButton from './NewMessageButton';
+import NavigationPanel from './NavigationPanel';
+import XmtpInfoPanel from './XmtpInfoPanel';
+import UserMenu from './UserMenu';
+import BackArrow from './BackArrow';
+import React, { useCallback, useContext } from 'react';
+import { WalletContext } from '../contexts/wallet';
+import XmtpContext from '../contexts/xmtp';
+import { Button } from '@chakra-ui/react';
+import { AiOutlineHome } from 'react-icons/ai';
+import { Header } from '../modules/Header';
+import { Box, VStack } from '@chakra-ui/react';
 const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <aside className="flex w-full md:w-84 flex-col flex-grow fixed inset-y-0">
     <div className="flex flex-col flex-grow md:border-r md:border-gray-200 bg-white overflow-y-auto">
@@ -99,7 +101,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
       </Head>
-      <div>
+      
+      <div className={`bg-[url('/cosmos.jpeg')]`}>
+        <Header/>
         <NavigationView>
           <NavigationColumnLayout>
             <NavigationHeaderLayout>
