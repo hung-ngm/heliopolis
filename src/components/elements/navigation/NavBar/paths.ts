@@ -2,7 +2,7 @@ import { ISubNav } from '../SubNav/SubNav';
 
 const NAV_LINKS: ISubNav[] = [
   { label: 'Marketplace', href: '/marketplace/explore' },
-  { label: 'Your collection', href: '/marketplace/collection' },
+  { label: 'My collection', href: '/marketplace/collection' },
   {
     label: 'Create',
     href: '/create',
