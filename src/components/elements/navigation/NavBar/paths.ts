@@ -1,7 +1,6 @@
 import { ISubNav } from '../SubNav/SubNav';
 
 const NAV_LINKS: ISubNav[] = [
-  { label: 'Chat', href: '/chat' },
   { label: 'Marketplace', href: '/marketplace/explore' },
   { label: 'Your collection', href: '/marketplace/collection' },
   {
@@ -19,9 +18,10 @@ const NAV_LINKS: ISubNav[] = [
         subLabel: 'Use Dall-E to create your own NFT',
         href: '/create/dalle',
         logo: 'wizard',
-      }
-    ]
-  }
+      },
+    ],
+  },
+  { label: 'Chat', href: '/chat' },
 ];
 
 export default NAV_LINKS;
