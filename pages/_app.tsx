@@ -6,9 +6,10 @@ import XmtpProvider from 'components/chat/XmtpProvider';
 import { publicProvider } from 'wagmi/providers/public';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
-import '../styles/globals.css'
-
+import { mode } from "@chakra-ui/theme-tools"
 const { provider, webSocketProvider } = configureChains(defaultChains, [publicProvider()]);
+import type { GlobalStyleProps } from "@chakra-ui/theme-tools"
+import '@styles/globals.css'
 
 const client = createClient({
   provider,
@@ -17,12 +18,28 @@ const client = createClient({
 });
 
 const config = {
-  initialColorMode: 'dark',
+  initialColorMode: 'white',
   useSystemColorMode: false,
 };
 
 
-const theme = extendTheme({ config });
+const styles = {
+  global: (props: GlobalStyleProps) => ({
+    body: {
+      fontFamily: 'body',
+      color: mode('gray.800', 'whiteAlpha.900')(props),
+      backgroundImage: mode('/beach.webp', '/cosmos.jpeg')(props),
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      backgroundSize: "cover",
+      lineHeight: 'base'    
+    } 
+    
+  }),
+  ...config
+}
+
+const theme = extendTheme({ styles });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (

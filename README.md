@@ -50,4 +50,5 @@ Shout out to these code projects and assets for helping us build this project:
 
 ### Assets: 
 /public/empty_market.webp: https://nothing2dohere.com/
-
+/public/beach.jpg: https://wallpaperaccess.com/beach#google_vignette
+/public/cosmos.jpeg: https://wallpaperaccess.com/cosmos-universe
