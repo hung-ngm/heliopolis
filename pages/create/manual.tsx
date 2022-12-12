@@ -8,7 +8,7 @@ import { Manual } from 'components/templates/create/manual';
 
 const ERC20: NextPage<IExplore> = () => {
     return (
-        <Default pageName="ERC20 Balances">
+        <Default pageName="Manual Mint">
             <Manual />
         </Default>
     );
