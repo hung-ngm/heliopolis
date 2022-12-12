@@ -92,33 +92,35 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <>
-      <Head>
-        <title>Chat</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
-      </Head>
       <div>
-        <NavigationView>
-          <NavigationColumnLayout>
-            <NavigationHeaderLayout>
-              {walletAddress && client && <NewMessageButton />}
-            </NavigationHeaderLayout>
-            <NavigationPanel onConnect={handleConnect} />
-            <UserMenu
-              onConnect={handleConnect}
-              onDisconnect={handleDisconnect}
-            />
-          </NavigationColumnLayout>
-        </NavigationView>
-        <ConversationView>
-          {walletAddress && client ? (
-            <ConversationLayout>{children}</ConversationLayout>
-          ) : (
-            <XmtpInfoPanel onConnect={handleConnect} />
-          )}
-        </ConversationView>
+        <Head>
+          <title>Chat</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1"
+          />
+        </Head>
+        <div>
+          <NavigationView>
+            <NavigationColumnLayout>
+              <NavigationHeaderLayout>
+                {walletAddress && client && <NewMessageButton />}
+              </NavigationHeaderLayout>
+              <NavigationPanel onConnect={handleConnect} />
+              <UserMenu
+                onConnect={handleConnect}
+                onDisconnect={handleDisconnect}
+              />
+            </NavigationColumnLayout>
+          </NavigationView>
+          <ConversationView>
+            {walletAddress && client ? (
+              <ConversationLayout>{children}</ConversationLayout>
+            ) : (
+              <XmtpInfoPanel onConnect={handleConnect} />
+            )}
+          </ConversationView>
+      </div>
       </div>
     </>
   )
