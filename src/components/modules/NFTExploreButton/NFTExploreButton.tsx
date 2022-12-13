@@ -44,7 +44,7 @@ const NFTExploreButton: FC<INFTExploreButton> = ({ name, description, image, pri
   return (
     <>
       <Center>
-        <Button marginTop={2} alignItems="center" onClick={onOpen}>
+        <Button marginTop={2} alignItems="center" onClick={onOpen} colorScheme="teal">
           View
         </Button>
       </Center>
@@ -63,20 +63,29 @@ const NFTExploreButton: FC<INFTExploreButton> = ({ name, description, image, pri
             <SimpleGrid columns={2} marginLeft={'5px'} marginRight={'5px'}>
               <VStack align={'left'}>
                 <Text fontWeight={'bold'}>Description: </Text>
-
-                <Text fontWeight={'normal'} fontSize={'20px'}> &quot;{`${description}`}&quot; </Text>
+                <Text fontWeight={'normal'} fontSize={'20px'}>
+                  {' '}
+                  &quot;{`${description}`}&quot;{' '}
+                </Text>
               </VStack>
 
               <Box maxWidth="500px" maxHeight="500px" overflow={'hidden'}>
-                <Image src={`${image}`} alt={'nft'} minWidth={"400px"} minHeight={"400px"} boxSize="100%" objectFit="contain" />
+                <Image
+                  src={`${image}`}
+                  alt={'nft'}
+                  minWidth={'400px'}
+                  minHeight={'400px'}
+                  boxSize="100%"
+                  objectFit="contain"
+                />
               </Box>
             </SimpleGrid>
           </ModalBody>
 
           <ModalFooter gap={'5px'}>
-            <HStack gap={"1px"}>
+            <HStack gap={'1px'}>
               <Image src={`/weiLogo.png`} alt={'wei'} boxSize="10%" objectFit="contain" />
-              <Text as="span" fontWeight={'bold'} fontSize={"30px"}>
+              <Text as="span" fontWeight={'bold'} fontSize={'30px'}>
                 {' '}
                 {price}
               </Text>
