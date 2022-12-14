@@ -9,7 +9,6 @@ import {
   ModalCloseButton,
   Center,
   Button,
-  SimpleGrid,
   HStack,
   VStack,
   Image,
