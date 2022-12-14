@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Modal,
   ModalOverlay,
@@ -6,7 +7,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Center,
   Button,
   SimpleGrid,
@@ -17,15 +17,17 @@ import {
   Box,
   Badge,
   useToast,
+  ToastId
 } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { INFTExploreModal } from './types';
+
 
 import { buyNft } from '@pages/api/nft/buyNft';
 const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price, tokenId, isOpen, onClose }) => {
   const finalRef = React.useRef(null);
   const toast = useToast();
-  const toastIdRef = React.useRef();
+  const toastIdRef = React.useRef<ToastId>();
   const [isProcessing, setIsProcessing] = React.useState(false);
   const updateToast = (e: string | null) => {
     if (toastIdRef.current) {
