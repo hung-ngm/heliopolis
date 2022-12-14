@@ -45,6 +45,16 @@ const Manual: FC = () => {
         setPrice(e.target.value);
     }
 
+    const isMintable = (): boolean =>  {
+        if (price && isNaN(Number(price))) {
+            return false;
+        }
+        if (name && description && price && selectedFile) {
+            return true;
+        }
+        return false;
+    }
+
     const handleMint = async () => {
         if (!name || !description || !price) {
             return;
@@ -134,7 +144,13 @@ const Manual: FC = () => {
 
             <Container pt="10" ml="-5">
                 
-            <Button isLoading={isMinting} colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+            <Button
+                isDisabled={!isMintable()}
+                isLoading={isMinting} 
+                colorScheme='blue' 
+                mr={3} 
+                onClick={async () => { await handleMint() }}
+            >
                 Mint
             </Button>
                 

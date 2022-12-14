@@ -50,6 +50,20 @@ const DallE: FC = () => {
         setPrice(e.target.value);
     }
 
+    const isMintable = (): boolean =>  {
+        if (price && isNaN(Number(price))) {
+            return false;
+        }
+        if (name && description && price) {
+            return true;
+        }
+        return false;
+    }
+
+    const isCreatable = () : boolean => {
+        return prompt !== ""
+    }
+
     const handleMint = async () => {
         if (!name || !description || !price) {
             return;
@@ -140,7 +154,13 @@ const DallE: FC = () => {
                     </FormControl>
 
                     <Container pt="10" ml="-5">
-                        <Button isLoading={isCreating} colorScheme='blue' mr={3} onClick={async () => { await handleCreateImage(prompt) }}>
+                        <Button 
+                            isDisabled={!isCreatable()}
+                            isLoading={isCreating} 
+                            colorScheme='blue' 
+                            mr={3} 
+                            onClick={async () => { await handleCreateImage(prompt) }}
+                        >
                             Create
                         </Button>
                     </Container>
@@ -192,7 +212,13 @@ const DallE: FC = () => {
 
                     <Container pt="10" ml="-5">
                         
-                    <Button isLoading={isMinting} colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                    <Button 
+                        isDisabled={!isMintable()}
+                        isLoading={isMinting} 
+                        colorScheme='blue' 
+                        mr={3} 
+                        onClick={async () => { await handleMint() }}
+                    >
                         Mint
                     </Button>
                         
