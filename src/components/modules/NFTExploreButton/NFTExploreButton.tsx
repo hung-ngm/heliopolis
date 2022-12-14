@@ -16,6 +16,7 @@ import {
   Text,
   Box,
   Badge,
+  useToast,
 } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { INFTExploreButton } from './types';
@@ -23,7 +24,53 @@ import { INFTExploreButton } from './types';
 import { buyNft } from '@pages/api/nft/buyNft';
 const NFTExploreButton: FC<INFTExploreButton> = ({ name, description, image, price, tokenId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // const modalProps  = { name, description, image, price, tokenId, isOpen, onOpen, onClose};
   const finalRef = React.useRef(null);
+  const toast = useToast();
+  const toastIdRef = React.useRef();
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const updateToast = (e: string | null) => {
+    if (toastIdRef.current) {
+      if (e === null) {
+        toast.update(toastIdRef.current, {
+          title: 'Purchase successful',
+          description: 'Your NFT has been purchased.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        toast.update(toastIdRef.current, {
+          title: 'Purchase failed',
+          description: e,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }
+  };
+
+  const onBuyButtonClick = async () => {
+    try {
+      setIsProcessing(true);
+      toastIdRef.current = toast({
+        title: 'Executing...',
+        description: 'You will be asked to sign a transaction',
+        status: 'loading',
+        position: 'top-left',
+        duration: null,
+      });
+      await handleBuy().then(() => onClose());
+      updateToast(null);
+      setIsProcessing(false);
+    } catch (e) {
+      updateToast((e as { message: string })?.message);
+      console.log(e);
+      setIsProcessing(false);
+    }
+  };
+
   const handleBuy = async () => {
     console.log('price', price);
     try {
@@ -91,10 +138,11 @@ const NFTExploreButton: FC<INFTExploreButton> = ({ name, description, image, pri
               </Text>
             </HStack>
             <Button
+              isLoading={isProcessing}
               colorScheme="green"
               mr={3}
               onClick={async () => {
-                await handleBuy();
+                await onBuyButtonClick();
               }}
             >
               Buy
