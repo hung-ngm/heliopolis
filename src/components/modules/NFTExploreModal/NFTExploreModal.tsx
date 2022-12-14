@@ -92,20 +92,20 @@ const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            NFT{'  '}
-            <Badge fontWeight="bold" fontSize="20px" colorScheme={'green'}>
-              #{tokenId}
-            </Badge>
-            : {name}
+            <Center>
+              <VStack>
+                <Text fontSize={25} fontWeight={'bold'}> {name} </Text>
+                <Badge fontWeight="bold" fontSize="20px" colorScheme={'green'}>#{tokenId}</Badge>
+              </VStack>
+            </Center>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <SimpleGrid columns={2} marginLeft={'5px'} marginRight={'5px'}>
               <VStack align={'left'}>
-                <Text fontWeight={'bold'}>Description: </Text>
-                <Text fontWeight={'normal'} fontSize={'20px'}>
-                  {' '}
-                  &quot;{`${description}`}&quot;{' '}
+                <Text as={'u'} fontWeight={'bold'}>Description</Text>
+                <Text as={'i'}fontWeight={'normal'} fontSize={'20px'}>
+                  {`${description}`}
                 </Text>
               </VStack>
 
