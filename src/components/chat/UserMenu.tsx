@@ -83,7 +83,7 @@ const UserMenu = ({ onConnect, onDisconnect }: UserMenuProps): JSX.Element => {
   return (
     <div
       className={`flex ${
-        tagStr() ? 'bg-p-600' : 'bg-n-500'
+        tagStr() ? 'bg-b-600' : 'bg-n-500'
       } items-center justify-between rounded-lg h-[8vh] max-h-16 mx-4 mb-5 md:mb-4 px-4 drop-shadow-xl`}
     >
       {walletAddress ? (
@@ -129,7 +129,7 @@ const UserMenu = ({ onConnect, onDisconnect }: UserMenuProps): JSX.Element => {
               <div className="flex items-center">
                 {tagStr() && (
                   <Tooltip message="You are connected to the dev network">
-                    <div className="bg-p-200 font-bold mr-1 text-sm p-1 rounded cursor-pointer">
+                    <div className="bg-b-400 font-bold mr-1 text-sm p-1 rounded cursor-pointer">
                       {tagStr()}
                     </div>
                   </Tooltip>

@@ -31,7 +31,7 @@ const MessageTile = ({ message }: MessageTileProps): JSX.Element => (
           {formatTime(message.sent)}
         </span>
       </div>
-      <span className="block text-md px-2 mt-2 text-black font-normal">
+      <span className="block text-md px-2 mt-2 text-white font-normal">
         {message.error ? (
           `Error: ${message.error?.message}`
         ) : (
@@ -78,7 +78,7 @@ const MessagesList = ({
   return (
     <div className="flex-grow flex">
       <div className="pb-6 md:pb-0 w-full flex flex-col self-end">
-        <div className="max-h-[80vh] relative w-full bg-white px-4 pt-6 overflow-y-auto flex">
+        <div className="max-h-[80vh] relative w-full bg-black px-4 pt-6 overflow-y-auto flex">
           <div className="w-full">
             {messages && messages.length ? (
               <ConversationBeginningNotice />

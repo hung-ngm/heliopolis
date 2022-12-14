@@ -60,7 +60,7 @@ const Conversation = ({
   }
 
   return (
-    <main className="flex flex-col flex-1 bg-white h-screen">
+    <main className="flex flex-col flex-1 bg-black h-screen">
       <MessagesList messagesEndRef={messagesEndRef} messages={messages} />
       <MessageComposer onSend={sendMessage} />
     </main>

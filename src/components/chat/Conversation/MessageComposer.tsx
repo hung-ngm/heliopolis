@@ -126,7 +126,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
         'flex-shrink-0',
         'flex',
         'h-[68px]',
-        'bg-white'
+        'text-white'
       )}
     >
       <form
@@ -137,6 +137,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
           'py-2',
           'pl-4',
           'mr-3',
+          'bg-n-500',
           messageComposerStyles.bubble
         )}
         autoComplete="off"
@@ -150,7 +151,8 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
             'w-full',
             'text-md',
             'md:text-sm',
-            'text-black',
+            'text-white',
+            'bg-n-500',
             messageComposerStyles.input
           )}
           name="message"
@@ -171,7 +173,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
         <button
           type="button"
           onClick={openModal}
-          className="rounded-md bg-blue-500 px-4 py-2 text-lg font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="rounded-md bg-b-600 px-4 py-2 text-lg font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           Transfer
         </button>
@@ -180,7 +182,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
         <button
           type="button"
           onClick={openNftModal}
-          className="rounded-md bg-blue-500 px-2 py-2 text-lg font-small text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="rounded-md bg-b-600 px-2 py-2 text-lg font-small text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           NFT
         </button>

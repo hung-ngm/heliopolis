@@ -20,8 +20,9 @@ const AddressPill = ({ address }: addressPillProps): JSX.Element => {
         'px-2',
         'py-1',
         'font-bold',
-        userIsSender ? 'bg-bt-100 text-b-600' : 'bg-zinc-50 text-black',
-        userIsSender ? 'border-bt-300' : 'border-gray-300'
+        'text-white',
+        userIsSender ? 'bg-b-600' : 'bg-n-500',
+        userIsSender ? 'border-bt-300' : 'border-n-500'
       )}
       address={address}
     ></Address>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import AddressInput from '../AddressInput'
 import { WalletContext } from '../../contexts/wallet'
 import XmtpContext from '../../contexts/xmtp'
-import { checkIfPathIsEns } from '../../helpers'
+import { checkIfPathIsEns, classNames } from '../../helpers'
 
 type RecipientInputProps = {
   recipientWalletAddress: string | undefined
@@ -110,7 +110,7 @@ const RecipientControl = ({
   )
 
   return (
-    <div className="flex-1 flex-col shrink justify-center flex h-[72px] bg-zinc-50 md:border-b md:border-gray-200 md:px-4 md:pb-[2px]">
+    <div className="flex-1 flex-col shrink justify-center flex h-[72px] bg-black md:border-b md:border-n-500 md:px-4 md:pb-[2px]">
       <form
         className="w-full flex pl-2 md:pl-0 h-8 pt-1"
         action="chat_components/Conversation/RecipientControl#"
@@ -120,14 +120,16 @@ const RecipientControl = ({
         <label htmlFor="recipient-field" className="sr-only">
           Recipient
         </label>
-        <div className="relative w-full text-n-300 focus-within:text-n-600">
+        <div className="relative w-full text-white focus-within:text-white">
           <div className="absolute top-1 left-0 flex items-center pointer-events-none text-md md:text-sm font-medium md:font-semibold">
             To:
           </div>
           <AddressInput
             recipientWalletAddress={recipientWalletAddress}
             id="recipient-field"
-            className="block w-[95%] pl-7 pr-3 pt-[3px] md:pt-[2px] md:pt-[1px] bg-transparent caret-n-600 text-n-600 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent text-lg font-mono"
+            className={classNames(
+              "block w-[95%] pl-7 pr-3 pt-[3px] md:pt-[2px] md:pt-[1px] bg-transparent bg-black text-white caret-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent text-lg font-mono",
+            )}
             name="recipient"
             onInputChange={handleInputChange}
           />
@@ -136,11 +138,11 @@ const RecipientControl = ({
       </form>
 
       {recipientInputMode === RecipientInputMode.Submitted ? (
-        <div className="text-md text-n-300 text-sm font-mono ml-10 md:ml-8 pb-1 md:pb-[1px]">
+        <div className="text-md text-white text-sm font-mono ml-10 md:ml-8 pb-1 md:pb-[1px]">
           {hasName ? recipientWalletAddress : <br />}
         </div>
       ) : (
-        <div className="text-sm md:text-xs text-n-300 ml-[29px] pl-2 md:pl-0 pb-1 md:pb-[3px]">
+        <div className="text-sm md:text-xs text-white ml-[29px] pl-2 md:pl-0 pb-1 md:pb-[3px]">
           {recipientInputMode === RecipientInputMode.NotOnNetwork &&
             'Recipient is not on the XMTP network'}
           {recipientInputMode === RecipientInputMode.FindingEntry &&

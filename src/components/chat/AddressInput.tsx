@@ -78,7 +78,7 @@ const AddressInput = ({
     'text-center',
     'text-transparent',
     'select-none',
-    userIsSender ? 'bg-bt-100' : 'bg-zinc-50',
+    'bg-n-500',
     userIsSender ? 'border-bt-300' : 'border-gray-300'
   )
 
