@@ -15,7 +15,7 @@ const Collection: FC<ICollection> = ({ myNfts }) => {
     <>
       <Center>
         <Heading size="xl" marginBottom={6} borderColor={headerColor} padding={'10px'} borderRadius={10} borderWidth={5}>
-          YOUR NFT COLLECTION
+          MY NFT COLLECTION
         </Heading>
       </Center>
       {myNfts?.length ? (

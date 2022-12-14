@@ -6,10 +6,10 @@ import XmtpProvider from 'components/chat/XmtpProvider';
 import { publicProvider } from 'wagmi/providers/public';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
-import { mode } from "@chakra-ui/theme-tools"
+import { mode } from '@chakra-ui/theme-tools';
 const { provider, webSocketProvider } = configureChains(defaultChains, [publicProvider()]);
-import type { GlobalStyleProps } from "@chakra-ui/theme-tools"
-import '@styles/globals.css'
+import type { GlobalStyleProps } from '@chakra-ui/theme-tools';
+import '@styles/globals.css';
 
 const client = createClient({
   provider,
@@ -22,29 +22,27 @@ const config = {
   useSystemColorMode: false,
 };
 
-
 const styles = {
   global: (props: GlobalStyleProps) => ({
     body: {
       fontFamily: 'body',
       color: mode('gray.800', 'whiteAlpha.900')(props),
       backgroundImage: mode('/beach.webp', '/cosmos.jpeg')(props),
-      backgroundRepeat: "no-repeat",
-      backgroundAttachment: "fixed",
-      backgroundSize: "cover",
-      lineHeight: 'base'    
-    } 
-    
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      backgroundSize: 'cover',
+      lineHeight: 'base',
+    },
   }),
-  ...config
-}
+  ...config,
+};
 
 const theme = extendTheme({ styles });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-      <WalletProvider>
-        <XmtpProvider>
+    <WalletProvider>
+      <XmtpProvider>
         <ChakraProvider resetCSS theme={theme}>
           <WagmiConfig client={client}>
             <SessionProvider session={pageProps.session} refetchInterval={0}>
@@ -52,8 +50,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             </SessionProvider>
           </WagmiConfig>
         </ChakraProvider>
-        </XmtpProvider>
-      </WalletProvider>
+      </XmtpProvider>
+    </WalletProvider>
   );
 };
 

@@ -1,13 +1,27 @@
 import { Default } from 'components/layouts/Default';
-import { Home } from 'components/templates/home';
 import type { NextPage } from 'next';
+import React, { useEffect, useState } from 'react';
+import Router from 'next/router';
 
 const HomePage: NextPage = () => {
-  return (
-    <Default pageName="Home">
-      <Home />
-    </Default>
-  );
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const { pathname } = Router;
+    if (pathname === '/') {
+      Router.push('/marketplace/explore');
+    } else {
+      setLoaded(true);
+    }
+  }, []);
+
+  if (!loaded) {
+    return (
+      <Default pageName="Home">
+        <></>
+      </Default>
+    );
+  }
+  return <></>;
 };
 
 export default HomePage;

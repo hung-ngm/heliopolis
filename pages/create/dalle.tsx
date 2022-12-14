@@ -9,7 +9,7 @@ import { DallE } from 'components/templates/create/dalle';
 
 const ERC20: NextPage<IExplore> = () => {
     return (
-        <Default pageName="ERC20 Balances">
+        <Default pageName="Dall-E Mint">
             <DallE />
         </Default>
     );

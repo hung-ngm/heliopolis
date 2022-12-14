@@ -7,12 +7,12 @@ import { NFTExploreButton } from '../NFTExploreButton';
 const NFTExploreCard: FC<INFTExploreCard> = ({ name, description, image, price, tokenId }) => {
   const infoProps = { name, description, price, tokenId };
   const imageProps = { name, image };
-  const priceProps = {tokenId, price};
+  const viewProps = {name, description, image, price, tokenId};
   return (
     <Box maxWidth="315px" padding={1} borderRadius="xl">
       <NFTImage {...imageProps} />
       <NFTExploreCardInfo {...infoProps} />
-      <NFTExploreButton {...priceProps}></NFTExploreButton>
+      <NFTExploreButton {...viewProps}></NFTExploreButton>
     </Box>
   );
 };
