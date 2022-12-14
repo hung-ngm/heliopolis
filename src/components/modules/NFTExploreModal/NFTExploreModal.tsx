@@ -17,11 +17,10 @@ import {
   Box,
   Badge,
   useToast,
-  ToastId
+  ToastId,
 } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { INFTExploreModal } from './types';
-
 
 import { buyNft } from '@pages/api/nft/buyNft';
 const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price, tokenId, isOpen, onClose }) => {
@@ -90,38 +89,43 @@ const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price
 
   return (
     <>
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size={'4xl'}>
+      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size={'xl'}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            <Center>
-              <VStack>
-                <Text fontSize={25} fontWeight={'bold'}> {name} </Text>
-                <Badge fontWeight="bold" fontSize="20px" colorScheme={'green'}>#{tokenId}</Badge>
-              </VStack>
-            </Center>
-          </ModalHeader>
+          <ModalHeader />
           <ModalCloseButton />
           <ModalBody>
-            <SimpleGrid columns={2} marginLeft={'5px'} marginRight={'5px'}>
-              <VStack align={'left'}>
-                <Text as={'u'} fontWeight={'bold'}>Description</Text>
-                <Text as={'i'}fontWeight={'normal'} fontSize={'20px'}>
-                  {`${description}`}
+            <VStack>
+              <Center>
+                <Box maxWidth="500px" maxHeight="500px" overflow={'hidden'}>
+                  <Image
+                    src={`${image}`}
+                    alt={'nft'}
+                    minWidth={'400px'}
+                    minHeight={'400px'}
+                    boxSize="100%"
+                    objectFit="contain"
+                  />
+                </Box>
+              </Center>
+              <Center>
+                <Text fontSize={25} fontWeight={'bold'}>
+                  {' '}
+                  {name}{' '}
+                  <Badge fontWeight="bold" fontSize="20px" colorScheme={'green'}>
+                    #{tokenId}
+                  </Badge>
                 </Text>
-              </VStack>
+              </Center>
 
-              <Box maxWidth="500px" maxHeight="500px" overflow={'hidden'}>
-                <Image
-                  src={`${image}`}
-                  alt={'nft'}
-                  minWidth={'400px'}
-                  minHeight={'400px'}
-                  boxSize="100%"
-                  objectFit="contain"
-                />
-              </Box>
-            </SimpleGrid>
+              <Center>
+                <Box>
+                  <Text as={'i'} fontWeight={'normal'} fontSize={'20px'}>
+                    {`${description}`}
+                  </Text>
+                </Box>
+              </Center>
+            </VStack>
           </ModalBody>
 
           <ModalFooter gap={'5px'}>
