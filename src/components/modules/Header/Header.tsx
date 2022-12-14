@@ -13,7 +13,6 @@ const Header = () => {
             <NavBar />
             <HStack gap={'10px'}>
               <ConnectButton />
-              <ColorModeButton />
             </HStack>
           </Flex>
         </Container>
