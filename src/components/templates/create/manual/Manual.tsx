@@ -8,6 +8,7 @@ import React, { FC, useState } from 'react';
 import {
   FormControl,
   FormHelperText,
+  FormErrorMessage,
   Input,
   Container,
   Textarea,
@@ -43,6 +44,17 @@ const Manual: FC = () => {
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(e.target.value);
+    }
+
+    const isValidName : boolean = (name.length > 50 || name === "") ? false : true;
+    const isValidDescription : boolean = (description.length > 200 || description === "") ? false : true;
+    const isValidPrice : boolean = (price === "" || isNaN(Number(price)) || Number(price) < 0) ? false : true;
+
+    const isMintable = (): boolean =>  {
+        if (isValidName && isValidDescription && isValidPrice && selectedFile) {
+            return true;
+        }
+        return false;
     }
 
     const handleMint = async () => {
@@ -99,18 +111,22 @@ const Manual: FC = () => {
             </Container>
 
             <Heading size="md" pt="10">Name</Heading>
-            <FormControl pt="4" isInvalid={name === ""}>
+            <FormControl pt="4" isInvalid={!isValidName}>
                 <Input 
                     width="600px"
                     value = {name} 
                     onChange={handleNameChange} 
                     placeholder='Enter name here' 
                 />
-                <FormHelperText>Enter the name for the NFT</FormHelperText>
+                {isValidName ? (
+                    <FormHelperText>Enter the name for the NFT</FormHelperText>
+                ) : (
+                    <FormErrorMessage>Name must not be empty and be less than 50 characters</FormErrorMessage>
+                )}
             </FormControl>
 
             <Heading size="md" pt="10">Description</Heading>
-            <FormControl pt="4" isInvalid={description === ""}>
+            <FormControl pt="4" isInvalid={!isValidDescription}>
                 <Textarea
                     width="600px"
                     height="200px"
@@ -118,23 +134,37 @@ const Manual: FC = () => {
                     onChange={handleDescriptionChange}
                     placeholder='Enter description here'
                 />
-                <FormHelperText>Enter the description for the NFT</FormHelperText>
+                {isValidDescription ? (
+                    <FormHelperText>Enter the description for the NFT</FormHelperText>
+                ) : (
+                    <FormErrorMessage>Description must not be empty and be less than 200 characters</FormErrorMessage>
+                )}
             </FormControl>
 
             <Heading size="md" pt="10">Price</Heading>
-            <FormControl pt="4" isInvalid={price === ""}>
+            <FormControl pt="4" isInvalid={!isValidPrice}>
                 <Input 
                     width="600px"
                     value = {price} 
                     onChange={handlePriceChange} 
                     placeholder='Enter price here' 
                 />
-                <FormHelperText>Enter the Price (wei) MATIC for the NFT</FormHelperText>
+                {isValidPrice ? (
+                    <FormHelperText>Enter the Price (wei) MATIC for the NFT</FormHelperText>
+                ) : (
+                    <FormErrorMessage>Price must be a number greater than 0</FormErrorMessage>
+                )}
             </FormControl>
 
             <Container pt="10" ml="-5">
                 
-            <Button isLoading={isMinting} colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+            <Button
+                isDisabled={!isMintable()}
+                isLoading={isMinting} 
+                colorScheme='blue' 
+                mr={3} 
+                onClick={async () => { await handleMint() }}
+            >
                 Mint
             </Button>
                 
