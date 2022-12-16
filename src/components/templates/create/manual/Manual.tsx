@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-template */
-import { Heading } from '@chakra-ui/react';
+import { Heading, useColorModeValue } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
 import {
   FormControl,
@@ -33,7 +33,8 @@ const Manual: FC = () => {
     const [images, setImages] = React.useState<{ cid: CID; path: string }[]>([]);
     const [uploaded, setUploaded] = React.useState(false);
     const [ipfsImageUrl, setIpfsImageUrl] = useState<string>("");
-
+    const textColor = useColorModeValue('black', 'white');
+    const bgTextColor = useColorModeValue('gray.200', 'gray.700');
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     }
@@ -104,7 +105,7 @@ const Manual: FC = () => {
 
     return (
         <>
-            <Heading size="lg" marginBottom={6}>Create your own NFT</Heading>
+            <Heading size="xl" marginBottom={6}>Create your own NFT</Heading>
             <Heading size="md" pt="10">Upload your image</Heading>
             <Container pt="10" ml="-5">
                 <Upload selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
@@ -117,6 +118,8 @@ const Manual: FC = () => {
                     value = {name} 
                     onChange={handleNameChange} 
                     placeholder='Enter name here' 
+                    bgColor={bgTextColor}
+                    color={textColor}
                 />
                 {isValidName ? (
                     <FormHelperText>Enter the name for the NFT</FormHelperText>
@@ -133,6 +136,8 @@ const Manual: FC = () => {
                     value = {description}
                     onChange={handleDescriptionChange}
                     placeholder='Enter description here'
+                    bgColor={bgTextColor}
+                    color={textColor}
                 />
                 {isValidDescription ? (
                     <FormHelperText>Enter the description for the NFT</FormHelperText>
@@ -148,6 +153,8 @@ const Manual: FC = () => {
                     value = {price} 
                     onChange={handlePriceChange} 
                     placeholder='Enter price here' 
+                    bgColor={bgTextColor}
+                    color={textColor}
                 />
                 {isValidPrice ? (
                     <FormHelperText>Enter the Price (wei) MATIC for the NFT</FormHelperText>

@@ -1,5 +1,5 @@
 import { Box, Container, Flex, HStack, Center, useColorModeValue } from '@chakra-ui/react';
-import { ColorModeButton, Logo, NavBar } from 'components/elements';
+import { Logo, NavBar } from 'components/elements';
 import { ConnectButton } from '../ConnectButton';
 
 const Header = () => {
@@ -13,7 +13,6 @@ const Header = () => {
             <NavBar />
             <HStack gap={'10px'}>
               <ConnectButton />
-              <ColorModeButton />
             </HStack>
           </Flex>
         </Container>

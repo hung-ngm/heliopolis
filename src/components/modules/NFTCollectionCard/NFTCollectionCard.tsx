@@ -13,7 +13,7 @@ import React from 'react';
 const NFTCollectionCard: FC<INFTCollectionCard> = ({ name, description, image, tokenId }) => {
   const imageProps = {name, image};
   const infoProps = {name, description, image, tokenId};
-  const sellProps = {name, tokenId};
+  const sellProps = {name, description, image, tokenId};
   
   return (
     <Box maxWidth="315px" padding={1} borderRadius="xl">

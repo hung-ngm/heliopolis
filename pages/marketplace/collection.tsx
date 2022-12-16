@@ -8,7 +8,7 @@ import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 
 const ERC20: NextPage<ICollection> = (props) => {
   return (
-    <Default pageName="ERC20 Balances">
+    <Default pageName="My Collection">
       <Collection {...props} />
     </Default>
   );

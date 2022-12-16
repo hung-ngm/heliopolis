@@ -14,7 +14,8 @@ import {
   Container,
   Textarea,
   Button,
-  Image
+  Image,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { generatePictureBase64 } from '@pages/api/ai/generatePictureBase64';
 import { create, IPFSHTTPClient } from "ipfs-http-client";
@@ -34,6 +35,8 @@ const DallE: FC = () => {
     const [description, setDescription] = useState<string>("");
     const [price, setPrice] = useState<string>("");
     const [isMinting, setIsMinting] = useState<boolean>(false);
+    const textColor = useColorModeValue('black', 'white');
+    const bgTextColor = useColorModeValue('gray.200', 'gray.700');
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setPrompt(e.target.value);
@@ -136,7 +139,7 @@ const DallE: FC = () => {
 
     return (
         <>
-            <Heading size="lg" marginBottom={6}>Use Dall-E to create your own NFT</Heading>
+            <Heading size="xl" marginBottom={6}>Use Dall-E to create your own NFT</Heading>
 
             {previewImage === "" ? (
                 <>
@@ -148,8 +151,10 @@ const DallE: FC = () => {
                             value = {prompt}
                             onChange={handlePromptChange}
                             placeholder='Enter prompt here'
+                            bgColor={bgTextColor}
+                            color={textColor}
                         />
-                        <FormHelperText>Enter the prompt for Dall-E to create image</FormHelperText>
+                        <FormHelperText color={textColor}>Enter the prompt for Dall-E to create image</FormHelperText>
                     </FormControl>
 
                     <Container pt="10" ml="-5">
@@ -182,6 +187,8 @@ const DallE: FC = () => {
                             value = {name} 
                             onChange={handleNameChange} 
                             placeholder='Enter name here' 
+                            bgColor={bgTextColor}
+                            color={textColor}
                         />
                         {isValidName ? (
                             <FormHelperText>Enter the name for the NFT</FormHelperText>
@@ -198,6 +205,8 @@ const DallE: FC = () => {
                             value = {description}
                             onChange={handleDescriptionChange}
                             placeholder='Enter description here'
+                            bgColor={bgTextColor}
+                            color={textColor}
                         />
                         {isValidDescription ? (
                             <FormHelperText>Enter the description for the NFT</FormHelperText>
@@ -213,6 +222,8 @@ const DallE: FC = () => {
                             value = {price} 
                             onChange={handlePriceChange} 
                             placeholder='Enter price here' 
+                            bgColor={bgTextColor}
+                            color={textColor}
                         />
                         {isValidPrice ? (
                             <FormHelperText>Enter the Price (wei) MATIC for the NFT</FormHelperText>

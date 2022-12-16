@@ -21,7 +21,7 @@ const ERC20: NextPage<IExplore> = (props) => {
     }, [nftsExplore])
     
     return (
-        <Default pageName="ERC20 Balances">
+        <Default pageName="Marketplace">
             <Explore {...props} nftsExplore={nftsExplore} isInitialLoading={isInitialLoading} />
         </Default>
     );
