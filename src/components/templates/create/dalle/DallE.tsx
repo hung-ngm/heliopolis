@@ -9,6 +9,7 @@ import React, { FC, useState } from 'react';
 import {
   FormControl,
   FormHelperText,
+  FormErrorMessage,
   Input,
   Container,
   Textarea,
@@ -51,6 +52,18 @@ const DallE: FC = () => {
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(e.target.value);
+    }
+
+    const isValidName : boolean = (name.length > 50 || name === "") ? false : true;
+    const isValidDescription : boolean = (description.length > 200 || description === "") ? false : true;
+    const isValidPrice : boolean = (price === "" || isNaN(Number(price)) || Number(price) < 0) ? false : true;
+
+    const isMintable = (): boolean =>  {
+        return isValidName && isValidDescription && isValidPrice && image !== "";
+    }
+
+    const isCreatable = () : boolean => {
+        return prompt !== ""
     }
 
     const handleMint = async () => {
@@ -145,7 +158,13 @@ const DallE: FC = () => {
                     </FormControl>
 
                     <Container pt="10" ml="-5">
-                        <Button isLoading={isCreating} colorScheme='blue' mr={3} onClick={async () => { await handleCreateImage(prompt) }}>
+                        <Button 
+                            isDisabled={!isCreatable()}
+                            isLoading={isCreating} 
+                            colorScheme='blue' 
+                            mr={3} 
+                            onClick={async () => { await handleCreateImage(prompt) }}
+                        >
                             Create
                         </Button>
                     </Container>
@@ -171,7 +190,11 @@ const DallE: FC = () => {
                             bgColor={bgTextColor}
                             color={textColor}
                         />
-                        <FormHelperText color={textColor}>Enter the name for the NFT</FormHelperText>
+                        {isValidName ? (
+                            <FormHelperText>Enter the name for the NFT</FormHelperText>
+                        ) : (
+                            <FormErrorMessage>Name must not be empty and be less than 50 characters</FormErrorMessage>
+                        )}
                     </FormControl>
 
                     <Heading size="md" pt="10">Description</Heading>
@@ -185,7 +208,11 @@ const DallE: FC = () => {
                             bgColor={bgTextColor}
                             color={textColor}
                         />
-                        <FormHelperText color={textColor}>Enter the description for the NFT</FormHelperText>
+                        {isValidDescription ? (
+                            <FormHelperText>Enter the description for the NFT</FormHelperText>
+                        ) : (
+                            <FormErrorMessage>Description must not be empty and be less than 200 characters</FormErrorMessage>
+                        )}
                     </FormControl>
 
                     <Heading size="md" pt="10">Price</Heading>
@@ -198,12 +225,22 @@ const DallE: FC = () => {
                             bgColor={bgTextColor}
                             color={textColor}
                         />
-                        <FormHelperText color={textColor}>Enter the Price (wei) MATIC for the NFT</FormHelperText>
+                        {isValidPrice ? (
+                            <FormHelperText>Enter the Price (wei) MATIC for the NFT</FormHelperText>
+                        ) : (
+                            <FormErrorMessage>Price must be a number greater than 0</FormErrorMessage>
+                        )}
                     </FormControl>
 
                     <Container pt="10" ml="-5">
                         
-                    <Button isLoading={isMinting} colorScheme='blue' mr={3} onClick={async () => { await handleMint() }}>
+                    <Button 
+                        isDisabled={!isMintable()}
+                        isLoading={isMinting} 
+                        colorScheme='blue' 
+                        mr={3} 
+                        onClick={async () => { await handleMint() }}
+                    >
                         Mint
                     </Button>
                         
