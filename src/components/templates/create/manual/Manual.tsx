@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-template */
-import { Heading, useColorModeValue } from '@chakra-ui/react';
+import { Heading, useColorModeValue, useToast, ToastId } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
 import { FormControl, FormHelperText, FormErrorMessage, Input, Container, Textarea, Button } from '@chakra-ui/react';
 import Upload from './Upload';
@@ -26,6 +26,8 @@ const Manual: FC = () => {
   const [ipfsImageUrl, setIpfsImageUrl] = useState<string>('');
   const textColor = useColorModeValue('black', 'white');
   const bgTextColor = useColorModeValue('gray.200', 'gray.700');
+  const toast = useToast();
+  const toastIdRef = React.useRef<ToastId>();
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -62,6 +64,13 @@ const Manual: FC = () => {
         },
       });
       if (selectedFile) {
+        toastIdRef.current = toast({
+          title: 'Executing...',
+          description: 'You will be asked to sign TWICE',
+          status: 'loading',
+          position: 'top-left',
+          duration: null,
+        });
         const result = await (ipfsClient as IPFSHTTPClient).add(selectedFile);
 
         const uniquePaths: any = new Set([...images.map((image) => image.path), result.path]);
@@ -84,14 +93,36 @@ const Manual: FC = () => {
           image: ipfsUrl,
         };
         await mintNft(tokenUri, price);
-
+        updateToast(null);
         setIsMinting(false);
       }
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      updateToast((e as { message: string })?.message);
+      setIsMinting(false);
+      console.log(e);
     }
   };
-
+  const updateToast = (e: string | null) => {
+    if (toastIdRef.current) {
+      if (e === null) {
+        toast.update(toastIdRef.current, {
+          title: 'Mint successfully',
+          description: 'Your NFT has mint and listed on marketplace.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        toast.update(toastIdRef.current, {
+          title: 'Mint failed',
+          description: e,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }
+  };
   return (
     <>
       <Heading size="xl" marginBottom={6}>
