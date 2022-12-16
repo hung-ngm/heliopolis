@@ -8,7 +8,7 @@ import { nftMarketplaceAddress, nftAddress } from 'utils/contracts';
 
 import { nftAbi } from 'utils/nftAbi';
 import { nftMarketplaceAbi } from 'utils/nftMarketplaceAbi';
-import { TokenUri } from 'components/templates/marketplace/Explore/types';
+import { TokenUri } from 'components/templates/marketplace/types';
 
 export const loadNfts = async () => {
     const provider = new ethers.providers.JsonRpcProvider(process.env.MUMBAI_URL);

@@ -24,7 +24,7 @@ const NavigationColumnLayout: React.FC<{ children: React.ReactNode }> = ({ child
 const NavigationHeaderLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
   const handleBackArrowClick = useCallback(() => {
-    router.push('/')
+    router.push('/marketplace')
   }, [router])
   return(
     <div className="h-[10vh] max-h-20 bg-b-600 flex items-center justify-between flex-shrink-0 px-4">

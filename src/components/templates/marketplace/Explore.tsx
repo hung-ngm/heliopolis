@@ -1,9 +1,9 @@
-import { Box, Grid, Heading, Image, Spinner, Center, useColorModeValue } from '@chakra-ui/react';
+import { Box, Grid, Heading, Image, Center, useColorModeValue } from '@chakra-ui/react';
 import { NFTExploreCard } from 'components/modules';
 import React, { FC } from 'react';
 import { IExplore } from './types';
 
-const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {
+const Explore: FC<IExplore> = ({ nftsExplore }) => {
   const headerColor = useColorModeValue('black', 'white');
   return (
     <>
@@ -19,10 +19,6 @@ const Explore: FC<IExplore> = ({ nftsExplore, isInitialLoading }) => {
             <NFTExploreCard {...nft} key={key} />
           ))}
         </Grid>
-      ) : isInitialLoading ? (
-        <Center>
-          <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
-        </Center>
       ) : (
         <>
           <Box>Look like there is nothing on the market at the moment.</Box>

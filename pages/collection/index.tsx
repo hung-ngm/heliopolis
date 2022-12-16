@@ -2,8 +2,8 @@ import { Default } from 'components/layouts/Default';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
-import { ICollection } from 'components/templates/marketplace/Collection/types';
-import { Collection } from 'components/templates/marketplace/Collection';
+import { ICollection } from 'components/templates/collection/types';
+import { Collection } from 'components/templates/collection';
 import { loadMyNfts } from '@pages/api/nft/loadMyNfts';
 
 const ERC20: NextPage<ICollection> = (props) => {

@@ -4,13 +4,13 @@ import React from 'react';
 import { getSession } from 'next-auth/react';
 import Moralis from 'moralis';
 import { IExplore } from 'components/templates/marketplace/types';
-import { DallE } from 'components/templates/create/dalle';
+import { Explore } from 'components/templates/marketplace';
+import { loadNfts } from '../api/nft/loadNfts';
 
-
-const ERC20: NextPage<IExplore> = () => {
+const ERC20: NextPage<IExplore> = (props) => {    
     return (
-        <Default pageName="Dall-E Mint">
-            <DallE />
+        <Default pageName="Marketplace">
+            <Explore {...props} />
         </Default>
     );
 };
@@ -24,8 +24,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return { props: { error: 'Connect your wallet first' } };
     }
 
+    const items = await loadNfts();
+
     return {
-        props: {}
+        props: {
+            nftsExplore: items
+        }
     };
 };
 

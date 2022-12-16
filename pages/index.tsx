@@ -8,7 +8,7 @@ const HomePage: NextPage = () => {
   useEffect(() => {
     const { pathname } = Router;
     if (pathname === '/') {
-      Router.push('/marketplace/explore');
+      Router.push('/marketplace');
     } else {
       setLoaded(true);
     }

@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
-import { TokenUri } from 'components/templates/marketplace/Explore/types';
+import { TokenUri } from 'components/templates/marketplace/types';
 
 import { nftMarketplaceAddress, nftAddress } from 'utils/contracts';
 
