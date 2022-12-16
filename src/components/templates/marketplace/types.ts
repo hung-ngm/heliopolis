@@ -10,7 +10,6 @@ export type TNFTExplore = {
 
 export interface IExplore {
     nftsExplore?: TNFTExplore[];
-    isInitialLoading: boolean;
 }
 
 export type TokenUri = {
