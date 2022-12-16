@@ -7,7 +7,7 @@ import { nftMarketplaceAddress, nftAddress } from 'utils/contracts';
 import { nftMarketplaceAbi } from 'utils/nftMarketplaceAbi';
 import { nftAbi } from 'utils/nftAbi';
 
-export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boolean> => {
+export const mintNft = async (nftUri: TokenUri, nftPrice: string) => {
     try{
         const web3Modal = new Web3Modal();
         const connection = await web3Modal.connect();
@@ -33,12 +33,8 @@ export const mintNft = async (nftUri: TokenUri, nftPrice: string): Promise<boole
     
         const res = await listMarketTx.wait();
         console.log(res);
-
-        return true;
-        
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
-        console.log('error', e);
-        return false;
+        throw new Error("Unexpected error from the network. Please consider increasing your gas or try again.");
     }
 }
