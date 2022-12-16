@@ -24,11 +24,7 @@ export const buyNft = async (nft: any) => {
         
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
-        if(e.code === -32603){
-            throw new Error("Insufficient fund");
-        }else{
-            throw e;
-        }
+        throw new Error("Unexpected Error from the network. Consider increase your gas or try again.");
     }
 
 }

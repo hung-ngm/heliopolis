@@ -71,18 +71,14 @@ const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price
 
   const handleBuy = async () => {
     console.log('price', price);
-    try {
-      if (price) {
-        const currentNft = {
-          price,
-          tokenId,
-        };
-        const res = await buyNft(currentNft);
-        console.log(res);
-      }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      console.log(e);
+
+    if (price) {
+      const currentNft = {
+        price,
+        tokenId,
+      };
+      const res = await buyNft(currentNft);
+      console.log(res);
     }
   };
 
