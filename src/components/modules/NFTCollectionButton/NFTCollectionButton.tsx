@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { INFTCollectionButton } from './types';
 import { Button, Center, useDisclosure } from '@chakra-ui/react';
 
