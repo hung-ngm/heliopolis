@@ -16,7 +16,10 @@ export const transferNft = async (addressFrom: string, addressTo: string, tokenI
         const nftContract = new ethers.Contract(nftAddress, nftAbi, signer);
 
         // The signer approve for the nftMarketplace to transfer NFT
-        const approveTx = await nftContract.approve(nftMarketplaceAddress, tokenId);
+        const approveTx = await nftContract.approve(nftMarketplaceAddress, tokenId, {
+            gasLimit: 1000000,
+            gasPrice: ethers.utils.parseUnits("10", "gwei"),
+        });
         const approveTxReceipt = await approveTx.wait();
         console.log(approveTxReceipt);
 
