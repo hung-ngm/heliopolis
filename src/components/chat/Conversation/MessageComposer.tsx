@@ -82,8 +82,12 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
       const canTransferNft = await transferNft(walletAddress, recipientWalletAddr, Number(tokenId))
       console.log('can transfer nft?', canTransferNft);
       if (canTransferNft) {
-        const transferMessage = `Send NFT ${tokenId} successfully!`;
+        const transferMessage = `[Heliopolis Bot]: Send NFT ${tokenId} successfully!`;
         await onSend(transferMessage);
+        setNftLoading(false);
+      } else {
+        const txFailedMessage = `[Heliopolis Bot]: Send NFT ${tokenId} failed! Consider increasing your gas.`;
+        await onSend(txFailedMessage);
         setNftLoading(false);
       }
     }
@@ -351,7 +355,7 @@ const MessageComposer = ({ onSend }: MessageComposerProps): JSX.Element => {
                       <br/>
                       <br/>
                       
-                      <Link href="/marketplace/collection">
+                      <Link href="/collection">
                         <a className='text-black underline'>See your NFT balance here</a>
                       </Link>
                      
