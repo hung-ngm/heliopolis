@@ -26,7 +26,7 @@ export const resellNft = async (nft: any) => {
         console.log(response);
         
     } catch (e:any){
-        console.log(e);
+        throw new Error("Unexpected Error from the network. Consider increase your gas (Max Priority and Max Fee > 30) or try again.");
     }
 
 }
