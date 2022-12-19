@@ -74,30 +74,27 @@ const NFTCollectionModal: FC<INFTCollectionModal> = ({ name, description, image,
       await handleResell().then(() => onClose());
       updateToast(null);
       setIsListing(false);
-    } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e : any) {
+      console.log(e.message);
       updateToast((e as { message: string })?.message);
-      console.log(e);
       setIsListing(false);
     }
   };
 
   const handleResell = async () => {
     setIsListing(true);
-    try {
-      const price = input;
-      console.log(`Selling token ${tokenId} with price ${price} wei`);
-      const currentNft = {
-        price: Number(price),
-        tokenId: Number(tokenId),
-      };
-      const res = await resellNft(currentNft);
-      console.log(res);
-      setIsListing(false);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      console.log(e.message);
-      setIsListing(false);
-    }
+
+    const price = input;
+    console.log(`Selling token ${tokenId} with price ${price} wei`);
+    const currentNft = {
+      price: Number(price),
+      tokenId: Number(tokenId),
+    };
+    const res = await resellNft(currentNft);
+    console.log(res);
+    setIsListing(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   };
 
   return (
@@ -105,7 +102,7 @@ const NFTCollectionModal: FC<INFTCollectionModal> = ({ name, description, image,
       <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size={'xl'}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader/>
+          <ModalHeader />
           <ModalCloseButton />
           <ModalBody>
             <VStack>

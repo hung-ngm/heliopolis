@@ -35,6 +35,7 @@ export const mintNft = async (nftUri: TokenUri, nftPrice: string) => {
         console.log(res);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
-        throw new Error("Unexpected error from the network. Please consider increasing your gas or try again.");
+        console.log(e);
+        throw new Error("Unexpected Error from the network. Consider increase your gas (Max Priority and Max Fee > 30) or try again.");
     }
 }
