@@ -24,7 +24,7 @@ export const buyNft = async (nft: any) => {
         
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch (e: any){
-        throw new Error("Unexpected Error from the network. Consider increase your gas or try again.");
+        throw new Error("Unexpected Error from the network. Consider increase your gas (Max Priority and Max Fee > 30) or try again.");
     }
 
 }
