@@ -29,6 +29,7 @@ export const loadMyNfts = async (address: string) => {
             image: tokenUri.image,
             name: tokenUri.name,
             description: tokenUri.description,
+            itemId: i.itemId.toNumber(),
         }
 
         return item

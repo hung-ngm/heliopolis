@@ -4,11 +4,11 @@ import { Button, Center, useDisclosure } from '@chakra-ui/react';
 
 import { NFTCollectionModal } from '../NFTCollectionModal';
 
-const NFTCollectionButton: FC<INFTCollectionButton> = ({ name, description, image, tokenId }) => {
+const NFTCollectionButton: FC<INFTCollectionButton> = ({ name, description, image, tokenId, itemId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const finalRef = React.useRef(null);
-  const modalProps = { name, description, image, tokenId, isOpen, onClose };
+  const modalProps = { name, description, image, tokenId, isOpen, onClose, itemId };
 
   return (
     <Center>

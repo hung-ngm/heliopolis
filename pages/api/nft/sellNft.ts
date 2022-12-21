@@ -15,7 +15,7 @@ export const resellNft = async (nft: any) => {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, signer);
 
-        const transaction = await contract.putItemToResell(nftAddress, nft.tokenId, nft.price,
+        const transaction = await contract.putItemToResell(nftAddress, nft.itemId, nft.price,
             {
                 gasLimit: 1000000,
                 gasPrice: ethers.utils.parseUnits("10", "gwei"),

@@ -6,6 +6,7 @@ export type TNFTCollection = {
   price: string;
   seller: string;
   tokenId: number;
+  itemId: number;
 };
 
 export interface ICollection {
