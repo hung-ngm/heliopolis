@@ -6,6 +6,7 @@ export type TNFTExplore = {
     price: string;
     seller: string;
     tokenId: number;
+    itemId: number;
 }
 
 export interface IExplore {

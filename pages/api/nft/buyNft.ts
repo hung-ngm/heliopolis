@@ -13,12 +13,12 @@ export const buyNft = async (nft: any) => {
         const provider = new ethers.providers.Web3Provider(connection);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(nftMarketplaceAddress, nftMarketplaceAbi, signer);
-
         const price = ethers.utils.parseUnits(nft.price.toString(), 'wei');
-        const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
+        
+        const transaction = await contract.createMarketSale(nftAddress, Number(nft.itemId), {
             value: price,
-            gasLimit: 10000000,
-            gasPrice: ethers.utils.parseUnits("10", "gwei"), 
+            gasLimit: 25000000,
+            gasPrice: ethers.utils.parseUnits("30", "gwei"), 
         });
         await transaction.wait();
         
