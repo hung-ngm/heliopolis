@@ -2,4 +2,4 @@
 import { TNFTCollection } from "components/templates/collection/types";
 
 export interface INFTCollectionCard
-    extends Pick<TNFTCollection, "name" | "description" | "image" | "tokenId"> {}
+    extends Pick<TNFTCollection, "name" | "description" | "image" | "tokenId" | "itemId"> {}

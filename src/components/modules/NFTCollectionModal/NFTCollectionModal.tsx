@@ -21,7 +21,7 @@ import { resellNft } from '@pages/api/nft/sellNft';
 import React, { FC, useState } from 'react';
 import { INFTCollectionModal } from './types';
 
-const NFTCollectionModal: FC<INFTCollectionModal> = ({ name, description, image, tokenId, isOpen, onClose }) => {
+const NFTCollectionModal: FC<INFTCollectionModal> = ({ name, description, image, tokenId, isOpen, onClose, itemId }) => {
   const [input, setInput] = useState('');
   const [isError, setIsError] = useState(true);
   const [isListing, setIsListing] = useState(false);
@@ -86,10 +86,10 @@ const NFTCollectionModal: FC<INFTCollectionModal> = ({ name, description, image,
     setIsListing(true);
 
     const price = input;
-    console.log(`Selling token ${tokenId} with price ${price} wei`);
+    console.log(`Selling token ${tokenId} with itemId ${itemId} with price ${price} wei`);
     const currentNft = {
       price: Number(price),
-      tokenId: Number(tokenId),
+      itemId: Number(itemId),
     };
     const res = await resellNft(currentNft);
     console.log(res);
