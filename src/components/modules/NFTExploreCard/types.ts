@@ -2,4 +2,4 @@
 import { TNFTExplore } from "components/templates/marketplace/types";
 
 export interface INFTExploreCard
-    extends Pick<TNFTExplore, "name" | "description" | "image" | "price" | "tokenId"> {}
+    extends Pick<TNFTExplore, "name" | "description" | "image" | "price" | "tokenId" | "itemId"> {}

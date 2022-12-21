@@ -22,7 +22,7 @@ import React, { FC } from 'react';
 import { INFTExploreModal } from './types';
 
 import { buyNft } from '@pages/api/nft/buyNft';
-const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price, tokenId, isOpen, onClose }) => {
+const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price, tokenId, isOpen, onClose, itemId }) => {
   const finalRef = React.useRef(null);
   const toast = useToast();
   const toastIdRef = React.useRef<ToastId>();
@@ -75,7 +75,7 @@ const NFTExploreModal: FC<INFTExploreModal> = ({ name, description, image, price
     if (price) {
       const currentNft = {
         price,
-        tokenId,
+        itemId,
       };
       const res = await buyNft(currentNft);
       console.log(res);
